@@ -25,7 +25,7 @@ Route::middleware(['basicAuth'])->group(function () {
 
     //for class Category Api Strat------
     Route::resource('class_category', 'Class_CategoryController');
-    Route::get('getall_classcategory', 'Class_CategoryController@getall_classcategory');
+    Route::get('list_date', 'Class_CategoryController@getall_classcategory2');
     Route::get('getsingleclasscategory/{id}', 'Class_CategoryController@getsingleclasscategory');
 
     //for room master
@@ -59,6 +59,36 @@ Route::middleware(['basicAuth'])->group(function () {
     Route::get('getsinglegmembertype/{id}', 'MemberTypeController@getsinglegmembertype');
 
 
-   
+    //for login
+
+ Route::post('login_request', 'Usermanagecontroller@login_request');
+
+ //datewise shedule
+ Route::post('datewise_shedule', 'ClassScheduleController@datewise_shedule');
+
+ //gallery api
+ Route::get('gallery_api', 'GalleryController@gallery_api');
+
+//deals api
+Route::get('deals_api', 'DealsController@deals_api');
+
+//booking api
+Route::post('booking_api', 'ClassScheduleController@booking_api');
+
+//cancel_booking_api
+Route::post('cancel_booking_api', 'ClassScheduleController@cancel_booking_api');
+
+//rating_api
+Route::post('rating_api', 'ClassScheduleController@rating_api');
+
+//user_settings
+Route::post('user_settings', 'Usermanagecontroller@user_settings');
+
+//member_profile
+Route::post('member_profile', 'Usermanagecontroller@member_profile');
+
+//my_bookings
+Route::post('my_bookings_api', 'ClassScheduleController@my_bookings_api');
+
 });
 

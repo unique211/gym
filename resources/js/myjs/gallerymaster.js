@@ -54,12 +54,11 @@ $(document).ready(function() {
 
     //form clear ------Strat
     function from_clear() {
-        $('#room').val('');
 
         $('#upload').val('');
         $('#uploadimg_hidden').val('');
         $('#msg').html('');
-        $('#likes').val('');
+        $('#desc').val('');
 
         $("#share").prop("checked", true);
         $('#save_update').val('');
@@ -79,7 +78,7 @@ $(document).ready(function() {
             html += '<table id="laravel_crud" style="width:100%;" class=" table table-striped">' +
                 '<thead>' +
                 '<tr>' +
-                '<th><font style="font-weight:bold">No Of Like</font></th>' +
+                '<th><font style="font-weight:bold">Description</font></th>' +
                 '<th><font style="font-weight:bold"></font>Allow Share Post</th>' +
 
                 '<th style="display:none;"><font style="font-weight:bold">Upload Img</font></th>' +
@@ -95,7 +94,7 @@ $(document).ready(function() {
 
                 html += '<tr>' +
 
-                    '<td id="nooflike_' + data[i].gallary_id + '">' + data[i].nooflike + '</td>' +
+                    '<td id="desc_' + data[i].gallary_id + '">' + data[i].description + '</td>' +
 
 
                     '<td style="display:none;" id="uploadimg_' + data[i].gallary_id + '">' + data[i].uploadimg + '</td>';
@@ -144,7 +143,7 @@ $(document).ready(function() {
             $('#share').bootstrapToggle('off');
 
         }
-        var nooflike = $('#nooflike_' + id).html();
+        var desc = $('#desc_' + id).html();
         var uploadimg = $('#uploadimg_' + id).html();
 
         if (uploadimg == "") {
@@ -159,7 +158,7 @@ $(document).ready(function() {
         $('#msg').html(uploadimg);
 
         $('#save_update').val(id);
-        $('#likes').val(nooflike);
+        $('#desc').val(desc);
         $('#save_update').val(id);
         $('#btnsave').text('Update');
 
@@ -229,8 +228,12 @@ $(document).ready(function() {
         }
     });
 
-    function upload(img, id) {
+    $(document).on('click', '.closehideshow', function() {
+        from_clear();
+    });
 
+    function upload(img, id) {
+        $("#wait").show();
         var form_data = new FormData();
         form_data.append('file', img.files[0]);
         //form_data.append('_token', '{{csrf_token()}}');
@@ -247,7 +250,7 @@ $(document).ready(function() {
                 $('#upload').val('');
                 $('#msg').html(data);
                 $('#uploadimg_hidden').val(data);
-
+                $("#wait").hide();
 
             }
         });

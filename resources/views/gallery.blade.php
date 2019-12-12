@@ -40,21 +40,21 @@
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <input type="file" id="upload" name="upload" class="form-control" accept="video/*,image/*" required>
+                                                <input type="file" id="upload" name="upload" class="form-control" accept=".mp4,image/*" required>
                                                 <input type="hidden" id="uploadimg_hidden" name="uploadimg_hidden" value="">
                                                 <div id="msg" name="msg"></div>
+<div id="wait" style="width:100px;height:100px;position:absolute;top:;left:45%;padding:2px;display:none"><img src="{{ env('APP_URL') }}/gym/resources/sass/img/loader.gif" width="100" height="100" /><br><center><h5>Please Wait...</h5></center></div>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>No of likes*</label>
+                                                <label>Description*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <input type="text" name="likes" id="likes" class="form-control input-sm"
-                                                    required>
+                                              <textarea class="form-control" id="desc" name="desc" cols="3" placeholder="Description" required></textarea>
                                             </div>
                                         </div>
 
