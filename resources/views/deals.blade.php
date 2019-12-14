@@ -52,9 +52,11 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <input type="file" id="upload" class="form-control" name="upload" accept="video/*,image/*" required>
+                                                <input type="file" id="upload" class="form-control" name="upload" accept=".mp4,image/*" required>
                                                 <input type="hidden" id="uploadimg_hidden" name="uploadimg_hidden" value="">
                                                 <div id="msg" name="msg"></div>
+                                                <div id="msg" name="msg"></div>
+                                                <div id="wait" style="width:100px;height:100px;position:absolute;top:;left:45%;padding:2px;display:none"><img src="{{ env('APP_URL') }}/resources/sass/img/loader.gif" width="100" height="100" /><br><center><h5>Please Wait...</h5></center></div>
                                             </div>
                                             <br>
                                         </div>
@@ -228,7 +230,7 @@
 </body>
 <script>
     $("#data_table").DataTable();
-    
+
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -266,7 +268,7 @@ var date2 = new Date();
 date = date.toString('dd/MM/yyyy HH:mm:ss');
 date2.setMinutes(date2.getMinutes() + 5);
 date2 = date2.toString('dd/MM/yyyy HH:mm:ss');
-                 
+
                     $("#end_date").val(date);
                     $("#start_date").val(date2);
 </script>

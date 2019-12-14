@@ -65,11 +65,23 @@ class DealsController extends Controller
                 if ($count > 0) {
                     return response()->json('100');
                 } else {
+
+                    $split = explode('.', $request->uploadimg_hidden, 2); // Restricts it to only 2 values, for names like Billy Bob Jones
+
+                    $mp4 = $split[1];
+                    $is_video = "";
+                    if ($mp4 == "mp4") {
+                        $is_video = "1";
+                    } else {
+                        $is_video = "0";
+                    }
+
                     $dealdata   =   Dealmodel::updateOrCreate(
                         ['deal_id' => $catid],
                         [
                             'deal_title'       =>   $request->deal_title,
                             'upload_img' => $request->uploadimg_hidden,
+                            'is_video' => $is_video,
                             'start_date' => $start_date,
                             'end_date' => $end_date,
                             'user_id' => 1,
@@ -110,11 +122,22 @@ class DealsController extends Controller
                 if ($count > 0) {
                     return response()->json('100');
                 } else {
+                    $split = explode('.', $request->uploadimg_hidden, 2); // Restricts it to only 2 values, for names like Billy Bob Jones
+
+                    $mp4 = $split[1];
+                    $is_video = "";
+                    if ($mp4 == "mp4") {
+                        $is_video = "1";
+                    } else {
+                        $is_video = "0";
+                    }
+
                     $dealdata   =   Dealmodel::updateOrCreate(
                         ['deal_id' => $catid],
                         [
                             'deal_title'       =>   $request->deal_title,
                             'upload_img' => $request->uploadimg_hidden,
+                            'is_video' => $is_video,
                             'start_date' => $start_date,
                             'end_date' => $end_date,
                             'user_id' => 1,
@@ -272,13 +295,22 @@ class DealsController extends Controller
                 $from2 = strtr($request->end_date, '/', '-');
                 $end_date = date('Y-m-d', strtotime($from2));
 
+                $split = explode('.', $request->uploadimg_hidden, 2); // Restricts it to only 2 values, for names like Billy Bob Jones
 
+                $mp4 = $split[1];
+                $is_video = "";
+                if ($mp4 == "mp4") {
+                    $is_video = "1";
+                } else {
+                    $is_video = "0";
+                }
 
                 $dealdata   =   Dealmodel::updateOrCreate(
                     ['deal_id' => $catid],
                     [
                         'deal_title'       =>   $request->deal_title,
                         'upload_img' => $request->uploadimg_hidden,
+                        'is_video' => $is_video,
                         'start_date' => $start_date,
                         'end_date' => $end_date,
                         'user_id' => 1,

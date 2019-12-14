@@ -14,21 +14,24 @@ class InstructorController extends Controller
     public function index(Request $request)
     {
 
+
+
+
         return view('instructor');
     }
 
     public function instrucoruploadimg(Request $request){
-       
+
 
         $extension = $request->file('file')->getClientOriginalExtension();
-       
+
         $dir = 'uploads/';
         $filename = uniqid() . '_' . time() . '.' . $extension;
 
-       // echo  dd($filename); 
+       // echo  dd($filename);
         $request->file('file')->move($dir, $filename);
 
-        
+
         return $filename;
         }
         public function getintructorright(){
@@ -40,7 +43,7 @@ class InstructorController extends Controller
                    if($id > 0){
                         $result =  DB::table('profile_details')
                         ->where('profileid',$id)
-                        ->get(); 
+                        ->get();
                         return Response::json($result);
                    }
                }
@@ -79,20 +82,20 @@ class InstructorController extends Controller
                                 'status'        => 1,
                                 'user_id'        => 1,
                             ]
-                
+
                         );
                         $ref_id = $customer->instructorid;
-                
+
                         $urdata = $request->studejsonObj;
                         $u_rights = "";
                         $cnt = 0;
-                        
-                      
-                        
-                
+
+
+
+
                         foreach ($urdata as $value) {
-                           
-                
+
+
                             $u_rights = array(
                                 'instructor_id' => $ref_id,
                                 'menuid' => $value["menuid"],
@@ -104,20 +107,20 @@ class InstructorController extends Controller
                             ->where('submenuid',$value["submenu"])
                             ->where('instructor_id',$ref_id)
                             ->get();
-                       
+
                             $count=count($result);
                             if($count >0){
-                
+
                             }else{
                                 $result =  DB::table('instructor_right')
                                 ->Insert($u_rights);
                             }
-                
-                          
+
+
                             $cnt++;
                         }
                         $str = $request->password;
-            
+
                         $role =    $request->user_type;
                         if ($str != "") {
                             $md5 = md5($str);
@@ -125,13 +128,13 @@ class InstructorController extends Controller
                             $customer2   =   Loginmastermodel::updateOrCreate(
                                 ['ref_id' => $ref_id, 'role' => $role],
                                 [
-                
+
                                     'user_id'        =>   $request->user_id,
                                     'password'        =>   $password,
                                     'role'        =>    $role,
-                
+
                                 ]
-                
+
                             );
                         } else {
                             $customer2   =   Loginmastermodel::updateOrCreate(
@@ -140,41 +143,41 @@ class InstructorController extends Controller
                                     'user_id'        =>   $request->user_id,
                                     'role'        =>    $role,
                                 ]
-                
+
                             );
                         }
-                
+
                         if( $ID >0){
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Instructor  Module' ;
                             $Logmodel->operation_name ='Edit';
                             $Logmodel->reference_id = $ID;
                             $Logmodel->table_name = 'instuctor_master';
                            // $Logmodel->table_name = 'package_master';
                             $Logmodel->save();
-                                
+
                         }else{
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Instructor Module' ;
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $ref_id;
                             $Logmodel->table_name = 'instuctor_master';
                            // $Logmodel->table_name = 'package_master';
-                            $Logmodel->save(); 
+                            $Logmodel->save();
                         }
                         return Response::json($ref_id);
                     }
 
-                   
+
                 }
             }else{
                 $data= DB::table('instuctor_master')->where('instructor_name',$request->name)->get();
                 $count=count($data);
                 if($count >0){
                     return response()->json('100');
-                }else{ 
+                }else{
                     $data= DB::table('login_master')->where('user_id',$request->user_id)->get();
                     $count=count($data);
                     if($count > 0){
@@ -190,20 +193,20 @@ class InstructorController extends Controller
                                 'status'        => 1,
                                 'user_id'        => 1,
                             ]
-                
+
                         );
                         $ref_id = $customer->instructorid;
-                
+
                         $urdata = $request->studejsonObj;
                         $u_rights = "";
                         $cnt = 0;
-                        
-                      
-                        
-                
+
+
+
+
                         foreach ($urdata as $value) {
-                           
-                
+
+
                             $u_rights = array(
                                 'instructor_id' => $ref_id,
                                 'menuid' => $value["menuid"],
@@ -215,20 +218,20 @@ class InstructorController extends Controller
                             ->where('submenuid',$value["submenu"])
                             ->where('instructor_id',$ref_id)
                             ->get();
-                       
+
                             $count=count($result);
                             if($count >0){
-                
+
                             }else{
                                 $result =  DB::table('instructor_right')
                                 ->Insert($u_rights);
                             }
-                
-                          
+
+
                             $cnt++;
                         }
                         $str = $request->password;
-            
+
                         $role =    $request->user_type;
                         if ($str != "") {
                             $md5 = md5($str);
@@ -236,13 +239,13 @@ class InstructorController extends Controller
                             $customer2   =   Loginmastermodel::updateOrCreate(
                                 ['ref_id' => $ref_id, 'role' => $role],
                                 [
-                
+
                                     'user_id'        =>   $request->user_id,
                                     'password'        =>   $password,
                                     'role'        =>    $role,
-                
+
                                 ]
-                
+
                             );
                         } else {
                             $customer2   =   Loginmastermodel::updateOrCreate(
@@ -251,44 +254,44 @@ class InstructorController extends Controller
                                     'user_id'        =>   $request->user_id,
                                     'role'        =>    $role,
                                 ]
-                
+
                             );
                         }
-                
+
                         if( $ID >0){
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Instructor  Module' ;
                             $Logmodel->operation_name ='Edit';
                             $Logmodel->reference_id = $ID;
                             $Logmodel->table_name = 'profile_master';
                            // $Logmodel->table_name = 'package_master';
                             $Logmodel->save();
-                                
+
                         }else{
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Instructor Module' ;
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $ref_id;
                             $Logmodel->table_name = 'profile_master';
                            // $Logmodel->table_name = 'package_master';
-                            $Logmodel->save(); 
+                            $Logmodel->save();
                         }
                         return Response::json($ref_id);
                     }
-                } 
+                }
             }
-    
-           
-    
-    
+
+
+
+
         }
 
         public function getall_instructor(){
             $getresult=array();
             $result =  DB::table('instuctor_master')
-            
+
             ->get();
 
             $count=count($result);
@@ -303,7 +306,7 @@ class InstructorController extends Controller
                     $status=$data->status;
                     $userid="";
                     if($instructorid >0){
-                       
+
                         $result1 =  DB::table('login_master')
                         ->where('ref_id',$instructorid)
                         ->where('role','Instructor')
@@ -311,7 +314,7 @@ class InstructorController extends Controller
                         foreach($result1 as $data1){
                             $userid=$data1->user_id;
                         }
-                        
+
                     }
                     $getresult[]=array(
                             'instructorid'=>$instructorid,
@@ -321,51 +324,51 @@ class InstructorController extends Controller
                             'instructor_img'=>$instructor_img,
                             'userid'=>$userid,
 
-                    );  
+                    );
                 }
             }
-            
+
             return Response::json($getresult);
         }
 
         public function geteditintructorright($id){
             $result =  DB::table('instructor_right')
                         ->where('instructor_id',$id)
-                        ->get(); 
-                        return Response::json($result); 
+                        ->get();
+                        return Response::json($result);
         }
         public function deleteinstructorright(Request $request){
             // $result =  DB::table('instructor_right')
             //             ->where('instructor_id',$id)
-            //             ->get(); 
+            //             ->get();
                         $result =  DB::table('instructor_right')->where('instructor_id', $request->save_update)->delete();
                        // return Response::json($customer);
-            return Response::json($result); 
+            return Response::json($result);
         }
         public function checkinstuctorname($name){
             $profile= DB::table('instuctor_master')->where('instructor_name',$name)->get();
            $count=count($profile);
            return Response::json($count);
- 
+
         }
         public function deleteallinfoin($id){
            // DB::update('update login_master set status = ? where ref_id = ? And  role =? ',[0,$id,"Instructor"]);
             DB::table('instructor_right')->where('instucuteright_id', $id)->delete();
             $Logmodel = new Logmodel;
-                
+
             $Logmodel->module_name ='Instructor  Module' ;
             $Logmodel->operation_name ='Delete';
             $Logmodel->reference_id = $id;
             $Logmodel->table_name = 'instuctor_master';
            // $Logmodel->table_name = 'package_master';
             $Logmodel->save();
-            
+
             DB::table('login_master')->where('ref_id', $id)->where('role','Instructor')->delete();
             $result =  DB::table('instuctor_master')->where('instructorid', $id)->delete();
             return Response::json($result);
         }
-      
-        
 
-        
+
+
+
 }

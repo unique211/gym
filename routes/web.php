@@ -81,7 +81,7 @@ Route::get('classchangestatus/{id}/{status}', 'ClassController@classchangestatus
 Route::get('checkclassexist/{classname}', 'ClassController@checkclassexist');
 Route::get('checkclassexist/{classname}/{id}', 'ClassController@editcheckclassexist');
 
-//for class schedual 
+//for class schedual
 Route::resource('class_schedule', 'ClassScheduleController');
 Route::get('getdropallclass', 'ClassScheduleController@getdropallclass');
 Route::get('getdropallroom', 'ClassScheduleController@getdropallroom');
@@ -90,7 +90,7 @@ Route::get('getscedulaclass', 'ClassScheduleController@getscedulaclass');
 Route::get('deleteclasssechedule/{id}', 'ClassScheduleController@deleteclasssechedule');
 Route::get('changeclasssechedulestatus/{id}/{status}', 'ClassScheduleController@changeclasssechedulestatus');
 
-//for Deal Master 
+//for Deal Master
 Route::resource('deals', 'DealsController');
 Route::get('getalldeal', 'DealsController@getalldeal');
 Route::match(['get', 'post'], 'dealuploadimg', 'DealsController@uploadingfile');
@@ -142,7 +142,7 @@ Route::get('getallmemberttype', 'MemberTypeController@getallmemberttype');
 Route::get('chackmemberexist/{name}', 'MemberTypeController@chackmemberexist');
 Route::get('deletemembertype/{id}', 'MemberTypeController@deletemembertype');
 
-//for  Site Setting 
+//for  Site Setting
 
 Route::resource('site_setting', 'SiteSettingController');
 Route::get('getallsitesettinginfo', 'SiteSettingController@getallsitesettinginfo');
@@ -157,7 +157,7 @@ Route::post('getgroupwiseinfo', 'MemberController@getgroupwiseinfo');
 Route::get('deletememberinfo/{id}', 'MemberController@deletememberinfo');
 Route::get('checkuseridexist/{userid}', 'MemberController@checkuseridexist');
 Route::get('checkuseridexist/{userid}/{id}', 'MemberController@checkedituseridexist');
-
+Route::match(['get', 'post'], 'member_img', 'MemberController@uploadimg');
 
 //for member attadance
 Route::post('getbetweenclasssechedule', 'MemberAttendenceTakingController@getbetweenclasssechedule');

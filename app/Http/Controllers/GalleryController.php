@@ -67,8 +67,15 @@ class GalleryController extends Controller
             return response()->json('less Arguments ');
         } else {
 
+            $split = explode('.', $request->uploadimg_hidden, 2); // Restricts it to only 2 values, for names like Billy Bob Jones
 
-
+            $mp4 = $split[1];
+            $is_video = "";
+            if ($mp4 == "mp4") {
+                $is_video = "1";
+            } else {
+                $is_video = "0";
+            }
 
             $dealdata   =   Gallarymodel::updateOrCreate(
                 ['gallary_id' => $catid],
@@ -76,6 +83,7 @@ class GalleryController extends Controller
                     'uploadimg'       =>   $request->uploadimg_hidden,
                     'description' => $request->desc,
                     'allowshare' => $request->allowshare,
+                    'is_video' => $is_video,
                     'user_id' => 1,
 
                 ]
@@ -201,6 +209,15 @@ class GalleryController extends Controller
             return response()->json('less Arguments ');
         } else {
 
+            $split = explode('.', $request->uploadimg_hidden, 2); // Restricts it to only 2 values, for names like Billy Bob Jones
+
+            $mp4 = $split[1];
+            $is_video = "";
+            if ($mp4 == "mp4") {
+                $is_video = "1";
+            } else {
+                $is_video = "0";
+            }
 
 
 
@@ -210,6 +227,7 @@ class GalleryController extends Controller
                     'uploadimg'       =>   $request->uploadimg_hidden,
                     'description' => $request->desc,
                     'allowshare' => $request->allowshare,
+                    'is_video' => $is_video,
                     'user_id' => 1,
 
                 ]

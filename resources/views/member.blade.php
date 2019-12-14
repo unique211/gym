@@ -175,6 +175,19 @@
                                             <input type="text" class="form-control input-sm placeholdesize"
                                                 placeholder="Balance Point" id="bal_point" name="bal_point">
                                         </div>
+                                        <div class="col-sm-2">
+                                            <div class="form-group">
+                                                <label>Image* </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <input type="file" id="upload" name="upload" class="form-control" accept="image/*" required>
+                                                <input type="hidden" id="uploadimg_hidden" name="uploadimg_hidden" value="">
+                                                <div id="msg" name="msg"></div>
+<div id="wait" style="width:100px;height:100px;position:absolute;top:;left:45%;padding:2px;display:none"><img src="{{ env('APP_URL') }}/resources/sass/img/loader.gif" width="100" height="100" /><br><center><h5>Please Wait...</h5></center></div>
+                                            </div>
+                                        </div>
                                         <div class="col-sm-12" id="if_group" style="display:none;">
                                             <div style="margin-top:0px;border-bottom:1px solid;width:100%;">
                                                 <h5 class=""><b>@lang('site_lables.Link')
@@ -553,7 +566,7 @@
                                             <div class="col-lg-2 " style="text-align: right">
                                                 <input type="hidden" id="save_update" name="save_update" value="">
                                                 <input type="hidden" id="tbl_id" name="tbl_id" value="0">
-                                               
+
                                                 {{--  <button type="submit"
                                                     class="btn btn-sm btn-success btn-sm ">@lang('site_lables.Save')</button>  --}}
                                                 <button type="button"
@@ -598,7 +611,7 @@ var deletemember="{{ url('deletemembers') }}"
 var getgroupinfo="{{ url('getgroupwiseinfo') }}";
 var delete_data="{{ url('deletememberinfo') }}";
 var checkuseridexis="{{ url('checkuseridexist') }}";
-
+var uploadfileurl="{{ url('member_img') }}";
 </script>
 <script>
     $('.date').datepicker({
@@ -615,11 +628,11 @@ var checkuseridexis="{{ url('checkuseridexist') }}";
                        maxDate: '0',
 
                   });
-                 
+
                   var date = new Date();
                   date = date.toString('dd/MM/yyyy');
 
-                  
+
                   $("#dob").val(date);
                   $("#doe").val(date);
                   //  $("#fdate").val(date);

@@ -29,24 +29,24 @@ class MemberController extends Controller
     }
     public function store(Request $request)//For insert or Update Record Of Package Master --
     {
-       
-    
-       
+
+
+
         $ID = $request->save_update;
         $input = $request->all();
 
         $validator = Validator::make($input, [
             'user_id' => 'required',
             'name' => 'required',
-           
-            
+            'uploadimg_hidden' => 'required',
+
             ]);
 
             if($validator->fails()){
 
                 return response()->json('less Arguments');
             }else{
-              
+
 
         $customer   =   Membermodel::updateOrCreate(
             ['member_id' => $ID],
@@ -60,6 +60,7 @@ class MemberController extends Controller
                 'membertype'        =>  $request->member_type,
                 'dateofexpire'        =>  $request->doe,
                 'balancepoint'        =>  $request->bal_point,
+                'image_url'       =>   $request->uploadimg_hidden,
                 'user_id'        => 1,
             ]
 
@@ -69,11 +70,11 @@ class MemberController extends Controller
         $urdata = $request->studejsonObj;
         $u_rights = "";
         $cnt = 0;
-        
-        
+
+
 
         foreach ($urdata as $value) {
-           
+
 
             $u_rights = array(
                 'member_id' => $ref_id,
@@ -82,12 +83,12 @@ class MemberController extends Controller
                 'relation' =>$value["relation"] ,
                 'password' =>$value["password"] ,
             );
-            
+
 
             $result =  DB::table('link_relation_ship')
            ->where('userid',$value["reluserid"])
             ->get();
-       
+
             $count=count($result);
             if($count >0){
 
@@ -95,10 +96,10 @@ class MemberController extends Controller
                 $result =  DB::table('link_relation_ship')
                 ->Insert($u_rights);
             }
-                
-          
-           
-        } 
+
+
+
+        }
 
         if( $ID >0){
             $Logmodel = new Logmodel;
@@ -109,7 +110,7 @@ class MemberController extends Controller
             $Logmodel->table_name = 'member_master';
             $Logmodel->user_id = 1;
             $Logmodel->save();
-                
+
         }else{
             $Logmodel = new Logmodel;
 
@@ -118,11 +119,11 @@ class MemberController extends Controller
             $Logmodel->reference_id = $ref_id;
             $Logmodel->table_name = 'member_master';
            $Logmodel->user_id = 1;
-            $Logmodel->save(); 
+            $Logmodel->save();
         }
         return Response::json($ref_id);
             }
-              
+
 
 
     }
@@ -131,6 +132,21 @@ class MemberController extends Controller
 
         $customer =  DB::table('link_relation_ship')->where('member_id', $id)->delete();
         return Response::json($customer);
+    }
+    public function uploadimg(Request $request)
+    {
+
+
+        $extension = $request->file('file')->getClientOriginalExtension();
+
+        $dir = 'gallaryimg/member/';
+        $filename = uniqid() . '_' . time() . '.' . $extension;
+
+        // echo  dd($filename);
+        $request->file('file')->move($dir, $filename);
+
+
+        return $filename;
     }
     public function getallmember(){
         $result=array();
@@ -149,6 +165,7 @@ class MemberController extends Controller
                $membertype=$data->membertype;
                $dateofexpire=$data->dateofexpire;
                $balancepoint=$data->balancepoint;
+               $image_url=$data->image_url;
                $packagename="";
                $user_id="";
                $password="";
@@ -156,7 +173,7 @@ class MemberController extends Controller
                $count1=count($customer1);
 
                $customer3 =  DB::table('link_relation_ship')->where('member_id',$member_id)->where('relation','Main Member')->get();
-             
+
 
             foreach($customer3 as $linkdata){
                 $user_id=$linkdata->userid;
@@ -183,13 +200,14 @@ class MemberController extends Controller
                 'balancepoint'=>$balancepoint,
                 'membercount'=>$count1,
                 'packagename'=>$packagename,
+                'image_url'=>$image_url,
                 'user_id'=>$user_id,
                 'password'=>$password,
 
 
             );
 
-               
+
            }
        }
        return Response::json($result);
@@ -206,7 +224,7 @@ class MemberController extends Controller
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'member_master';
        $Logmodel->user_id = 1;
-        $Logmodel->save(); 
+        $Logmodel->save();
         DB::table('link_relation_ship')->where('member_id', $id)->delete();
         $result =  DB::table('member_master')->where('member_id', $id)->delete();
         return Response::json($result);
@@ -221,6 +239,6 @@ class MemberController extends Controller
         $data= DB::table('link_relation_ship')->where('userid', $user_id)->where('member_id','!=',$id)->get();
         $count=count($data);
         return Response::json($count);
-  
+
       }
 }

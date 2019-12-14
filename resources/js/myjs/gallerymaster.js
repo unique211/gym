@@ -247,7 +247,7 @@ $(document).ready(function() {
             success: function(data) {
                 //alert(data);
 
-                $('#upload').val('');
+                //   $('#upload').val('');
                 $('#msg').html(data);
                 $('#uploadimg_hidden').val(data);
                 $("#wait").hide();

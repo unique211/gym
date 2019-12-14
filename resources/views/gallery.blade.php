@@ -43,7 +43,7 @@
                                                 <input type="file" id="upload" name="upload" class="form-control" accept=".mp4,image/*" required>
                                                 <input type="hidden" id="uploadimg_hidden" name="uploadimg_hidden" value="">
                                                 <div id="msg" name="msg"></div>
-<div id="wait" style="width:100px;height:100px;position:absolute;top:;left:45%;padding:2px;display:none"><img src="{{ env('APP_URL') }}/gym/resources/sass/img/loader.gif" width="100" height="100" /><br><center><h5>Please Wait...</h5></center></div>
+<div id="wait" style="width:100px;height:100px;position:absolute;top:;left:45%;padding:2px;display:none"><img src="{{ env('APP_URL') }}/resources/sass/img/loader.gif" width="100" height="100" /><br><center><h5>Please Wait...</h5></center></div>
                                             </div>
                                         </div>
 
@@ -79,7 +79,7 @@
                                                 </div>
                                                 <div class="col-sm-2">
                                                     <div class="form-group">
-        
+
                                                             <input type="hidden" id="statusinfo" name="statusinfo" value="">
                                                             <input type="checkbox"  id="status" name="status" checked data-toggle="toggle"      data-on="Active" data-off="Inactive"  data-onstyle="success" data-offstyle="danger"  >
                                                     </div>

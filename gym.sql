@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 11, 2019 at 02:41 PM
+-- Generation Time: Dec 12, 2019 at 02:05 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `gym`
 --
-CREATE DATABASE IF NOT EXISTS `gym` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `gym`;
 
 -- --------------------------------------------------------
 
@@ -49,7 +47,8 @@ INSERT INTO `booking_table` (`booking_id`, `link_id`, `points`, `date_time`, `is
 (1, 1, '2.50', '2019-12-09 00:00:00', 0, '0000-00-00 00:00:00', 8, -1),
 (2, 2, '4.50', '2019-12-09 00:00:00', 1, '2019-12-10 00:00:00', 8, -1),
 (3, 2, '2.00', '2019-12-09 00:00:00', 1, '0000-00-00 00:00:00', 8, -1),
-(4, 2, '2.00', '2019-12-19 00:00:00', 0, '0000-00-00 00:00:00', 8, 4.6);
+(4, 2, '2.00', '2019-12-19 00:00:00', 0, '0000-00-00 00:00:00', 8, 4.6),
+(5, 2, '2.00', '2019-12-19 00:00:00', 1, '0000-00-00 00:00:00', 6, -1);
 
 -- --------------------------------------------------------
 
@@ -200,7 +199,7 @@ INSERT INTO `deal_master` (`deal_id`, `deal_title`, `upload_img`, `is_video`, `s
 CREATE TABLE `gallary_master` (
   `gallary_id` int(11) NOT NULL,
   `uploadimg` varchar(255) NOT NULL,
-  `desc` varchar(250) DEFAULT NULL,
+  `description` varchar(250) DEFAULT NULL,
   `is_video` tinyint(1) NOT NULL DEFAULT '0',
   `nooflike` int(11) NOT NULL,
   `allowshare` int(1) NOT NULL,
@@ -214,7 +213,7 @@ CREATE TABLE `gallary_master` (
 -- Dumping data for table `gallary_master`
 --
 
-INSERT INTO `gallary_master` (`gallary_id`, `uploadimg`, `desc`, `is_video`, `nooflike`, `allowshare`, `status`, `created_at`, `updated_at`, `user_id`) VALUES
+INSERT INTO `gallary_master` (`gallary_id`, `uploadimg`, `description`, `is_video`, `nooflike`, `allowshare`, `status`, `created_at`, `updated_at`, `user_id`) VALUES
 (2, '5de6380075ce7_1575368704.png', NULL, 0, 5, 0, 1, '2019-12-03 11:07:05', '2019-12-03 04:55:07', 1),
 (3, '5de64391380a1_1575371665.png', NULL, 0, 5, 0, 1, '2019-12-03 11:16:43', '2019-12-03 05:46:43', 1),
 (4, '5de637e8b959a_1575368680.png', NULL, 0, 5, 0, 1, '2019-12-03 11:15:18', '2019-12-03 05:44:34', 1),
@@ -222,7 +221,7 @@ INSERT INTO `gallary_master` (`gallary_id`, `uploadimg`, `desc`, `is_video`, `no
 (7, '5de6479e2a65b_1575372702.png', NULL, 0, 1212, 0, 1, '2019-12-03 06:01:44', '2019-12-03 06:01:44', 1),
 (8, '5de648024c3cc_1575372802.png', NULL, 0, 12, 0, 1, '2019-12-03 06:03:25', '2019-12-03 06:03:25', 1),
 (9, '5de649601c4c1_1575373152.png', NULL, 0, 12, 0, 1, '2019-12-03 06:09:19', '2019-12-03 06:09:19', 1),
-(10, 'abc.png', 'this is test', 0, 15, 1, 1, '2019-12-11 08:59:23', '2019-12-11 03:29:23', 1);
+(10, 'abc.png', 'this is test2', 0, 15, 1, 1, '2019-12-12 11:10:28', '2019-12-12 05:40:28', 1);
 
 -- --------------------------------------------------------
 
@@ -431,9 +430,8 @@ CREATE TABLE `link_relation_ship` (
 INSERT INTO `link_relation_ship` (`linkrelid`, `member_id`, `name`, `userid`, `relation`, `password`, `status`, `created_at`, `updated_at`) VALUES
 (1, 2, 'rakesh dfgdg', '9874656321', 'Main Member', '1234567', 1, '2019-12-10 09:02:40', '0000-00-00 00:00:00'),
 (2, 2, 'rakesh dfgdg', '0', 'asds', '12', 1, '2019-12-07 06:31:33', '0000-00-00 00:00:00'),
-(7, 9, 'asds', '9632587410', 'Main Member', 'null', 1, '2019-12-07 11:09:43', '0000-00-00 00:00:00'),
-(8, 9, 'qwqw', '7574865414', 'friend', 'c6350f241e315a51', 1, '2019-12-10 13:45:59', '0000-00-00 00:00:00'),
-(9, 9, 'sagar', '8866152292', 'qwq', 'e204cdd5eea274f7', 1, '2019-12-10 13:37:32', '0000-00-00 00:00:00');
+(10, 9, 'asds', '9632587410', 'Main Member', 'null', 1, '2019-12-12 12:35:58', '0000-00-00 00:00:00'),
+(11, 9, 'qwqw', '7574865414', 'friend', 'c6350f241e315a51', 1, '2019-12-12 12:35:58', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -804,7 +802,9 @@ INSERT INTO `log_master` (`log_id`, `dateandtime`, `module_name`, `operation_nam
 (305, '2019-12-07 10:39:15', 'Class Schedule Module', 'Insert', 16, 'class_sechedule_master', 1, '2019-12-07 05:09:15', '2019-12-07 05:09:15'),
 (306, '2019-12-07 11:09:43', 'Members Module', 'Edit', 9, 'member_master', 1, '2019-12-07 05:39:43', '2019-12-07 05:39:43'),
 (307, '2019-12-11 08:59:23', 'Gallary Master Module', 'Edit', 10, 'gallary_master', 1, '2019-12-11 03:29:23', '2019-12-11 03:29:23'),
-(308, '2019-12-11 09:33:59', 'Gallary Master Module', 'Edit', 10, 'gallary_master', 1, '2019-12-11 04:03:59', '2019-12-11 04:03:59');
+(308, '2019-12-11 09:33:59', 'Gallary Master Module', 'Edit', 10, 'gallary_master', 1, '2019-12-11 04:03:59', '2019-12-11 04:03:59'),
+(309, '2019-12-12 11:10:28', 'Gallary Master Module', 'Edit', 10, 'gallary_master', 1, '2019-12-12 05:40:28', '2019-12-12 05:40:28'),
+(310, '2019-12-12 12:35:58', 'Members Module', 'Edit', 9, 'member_master', 1, '2019-12-12 07:05:58', '2019-12-12 07:05:58');
 
 -- --------------------------------------------------------
 
@@ -860,7 +860,7 @@ CREATE TABLE `member_master` (
 
 INSERT INTO `member_master` (`member_id`, `membername`, `icno`, `dob`, `address`, `email`, `image_url`, `currentpackage`, `membertype`, `dateofexpire`, `balancepoint`, `status`, `created_at`, `updated_at`, `user_id`) VALUES
 (2, 'rakesh dfgdg', '123456', '2019-12-17', 'fdgfd', 'abcd@gmail.com', '', 3, 'Group', '2019-12-07', '211212.00', 1, '2019-12-07 01:01:33', '2019-12-07 01:01:33', 1),
-(9, 'asds', '1234567890', '2019-12-07', 'fdgfd', 'abcd@gmail.com', '', 3, 'Group', '2019-12-05', '211212.00', 1, '2019-12-07 11:09:43', '2019-12-07 05:39:43', 1);
+(9, 'asds', '1234567890', '2019-12-07', 'fdgfd', 'abcd@gmail.com', '5df2342541407_1576154149.jpg', 3, 'Group', '2019-12-05', '211212.00', 1, '2019-12-12 12:35:58', '2019-12-12 07:05:58', 1);
 
 -- --------------------------------------------------------
 
@@ -1379,7 +1379,7 @@ ALTER TABLE `user_settings`
 -- AUTO_INCREMENT for table `booking_table`
 --
 ALTER TABLE `booking_table`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `classcategory_master`
@@ -1427,7 +1427,7 @@ ALTER TABLE `instuctor_master`
 -- AUTO_INCREMENT for table `link_relation_ship`
 --
 ALTER TABLE `link_relation_ship`
-  MODIFY `linkrelid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `linkrelid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `login_master`
@@ -1439,7 +1439,7 @@ ALTER TABLE `login_master`
 -- AUTO_INCREMENT for table `log_master`
 --
 ALTER TABLE `log_master`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=311;
 
 --
 -- AUTO_INCREMENT for table `membertype_master`

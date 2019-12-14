@@ -80,6 +80,41 @@ $(document).ready(function() {
 
     });
 
+    $('#upload').change(function() {
+        var id = $(this).attr('id');
+
+
+
+        if ($(this).val() != '') {
+            upload(this, id);
+
+        }
+    });
+
+    function upload(img, id) {
+        $("#wait").show();
+        var form_data = new FormData();
+        form_data.append('file', img.files[0]);
+        //form_data.append('_token', '{{csrf_token()}}');
+
+        $.ajax({
+            url: uploadfileurl,
+            data: form_data,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                //alert(data);
+
+                //   $('#upload').val('');
+                $('#msg').html(data);
+                $('#uploadimg_hidden').val(data);
+                $("#wait").hide();
+
+            }
+        });
+    }
+
     $(document).on('submit', '#master_form', function(e) {
         e.preventDefault();
         var save_update = $('#save_update').val();
@@ -96,6 +131,7 @@ $(document).ready(function() {
         var package = $('#package').val();
         var doe = $('#doe').val();
         var bal_point = $('#bal_point').val();
+        var uploadimg_hidden = $('#uploadimg_hidden').val();
         var member_type = $('#member_type').val();
 
         var tdateAr = dob.split('/');
@@ -175,6 +211,7 @@ $(document).ready(function() {
                 doe: doe,
                 bal_point: bal_point,
                 member_type: member_type,
+                uploadimg_hidden: uploadimg_hidden,
                 save_update: save_update,
 
             },
@@ -242,7 +279,7 @@ $(document).ready(function() {
         });
     }
 
-    //get package point 
+    //get package point
     $(document).on('change', '#package', function(e) {
         e.preventDefault();
         var package = $(this).val();
@@ -283,6 +320,7 @@ $(document).ready(function() {
                 '<th><font style="font-weight:bold"></font>Member Count</th>' +
                 '<th style="display:none;"><font style="font-weight:bold"></font>Date of Birth</th>' +
                 '<th style="display:none;"><font style="font-weight:bold"></font>Address</th>' +
+                '<th style="display:none;"><font style="font-weight:bold"></font>Image</th>' +
                 '<th style="display:none;"><font style="font-weight:bold"></font>Email Address</th>' +
                 '<th style="display:none;"><font style="font-weight:bold"></font>Current Package</th>' +
                 '<th style="display:none;"><font style="font-weight:bold"></font>Current Package</th>' +
@@ -319,6 +357,7 @@ $(document).ready(function() {
 
                     '<td style="display:none;" id="dob_' + data[i].member_id + '">' + data[i].dob + '</td>' +
                     '<td style="display:none;" id="address_' + data[i].member_id + '">' + data[i].address + '</td>' +
+                    '<td style="display:none;" id="image_url_' + data[i].member_id + '">' + data[i].image_url + '</td>' +
                     '<td style="display:none;" id="email_' + data[i].member_id + '">' + data[i].email + '</td>' +
                     '<td style="display:none;" id="currentpackage_' + data[i].member_id + '">' + data[i].currentpackage + '</td>' +
                     '<td style="display:none;" id="balancepoint_' + data[i].member_id + '">' + data[i].balancepoint + '</td>' +
@@ -368,6 +407,7 @@ $(document).ready(function() {
         var email_ = $('#email_' + id).html();
         var currentpackage_ = $('#currentpackage_' + id).html();
         var balancepoint_ = $('#balancepoint_' + id).html();
+        var image_url_ = $('#image_url_' + id).html();
         var password = $('#password_' + id).html();
 
         if (password == null) {
@@ -452,7 +492,7 @@ $(document).ready(function() {
         var currentpackage_ = $('#currentpackage_' + id).html();
         var balancepoint_ = $('#balancepoint_' + id).html();
         var password = $('#password_' + id).html();
-
+        var image_url_ = $('#image_url_' + id).html();
         if (password == null) {
             password = "";
         }
@@ -474,9 +514,19 @@ $(document).ready(function() {
         $('#email').val(email_);
         $('#package').val(currentpackage_).trigger('change');
         $('#doe').val(doe);
+
         $('#bal_point').val(balancepoint_);
+
         $('#member_type').val(membertype).trigger('change');
 
+
+        if (image_url_ == "") {
+            $("#upload").attr("required", true);
+        } else {
+            $("#upload").removeAttr("required");
+        }
+        $('#uploadimg_hidden').val(image_url_);
+        $('#msg').html(image_url_);
 
         $.ajax({
             data: {
@@ -530,6 +580,10 @@ $(document).ready(function() {
         $('#doe').val('');
         $('#bal_point').val('');
         $('#member_type').val('').trigger('change');
+
+        $('#upload').val('');
+        $('#uploadimg_hidden').val('');
+        $('#msg').html('');
     }
 
     //delete of member

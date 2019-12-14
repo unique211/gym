@@ -91,7 +91,7 @@ $(document).ready(function() {
     });
 
     function upload(img, id) {
-
+        $("#wait").show();
         var form_data = new FormData();
         form_data.append('file', img.files[0]);
         //form_data.append('_token', '{{csrf_token()}}');
@@ -110,6 +110,7 @@ $(document).ready(function() {
                 $('#imghidden').val(data);
                 $('#profileimg').attr('src', imgurl + '/uploads/' + data);
                 $("#photo").removeAttr("required");
+                $("#wait").hide();
             }
         });
     }
