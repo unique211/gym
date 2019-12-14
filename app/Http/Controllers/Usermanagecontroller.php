@@ -119,7 +119,7 @@ class Usermanagecontroller extends Controller
             foreach ($data as $val) {
 
 
-                $result = array(
+                $result[] = array(
                     'name' => $val->name,
                     'user_id' => $val->userid,
                     'balance_point' => $val->balancepoint,
@@ -192,7 +192,7 @@ class Usermanagecontroller extends Controller
                     $language = "Chinese";
                 }
 
-                $result = array(
+                $result[] = array(
                     'receive_mobile_notification' => $notification,
                     'prompt_me' => $prompt_me,
                     'language' => $language,
