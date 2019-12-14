@@ -60,16 +60,16 @@ class Usermanagecontroller extends Controller
 
                     $cnt2 = count($data2);
                     if ($cnt2 > 0) {
-                        $result2 = array();
+
                         foreach ($data2 as $val2) {
-                            $result2 = array(
+                            $result[] = array(
                                 'username' => $userid,
                                 'name' => $val2->name,
                                 'balance' => $val2->balancepoint,
                                 'link_id' => $val2->linkrelid,
                                 'member_id' => $val2->member_id,
                             );
-                            $result = $result2;
+
                         }
 
                         return response()->json(['data' => $result, 'status' => 1]);
