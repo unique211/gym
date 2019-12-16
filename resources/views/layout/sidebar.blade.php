@@ -38,7 +38,7 @@
                             <i class="fa fa-desktop fa-lg"></i>
                         </span>
                         <span class="text">
-                            Dashboard
+                            @lang('site_lables.Dashboard')
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -51,7 +51,7 @@
                             <i class="fa fa-clock-o fa-lg"></i>
                         </span>
                         <span class="text">
-                            User Access
+                              @lang('site_lables.User_Access')
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -63,7 +63,7 @@
                             <i class="fa fa-clock-o fa-lg"></i>
                         </span>
                         <span class="text">
-                            Instructor
+                             @lang('site_lables.Instructor')
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -75,7 +75,7 @@
                             <i class="fa fa-clock-o fa-lg"></i>
                         </span>
                         <span class="text">
-                            Member
+                            @lang('site_lables.Member')
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -87,7 +87,7 @@
                             <i class="fa fa-clock-o fa-lg"></i>
                         </span>
                         <span class="text">
-                            Package
+                             @lang('site_lables.Package')
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -99,7 +99,7 @@
                             <i class="fa fa-clock-o fa-lg"></i>
                         </span>
                         <span class="text">
-                            Class Category
+                             @lang('site_lables.Class_Category')
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -111,7 +111,7 @@
                             <i class="fa fa-clock-o fa-lg"></i>
                         </span>
                         <span class="text">
-                            Room
+                             @lang('site_lables.Room')
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -123,7 +123,7 @@
                             <i class="fa fa-clock-o fa-lg"></i>
                         </span>
                         <span class="text">
-                            Class
+                             @lang('site_lables.Class')
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -135,7 +135,7 @@
                             <i class="fa fa-clock-o fa-lg"></i>
                         </span>
                         <span class="text">
-                            Class Schedule
+                             @lang('site_lables.Class_Schedule')
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -149,7 +149,7 @@
                             <i class="fa fa-clock-o fa-lg"></i>
                         </span>
                         <span class="text">
-                            Deals
+                             @lang('site_lables.Deals')
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -163,7 +163,7 @@
                             <i class="fa fa-clock-o fa-lg"></i>
                         </span>
                         <span class="text">
-                            Gallery
+                            @lang('site_lables.Gallery')
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -175,7 +175,7 @@
                             <i class="fa fa-clock-o fa-lg"></i>
                         </span>
                         <span class="text">
-                            Member Attendance Taking
+                             @lang('site_lables.Member_Attendance_Taking')
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -189,20 +189,18 @@
                             <i class="fa fa-cog"></i>
                         </span>
                         <span class="text">
-                            Setting
+                             @lang('site_lables.Setting')
                         </span>
                         <span class="menu-hover"></span>
 
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ url('language') }}"><span class="submenu-label">Language</span></a></li>
-                        <li><a href="{{ url('member_type') }}"><span class="submenu-label">Member Type</span></a></li>
-                        <li><a href="{{ url('site_setting') }}"><span class="submenu-label">Site Setting</span></a></li>
-                        <li><a href="{{ url('mobile_notification') }}"><span class="submenu-label">Mobile
-                                    Notification</span></a></li>
+                        <li><a href="{{ url('language') }}"><span class="submenu-label">  @lang('site_lables.Language')</span></a></li>
+                        <li><a href="{{ url('member_type') }}"><span class="submenu-label">@lang('site_lables.Member_Type')</span></a></li>
+                        <li><a href="{{ url('site_setting') }}"><span class="submenu-label">@lang('site_lables.Site_Setting')</span></a></li>
+                        <li><a href="{{ url('mobile_notification') }}"><span class="submenu-label">@lang('site_lables.Mobile_Notification')</span></a></li>
 
-                        <li><a href="{{ url('profile_manager') }}"><span class="submenu-label">Profile
-                                    Manager</span></a></li>
+                        <li><a href="{{ url('profile_manager') }}"><span class="submenu-label"> @lang('site_lables.Profile_Manager')</span></a></li>
                     </ul>
                 </li>
 
@@ -213,17 +211,15 @@
                             <i class="fa fa-clock-o fa-lg"></i>
                         </span>
                         <span class="text">
-                            Reports
+                            @lang('site_lables.Reports')
                         </span>
                         <span class="menu-hover"></span>
 
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ url('class_booking') }}"><span class="submenu-label">Class
-                                    Booking</span></a>
+                        <li><a href="{{ url('class_booking') }}"><span class="submenu-label">@lang('site_lables.Class_Booking')</span></a>
                         </li>
-                        <li><a href="{{ url('attendence_rating') }}"><span class="submenu-label">Attendance &
-                                    Rating</span></a></li>
+                        <li><a href="{{ url('attendence_rating') }}"><span class="submenu-label"> @lang('site_lables.Attendence_&_Rating')</span></a></li>
 
                     </ul>
                 </li>

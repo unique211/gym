@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> Home/Class Category</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Class_Category')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Class Category</b></h4>
+                                <h4><b>@lang('site_lables.Class_Category')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                         class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -34,19 +34,19 @@
                                     <form id="master_form" name="master_form">
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Class Category*</label>
+                                                <label>@lang('site_lables.Class_Category')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
                                                 <input type="text" class="form-control input-sm placeholdesize"
-                                                    placeholder="Class Category" id="classcategory_name"
+                                                    placeholder="@lang('site_lables.Class_Category')" id="classcategory_name"
                                                     name="classcategory_name" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Class Description</label>
+                                                <label>@lang('site_lables.Class_Description')</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
@@ -56,13 +56,13 @@
                                         </div>
                                         <div class="col-sm-1">
                                             <div class="form-group">
-                                                <label>Status</label>
+                                                <label>@lang('site_lables.Status')</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-1">
                                             <div class="form-group">
                                                 <input type="hidden" id="statusinfo" name="statusinfo" value="">
-                                                <input type="checkbox"  id="status" checked data-toggle="toggle"      data-on="Active" data-off="Inactive"  data-onstyle="success" data-offstyle="danger"  >
+                                                <input type="checkbox"  id="status" checked data-toggle="toggle"      data-on="@lang('site_lables.Active')" data-off="@lang('site_lables.Inactive')"  data-onstyle="success" data-offstyle="danger"  >
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
@@ -88,7 +88,7 @@
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Class Category List</b></h4>
+                                <h4><b>@lang('site_lables.Class_Category_List')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                                                 class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}

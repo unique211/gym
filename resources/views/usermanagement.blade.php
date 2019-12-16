@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> Home/User Management</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/User Management</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->

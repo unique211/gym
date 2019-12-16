@@ -11,13 +11,13 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="index.html"> Home</a></li>
-                    <li class="active">Dashboard</li>
+                    <li><i class="fa fa-home"></i><a href="index.html"> @lang('site_lables.Home')</a></li>
+                    <li class="active">@lang('site_lables.Dashboard')</li>
                 </ul>
             </div><!-- /breadcrumb-->
             <div class="main-header clearfix">
                 <div class="page-title">
-                    <h3 class="no-margin">Dashboard</h3>
+                    <h3 class="no-margin">@lang('site_lables.Dashboard')</h3>
                     <span>Welcome back Mr.John Doe</span>
                 </div><!-- /page-title -->
 

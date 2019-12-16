@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> Home/Language</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Language')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Language</b> (<?php echo $val=Session::get('locale');?>)</h4>
+                                <h4><b>@lang('site_lables.Language')</b> (<?php echo $val=Session::get('locale');?>)</h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                         class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -36,15 +36,15 @@
                                         @csrf
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Select Language*</label>
+                                                <label>@lang('site_lables.Select') @lang('site_lables.Language')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <select class="form-control" id="languages" name="languages"
                                                     onchange="this.form.submit()">
-                                                    <option value="0" selected disabled>Select Languages</option>
-                                                    <option value="zh" <?php if($val!=null){ if($val=="ch"){?> selected
+                                                    <option value="0" selected disabled>@lang('site_lables.Select') @lang('site_lables.Language')</option>
+                                                    <option value="zh" <?php if($val!=null){ if($val=="zh"){?> selected
                                                         <?php }}?>>Chinese</option>
                                                     <option value="en" <?php if($val!=null){ if($val=="en"){?> selected
                                                     <?php }}if($val==""){ ?>selected <?php }?>>English</option>

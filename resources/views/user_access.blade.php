@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> Home/@lang('site_lables.User_Access')</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.User_Access')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -78,12 +78,9 @@
                                             <div class="form-group">
                                                 <select name="user_type" id="user_type" class="form-control input-sm placeholdesize"
                                                     required>
-                                                    <option value="" selected disabled>
-                                                        @lang('site_lables.Select_User_Type')</option>
-                                                    <option value="Staff">@lang('site_lables.Staff')</option>
-                                                    <option value="Admin">@lang('site_lables.Admin')</option>
-                                                    <option value="Manager">@lang('site_lables.Manager')</option>
+
                                                 </select>
+<input type="hidden" name="user_type_hidden" id="user_type_hidden" value="">
                                             </div>
                                         </div>
 

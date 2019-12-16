@@ -117,6 +117,7 @@ $(document).ready(function() {
 
     $(document).on('blur', ".cpassword", function(e) {
         e.preventDefault();
+        $("#submit_btn").attr("disabled", false);
         var password = $("#password").val();
         var cpassword = $('#cpassword').val();
         $("#submit_btn").attr("disabled", false);
@@ -139,7 +140,7 @@ $(document).ready(function() {
 
     $(document).on('blur', "#user_id", function(e) {
         e.preventDefault();
-
+        $("#submit_btn").attr("disabled", false);
         var user_id = $("#user_id").val();
         var save_update = $("#save_update").val();
         // alert(email);
@@ -153,11 +154,13 @@ $(document).ready(function() {
 
                     if (data == 0 || data == "0") {
 
-                        $('#checkuser_id').show();
-
+                        $("#user_id").val(user_id);
+                        $("#submit_btn").attr("disabled", false);
 
                     } else {
                         swal("User id Already Exists Please Enter Another User id");
+                        $("#user_id").val('');
+                        $("#submit_btn").attr("disabled", true);
                     }
                 });
 
@@ -315,7 +318,7 @@ $(document).ready(function() {
                 user_id: user_id,
                 password: password,
                 cpassword: cpassword,
-                user_type: 'Instructor',
+                //  user_type: 'Instructor',
             },
             url: add_data,
             type: "POST",

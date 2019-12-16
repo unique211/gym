@@ -14,8 +14,13 @@ class MemberAttendenceTakingController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('member_attendence_taking');
+        }
 
-        return view('member_attendence_taking');
     }
     public function getbetweenclasssechedule(Request $request){
 
@@ -27,7 +32,7 @@ class MemberAttendenceTakingController extends Controller
 
        $data= DB::table('class_sechedule_master')->where('class_schedule','>=',$starttime)->where('class_schedule','<=',$endtime)->get();
        $count=count($data);
-        
+
        if($count >0){
          foreach($data as $classsecheduledata){
              $classsechedule_name=$classsecheduledata->classsechedule_name;
@@ -56,9 +61,9 @@ class MemberAttendenceTakingController extends Controller
                 'room_id'=>$room_id,
            );
 
-         } 
+         }
        }
-       
+
        return response()->json($result);
 
 

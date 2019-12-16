@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> Home/Member Attendence Taking</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Member_Attendence_Taking')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Member Attendence Taking</b></h4>
+                                <h4><b>@lang('site_lables.Member_Attendence_Taking')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                         class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -32,7 +32,7 @@
                                 <div class="col-lg-12">
 
                                     <form id="master_form" name="master_form">
-                                        <h5><b>Member Attendence : </b><span id="today"></span></h5>
+                                        <h5><b>@lang('site_lables.Member_Attendence') : </b><span id="today"></span></h5>
                                         <div class="row">
                                             <div class="col-sm-4">
                                                 <b><span id="start_time">00 :00</span></b>
@@ -50,13 +50,13 @@
                                                 <thead>
                                                     <tr>
                                                         <th>
-                                                            CLass Name
+                                                           @lang('site_lables.CLass_Name')
                                                         </th>
                                                         <th>
                                                             Instructor Name
                                                         </th>
                                                         <th>
-                                                            Attendence
+                                                            @lang('site_lables.Attendence')
                                                         </th>
                                                     </tr>
                                                 </thead>

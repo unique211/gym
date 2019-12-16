@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> Home/Profile Manager</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/Profile Manager</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -168,9 +168,9 @@
                                                     class="btn btn-sm btn-info  closehideshow">@lang('site_lables.Cancel')</button>
                                                     <button type="button"
                                                     class="btn btn-sm btn-danger  deletedata" id="delete" style="display:none;">Delete</button>
-                                                  
+
                                             </div>
-                                          
+
 
                                         </div>
 

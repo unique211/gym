@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Redirect, Response;
 use App\Logmodel;
 use App\Classsechedulemodel;
-
+use Session;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +15,15 @@ class ClassScheduleController extends Controller
     public function index(Request $request)
     {
 
-        return view('class_schedule');
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('class_schedule');
+
+        }
+
+
     }
     //getall class
     public function getdropallclass()

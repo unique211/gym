@@ -13,12 +13,19 @@ class ClassController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('class');
+        }
 
-        return view('class');
+
+
     }
     //for getting all category
     public function getall_category(){
-      
+
         $data = DB::table('classcategory_master')
         ->select('classcategory_master.*')
         ->where('status',1)
@@ -29,10 +36,10 @@ class ClassController extends Controller
 
     public function store(Request $request)//For insert or Update Record Of class Master --
     {
-      
-    
+
+
         $catid = $request->save_update;
-      
+
         $input = $request->all();
         if($catid ==""){
         $validator = Validator::make($input, [
@@ -40,7 +47,7 @@ class ClassController extends Controller
 
             'class_category'=>'required',
             'statusinfo'=>'required',
-            
+
             ]);
         }else{
             $validator = Validator::make($input, [
@@ -48,7 +55,7 @@ class ClassController extends Controller
 
                 'class_category'=>'required',
                 'statusinfo'=>'required',
-                
+
                 ]);
         }
             if($validator->fails()){
@@ -69,36 +76,36 @@ class ClassController extends Controller
                                 'class_description'       =>   $request->class_description,
                                 'status'=>$request->statusinfo,
                                 'user_id'=>1,
-                
+
                             ]
-                
+
                         );
-                
-                       
-                
-                        
+
+
+
+
                         if( $catid >0){
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Class master Module' ;
                             $Logmodel->operation_name ='Edit';
                             $Logmodel->reference_id = $catid;
                             $Logmodel->table_name = 'class_master';
                             $Logmodel->user_id = 1;
                             $Logmodel->save();
-                                
+
                         }else{
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Class master Module' ;
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $classcategory->class_id;
                             $Logmodel->table_name = 'class_master';
                             $Logmodel->user_id = 1;
-                            $Logmodel->save(); 
+                            $Logmodel->save();
                         }
-                       
-                
+
+
                         return response()->json(['data'=> $classcategory]);
                     }
                 }else{
@@ -115,48 +122,48 @@ class ClassController extends Controller
                                 'class_description'       =>   $request->class_description,
                                 'status'=>$request->statusinfo,
                                 'user_id'=>1,
-                
+
                             ]
-                
+
                         );
-                
-                       
-                
-                        
+
+
+
+
                         if( $catid >0){
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Class master Module' ;
                             $Logmodel->operation_name ='Edit';
                             $Logmodel->reference_id = $catid;
                             $Logmodel->table_name = 'class_master';
                             $Logmodel->user_id = 1;
                             $Logmodel->save();
-                                
+
                         }else{
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Class master Module' ;
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $classcategory->class_id;
                             $Logmodel->table_name = 'class_master';
                             $Logmodel->user_id = 1;
-                            $Logmodel->save(); 
+                            $Logmodel->save();
                         }
-                       
-                
+
+
                         return response()->json(['data'=> $classcategory]);
-                    } 
+                    }
                 }
-               
-       
+
+
     }
 
-        
+
     }
     public function getallclass(){
         $data = DB::table('class_master')
-       
+
            ->join('classcategory_master', 'classcategory_master.classcategory_id', '=', 'class_master.class_category')
             ->select('class_master.*', 'classcategory_master.classcategory_name as classcategory')
             ->orderBy('class_master.class_id', 'DESC')
@@ -169,7 +176,7 @@ class ClassController extends Controller
     //forsingle classs
     public function getsingleclass($id){
         $data = DB::table('class_master')
-      
+
            ->join('classcategory_master', 'classcategory_master.classcategory_id', '=', 'class_master.class_category')
             ->where('class_id',$id)
            ->select('class_master.*', 'classcategory_master.classcategory_name as classcategory')
@@ -178,9 +185,9 @@ class ClassController extends Controller
            if($count >0){
             return response()->json( $data);
            }else{
-            return response()->json(['msg'=>'Data Not Found']); 
+            return response()->json(['msg'=>'Data Not Found']);
            }
-          
+
 
     }
     public function deleteclass($id){
@@ -191,7 +198,7 @@ class ClassController extends Controller
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'class_master';
         $Logmodel->user_id =1;
-        $Logmodel->save(); 
+        $Logmodel->save();
         $customer = Classmastermodel::where('class_id', $id)->delete();
         return Response::json($customer);
     }
@@ -199,7 +206,7 @@ class ClassController extends Controller
       //for change status
       public function classchangestatus($id,$status){
 
-         
+
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name ='Class master Module' ;
@@ -207,7 +214,7 @@ class ClassController extends Controller
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'class_master';
         $Logmodel->user_id = 1;
-        $Logmodel->save(); 
+        $Logmodel->save();
 
         $customer = DB::update('update class_master set status = ? where class_id = ?',[$status,$id]);
         return Response::json($customer);
@@ -231,7 +238,7 @@ class ClassController extends Controller
 
             'class_category'=>'required',
             'statusinfo'=>'required',
-            
+
             ]);
         }else{
             $validator = Validator::make($input, [
@@ -239,7 +246,7 @@ class ClassController extends Controller
 
                 'class_category'=>'required',
                 'statusinfo'=>'required',
-                
+
                 ]);
         }
             if($validator->fails()){
@@ -251,7 +258,7 @@ class ClassController extends Controller
                 if($count >0){
                     return response()->json(['data'=>'100','msg'=>'Class Name Already Exists']);
                 }else{
-      
+
         $classcategory   =   Classmastermodel::updateOrCreate(
             ['class_id' => $catid],
             [
@@ -265,9 +272,9 @@ class ClassController extends Controller
 
         );
 
-       
 
-        
+
+
         if( $catid >0){
             $Logmodel = new Logmodel;
 
@@ -277,7 +284,7 @@ class ClassController extends Controller
             $Logmodel->table_name = 'class_master';
             $Logmodel->user_id = 1;
             $Logmodel->save();
-                
+
         }else{
             $Logmodel = new Logmodel;
 
@@ -286,9 +293,9 @@ class ClassController extends Controller
             $Logmodel->reference_id = $classcategory->class_id;
             $Logmodel->table_name = 'class_master';
             $Logmodel->user_id = 1;
-            $Logmodel->save(); 
+            $Logmodel->save();
         }
-       
+
 
         return response()->json(['data'=> $classcategory]);
     }
@@ -297,41 +304,41 @@ class ClassController extends Controller
         return response()->json(['msg'=>'Record Not Found']);
      }
     }
-    
+
      //for deleting through api
      public function destroy($id)
      {
-         
+
          $customer = Classmastermodel::where('class_id', $id)->delete();
          if($customer >0){
             $Logmodel = new Logmodel;
- 
+
             $Logmodel->module_name ='Class Master Module' ;
             $Logmodel->operation_name ='Delete';
             $Logmodel->reference_id = $id;
             $Logmodel->table_name = 'class_master';
             $Logmodel->user_id =1;
-            $Logmodel->save(); 
+            $Logmodel->save();
              return Response::json(['msg'=>'Delete Class  Successfully',]);
          }else{
              return Response::json(['msg'=>'Delete Class  Not Found Successfully',]);
          }
-        
- 
+
+
      }
 
       //for cheching Category Exist Or not
     public function checkclassexist($name){
         $data= DB::table('class_master')->where('class_name',$name)->get();
         $count=count($data);
-        
+
         return response()->json($count);
     }
     public function editcheckclassexist($name,$id){
         $data= DB::table('class_master')->where('class_name',$name)->where('class_id','!=',$id)->get();
         $count=count($data);
-        
+
         return response()->json($count);
     }
-  
+
 }

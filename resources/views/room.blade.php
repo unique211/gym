@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> Home/Room</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Room')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Room</b></h4>
+                                <h4><b>@lang('site_lables.Room')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                         class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -34,18 +34,18 @@
                                     <form id="master_form" name="master_form">
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Room*</label>
+                                                <label>@lang('site_lables.Room')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <input type="text" class="form-control input-sm placeholdesize"
-                                                    placeholder="Room" id="room" name="room" required>
+                                                    placeholder="@lang('site_lables.Room')" id="room" name="room" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-1">
                                                 <div class="form-group">
-                                                    <label>Status</label>
+                                                    <label>@lang('site_lables.Status')</label>
                                                 </div>
                                             </div>
                                             <div class="col-sm-1">
@@ -78,7 +78,7 @@
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Room List</b></h4>
+                                <h4><b> @lang('site_lables.Room') @lang('site_lables.List')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                                                 class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}

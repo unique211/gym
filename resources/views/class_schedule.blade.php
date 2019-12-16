@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> Home/Class Schedule</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Class_Schedule')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Class Schedule</b></h4>
+                                <h4><b>@lang('site_lables.Class_Schedule')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                         class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -34,7 +34,7 @@
                                     <form id="master_form" name="master_form">
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Class Name*</label>
+                                                <label>@lang('site_lables.Class_Name')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -53,7 +53,7 @@
 
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Class Schedule*</label>
+                                                <label>@lang('site_lables.Class_Schedule')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -70,7 +70,7 @@
 
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Instructor* </label>
+                                                <label>@lang('site_lables.Instructor')* </label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -87,32 +87,32 @@
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Max Vacancy*</label>
+                                                <label>@lang('site_lables.Max_Vacancy')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <input type="number" class="form-control input-sm placeholdesize"
-                                                value="0" min="0"   style="text-align:right;"  placeholder="Max Vacancy" id="max_vacancy" name="max_vacancy" required>
+                                                value="0" min="0"   style="text-align:right;"  placeholder="@lang('site_lables.Max_Vacancy')" id="max_vacancy" name="max_vacancy" required>
                                             </div>
                                         </div>
                                         <div class="row">
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Class Duration (In Minutes)*</label>
+                                                <label> @lang('site_lables.Class_Duration') (@lang('site_lables.In_Minutes'))*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <input type="number" class="form-control input-sm placeholdesize"
-                                                    placeholder="Class Duration" id="class_duration"
+                                                    placeholder="@lang('site_lables.Class_Duration')" id="class_duration"
                                                   value="0"   name="class_duration"  style="text-align:right;" min="0" required >
                                             </div>
                                         </div>
 
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Room*</label>
+                                                <label>@lang('site_lables.Room')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -129,7 +129,7 @@
                                     </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Min Cancelation*</label>
+                                                <label>@lang('site_lables.Min_Cancelation')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -146,7 +146,7 @@
 
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Min Booking*</label>
+                                                <label>@lang('site_lables.Min_Booking')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -163,7 +163,7 @@
 
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Status</label>
+                                                <label>@lang('site_lables.Status')</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -172,7 +172,7 @@
                                                 <input type="radio" name="status" value="inactive">Inactive  --}}
                                                 <input type="hidden" id="statusinfo" name="statusinfo" value="">
                                                 <input type="hidden" id="classendtime" name="classendtime" value="">
-                                                    <input type="checkbox"  id="status" checked data-toggle="toggle"      data-on="Active" data-off="Inactive"  data-onstyle="success" data-offstyle="danger"  >
+                                                    <input type="checkbox"  id="status" checked data-toggle="toggle"      data-on="@lang('site_lables.Active')" data-off="@lang('site_lables.Inactive')"  data-onstyle="success" data-offstyle="danger"  >
                                             </div>
                                         </div>
 
@@ -199,7 +199,7 @@
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Class Schedule</b></h4>
+                                <h4><b>@lang('site_lables.Class_Schedule')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                                                 class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -296,7 +296,7 @@
     }
     });
 
-   
+
 });
 </script>
 <script>
@@ -311,9 +311,9 @@
        // format: 'DD/MM/YYYY  h:ia',
       //format: 'DD/MM/YYYY hh:mm A',
       format: 'DD/MM/YYYY HH:mm:ss',
-      
+
       //pick12HourFormat: false,
-       
+
 
 
         });
@@ -328,8 +328,8 @@
                   //  $("#fdate").val(date);
 
                   $('#status').bootstrapToggle({
-                on: 'Active',
-                off: 'Inactive'
+                on: '@lang('site_lables.Active')',
+                off: '@lang('site_lables.Inactive')'
                 });
 </script>
 <script type='text/javascript' src="{{ URL::asset('/resources/js/myjs/classschedule.js',true) }}"></script>

@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> Home/Gallary</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Gallary')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Gallary</b></h4>
+                                <h4><b>@lang('site_lables.Gallary')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                         class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -35,7 +35,7 @@
                                         <div class="row">
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Upload Image or Video*</label>
+                                                <label>@lang('site_lables.Upload_Image_or_Video')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
@@ -49,25 +49,25 @@
 
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Description*</label>
+                                                <label>@lang('site_lables.Description')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                              <textarea class="form-control" id="desc" name="desc" cols="3" placeholder="Description" required></textarea>
+                                              <textarea class="form-control" id="desc" name="desc" cols="3" placeholder="@lang('site_lables.Description')" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Allow share of post*</label>
+                                                <label>@lang('site_lables.Allow_share_of_post')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
 
                                                     <input type="hidden" id="allowshare" name="allowshare" value="">
-                                                    <input type="checkbox"  id="share" checked data-toggle="toggle"      data-on="Yes" data-off="No"  data-onstyle="success" data-offstyle="danger"  >
+                                                    <input type="checkbox"  id="share" checked data-toggle="toggle"      data-on="@lang('site_lables.Yes')" data-off="@lang('site_lables.No')"  data-onstyle="success" data-offstyle="danger"  >
                                             </div>
                                         </div>
                                     </div>
@@ -113,7 +113,7 @@
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Gallary List</b></h4>
+                                <h4><b>@lang('site_lables.Gallary_List')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                                                 class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}

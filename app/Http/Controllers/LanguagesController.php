@@ -11,8 +11,13 @@ class LanguagesController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('language');
+        }
 
-        return view('language');
     }
 
     public function change_lang(Request $request)

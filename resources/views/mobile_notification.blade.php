@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> Home/Mobile Notification</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Mobile_Notification')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Mobile Notification</b></h4>
+                                <h4><b>@lang('site_lables.Mobile_Notification')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                         class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -34,7 +34,7 @@
                                     <form id="master_form" name="master_form">
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Send Notification</label>
+                                                <label>@lang('site_lables.Send_Notification')</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -105,8 +105,8 @@
                   //  $("#fdate").val(date);
 
                   $('#notification').bootstrapToggle({
-                on: 'ON',
-                off: 'OFF'
+                on: '@lang('site_lables.ON')',
+                off: '@lang('site_lables.OFF')'
                 });
 </script>
 

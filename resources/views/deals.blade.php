@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> Home/Deals</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Deals')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Deals</b></h4>
+                                <h4><b>@lang('site_lables.Deals')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                         class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -35,19 +35,19 @@
 
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Title*</label>
+                                                <label>@lang('site_lables.Title')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <input type="text" id="deal_title" name="deal_title" class="form-control input-sm"
-                                                    placeholder="title">
+                                                    placeholder="@lang('site_lables.Title')">
                                             </div>
                                         </div>
 
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Upload Image or Video*</label>
+                                                <label>@lang('site_lables.Upload_Image_or_Video')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -63,7 +63,7 @@
 
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Start Date*</label>
+                                                <label>@lang('site_lables.Start_Date')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -88,7 +88,7 @@
 
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>End Date*</label>
+                                                <label>@lang('site_lables.End_Date')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -140,7 +140,7 @@
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Deals List</b></h4>
+                                <h4><b>@lang('site_lables.Deals_List')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                                                 class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}

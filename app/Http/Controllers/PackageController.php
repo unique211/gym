@@ -11,26 +11,31 @@ class PackageController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('package');
+        }
 
-        return view('package');
     }
 
 
     public function store(Request $request)//For insert or Update Record Of Package Master --
     {
-       
-    
+
+
         $packege_id = $request->save_update;
-      
+
         $input = $request->all();
-        
+
         if($packege_id==""){
         $validator = Validator::make($input, [
             'package_name' => 'required',
             'package_point' => 'required',
             'package_price'=>'required',
             'statusinfo'=>'required',
-            
+
             ]);
         }else{
             $validator = Validator::make($input, [
@@ -38,14 +43,14 @@ class PackageController extends Controller
                 'package_point' => 'required',
                 'package_price'=>'required',
                 'statusinfo'=>'required',
-                
+
                 ]);
         }
             if($validator->fails()){
 
                 return response()->json('less Arguments OR Package Name Already Exists ');
             }else{
-       
+
                 if($packege_id >0){
                     $data= DB::table('package_master')->where('package_name',$request->package_name)->where('packege_id','!=',$packege_id)->get();
                     $count=count($data);
@@ -59,43 +64,43 @@ class PackageController extends Controller
                                 'package_point'        =>   $request->package_point,
                                 'package_price'        =>   $request->package_price,
                                 'status'=>$request->statusinfo,
-                               
-                
+
+
                             ]
-                
+
                         );
-                
-                       
-                
-                        
+
+
+
+
                         if( $packege_id >0){
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Package Module' ;
                             $Logmodel->operation_name ='Edit';
                             $Logmodel->reference_id = $packege_id;
                             $Logmodel->table_name = 'package_master';
                            // $Logmodel->table_name = 'package_master';
                             $Logmodel->save();
-                                
+
                         }else{
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Package Module' ;
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $package->packege_id;
                             $Logmodel->table_name = 'package_master';
                            // $Logmodel->table_name = 'package_master';
-                            $Logmodel->save(); 
+                            $Logmodel->save();
                         }
-                       
-                
-                        return response()->json(['data'=> $package]); 
+
+
+                        return response()->json(['data'=> $package]);
                     }
-                    
-                   
+
+
                 }else{
-      
+
                     $data= DB::table('package_master')->where('package_name',$request->package_name)->get();
                     $count=count($data);
                     if($count >0){
@@ -108,15 +113,15 @@ class PackageController extends Controller
                 'package_point'        =>   $request->package_point,
                 'package_price'        =>   $request->package_price,
                 'status'=>$request->statusinfo,
-               
+
 
             ]
 
         );
 
-       
 
-        
+
+
         if( $packege_id >0){
             $Logmodel = new Logmodel;
 
@@ -126,7 +131,7 @@ class PackageController extends Controller
             $Logmodel->table_name = 'package_master';
            // $Logmodel->table_name = 'package_master';
             $Logmodel->save();
-                
+
         }else{
             $Logmodel = new Logmodel;
 
@@ -135,9 +140,9 @@ class PackageController extends Controller
             $Logmodel->reference_id = $package->packege_id;
             $Logmodel->table_name = 'package_master';
            // $Logmodel->table_name = 'package_master';
-            $Logmodel->save(); 
+            $Logmodel->save();
         }
-       
+
 
         return response()->json(['data'=> $package]);
     }
@@ -162,7 +167,7 @@ class PackageController extends Controller
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'package_master';
        // $Logmodel->table_name = 'package_master';
-        $Logmodel->save(); 
+        $Logmodel->save();
         $customer = Packagemodel::where('packege_id', $id)->delete();
         return Response::json($customer);
     }
@@ -176,7 +181,7 @@ class PackageController extends Controller
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'package_master';
        // $Logmodel->table_name = 'package_master';
-        $Logmodel->save(); 
+        $Logmodel->save();
 
         $customer = DB::update('update package_master set status = ? where packege_id = ?',[$status,$id]);
         return Response::json($customer);
@@ -184,21 +189,21 @@ class PackageController extends Controller
     public function update(Request $request, $id)
     {
         $packege_id = $id;
-      
+
         $input = $request->all();
-        
+
         $validator = Validator::make($input, [
             'package_name' => 'required',
             'package_point' => 'required',
             'package_price'=>'required',
             'statusinfo'=>'required',
-            
+
             ]);
             if($validator->fails()){
 
                 return response()->json('less Arguments OR Package Name Already Exists ');
             }else{
-       
+
                 $data= DB::table('package_master')->where('package_name',$request->package_name)->where('packege_id','!=',$packege_id)->get();
                 $count=count($data);
                 if($count >0){
@@ -211,43 +216,43 @@ class PackageController extends Controller
                             'package_point'        =>   $request->package_point,
                             'package_price'        =>   $request->package_price,
                             'status'=>$request->statusinfo,
-                           
-            
+
+
                         ]
-            
+
                     );
-            
-                   
-            
-                    
+
+
+
+
                     if( $packege_id >0){
                         $Logmodel = new Logmodel;
-            
+
                         $Logmodel->module_name ='Package Module' ;
                         $Logmodel->operation_name ='Edit';
                         $Logmodel->reference_id = $packege_id;
                         $Logmodel->table_name = 'package_master';
                        // $Logmodel->table_name = 'package_master';
                         $Logmodel->save();
-                            
+
                     }else{
                         $Logmodel = new Logmodel;
-            
+
                         $Logmodel->module_name ='Package Module' ;
                         $Logmodel->operation_name ='Insert';
                         $Logmodel->reference_id = $package->packege_id;
                         $Logmodel->table_name = 'package_master';
                        // $Logmodel->table_name = 'package_master';
-                        $Logmodel->save(); 
+                        $Logmodel->save();
                     }
-                   
-            
+
+
                     return response()->json(['data'=> $package]);
                 }
-      
+
     }
 
- 
+
     }
     public function getpackage($id){
         $data = DB::table('package_master')
@@ -261,7 +266,7 @@ class PackageController extends Controller
         }else{
             return Response::json(['msg'=>'Data Not Found']);
         }
-       
+
     }
     public function destroy($id)
     {
@@ -272,26 +277,26 @@ class PackageController extends Controller
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'package_master';
        // $Logmodel->table_name = 'package_master';
-        $Logmodel->save(); 
+        $Logmodel->save();
         $customer = Packagemodel::where('packege_id', $id)->delete();
         if($customer >0){
             return Response::json(['msg'=>'Delete Record  Successfully',]);
         }else{
             return Response::json(['msg'=>'Delete Record Not Successfully',]);
         }
-       
+
 
     }
     public function chackpackagename($package){
         $data= DB::table('package_master')->where('package_name',$package)->get();
         $count=count($data);
-        
+
         return response()->json($count);
     }
     public function editchackpackagename($package,$id){
         $data= DB::table('package_master')->where('package_name',$package)->where('packege_id','!=',$id)->get();
         $count=count($data);
-        
+
         return response()->json($count);
     }
 }

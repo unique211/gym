@@ -13,8 +13,14 @@ class Class_CategoryController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('class_category');
+        }
 
-        return view('class_category');
+
     }
     public function store(Request $request) //For insert or Update Record Of Package Master --
     {

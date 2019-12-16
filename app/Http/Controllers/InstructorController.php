@@ -14,10 +14,15 @@ class InstructorController extends Controller
     public function index(Request $request)
     {
 
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('instructor');
+        }
 
 
 
-        return view('instructor');
     }
 
     public function instrucoruploadimg(Request $request){
@@ -232,7 +237,12 @@ class InstructorController extends Controller
                         }
                         $str = $request->password;
 
-                        $role =    $request->user_type;
+                        $result =  DB::table('profile_master')
+->where('profile_type','Instructor')
+                        ->first();
+                        $role =    $result->profile_id;
+
+
                         if ($str != "") {
                             $md5 = md5($str);
                             $password = base64_encode($md5);

@@ -8,7 +8,13 @@ class ClassBookingController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('class_booking');
+        }
 
-        return view('class_booking');
+
     }
 }

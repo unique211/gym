@@ -83,6 +83,7 @@ $(document).ready(function() {
     $(document).on('change', "#user_type", function(e) {
         e.preventDefault();
         var usertype = $(this).val();
+
         userright(usertype);
     });
 
@@ -178,7 +179,7 @@ $(document).ready(function() {
         var email = $("#email").val();
         var phone = $("#phone").val();
         var user_type = $("#user_type").val();
-
+        var user_type_hidden = $("#user_type_hidden").val();
         var user_id = $("#user_id").val();
         var password = "";
         var cpassword = "";
@@ -317,7 +318,7 @@ $(document).ready(function() {
                 phone: phone,
                 user_id: user_id,
                 password: password,
-
+                user_type_hidden: user_type_hidden,
                 user_type: user_type,
             },
             url: add_data,
@@ -351,6 +352,28 @@ $(document).ready(function() {
     datashow();
     //for desplay in table with data ------Strat
     function datashow() {
+        $.get('get_all_profile_data', function(data) {
+            html = '';
+            var name = '';
+
+            html += '<option selected disabled value="" >Select</option>';
+
+            for (i = 0; i < data.length; i++) {
+                var id = '';
+
+                name = data[i].profile_type;
+                id = data[i].profile_id;
+
+
+
+                html += '<option value="' + id + '">' + name + '</option>';
+            }
+            $('#user_type').html(html);
+        });
+
+
+
+
         $.get('getall_useraccess', function(data) {
 
 
@@ -361,6 +384,7 @@ $(document).ready(function() {
                 '<th><font style="font-weight:bold">User Name</font></th>' +
                 '<th><font style="font-weight:bold"></font>Email ID</th>' +
                 '<th style="text-align:right; ><font style="font-weight:bold">Mobile Number</font></th>' +
+                '<th style="text-align:right;display:none;"><font style="font-weight:bold">User Type</font></th>' +
                 '<th style="text-align:right;"><font style="font-weight:bold">User Type</font></th>' +
                 '<th style="text-align:right;"><font style="font-weight:bold">User Id</font></th>' +
 
@@ -379,7 +403,8 @@ $(document).ready(function() {
                     '<td id="email_id_' + data[i].useraccess_id + '">' + data[i].email_id + '</td>' +
                     //'<td style="text-align:right;" id="packagepoint_' + data[i].useraccess_id + '"> <img src="' + imgurl + '/uploads/' + data[i].instructor_img + '"  style="width:50px; height: 50px; "></td>' +
                     '<td style="text-align:right;" id="mobileno_' + data[i].useraccess_id + '">' + data[i].mobileno + '</td>' +
-                    '<td style="text-align:right;" id="role_' + data[i].useraccess_id + '">' + data[i].role + '</td>' +
+                    '<td style="text-align:right; display:none;" id="role_' + data[i].useraccess_id + '">' + data[i].role + '</td>' +
+                    '<td style="text-align:right;" id="profile_type_' + data[i].useraccess_id + '">' + data[i].profile_type + '</td>' +
                     '<td style="text-align:right;" id="userid_' + data[i].useraccess_id + '">' + data[i].userid + '</td>' +
 
 
@@ -432,12 +457,13 @@ $(document).ready(function() {
         $("#phone").val(mobileno);
         $("#user_type").val(role_).trigger('change');
 
-        $("#user_id").val(userid);
+        $("#user_id").val(email_id);
+
         $('#save_update').val(id);
 
 
 
-
+        $("#user_type_hidden").val(role_);
 
 
 
@@ -484,7 +510,7 @@ $(document).ready(function() {
         $("#name").val('');
         $("#email").val('');
         $("#phone").val('');
-        $("#user_type").val('').trigger('change');
+        $("#user_type").val('');
 
         $("#user_id").val('');
         $("#password").val('');
@@ -505,7 +531,7 @@ $(document).ready(function() {
 
         var name = $("#name").val();
         var save_update = $("#save_update").val();
-        // alert(email);
+
 
         if (save_update == "") {
 

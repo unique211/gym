@@ -13,8 +13,13 @@ class MemberTypeController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('member_type');
+        }
 
-        return view('member_type');
     }
 
 

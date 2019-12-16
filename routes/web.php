@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +17,19 @@ Route::get('/', function () {
     return view('login');
     // return 123;
 });
+
+Route::get('/logout', function (Request $request) {
+    // $id = $request->session()->get('logs');
+    // date_default_timezone_set('Asia/Kolkata');
+    // $date = date("Y-m-d H:i:s");
+    // DB::table('login_logs')->where('id', $id)->update(['logout_time' => $date]);
+    $request->session()->flush();
+    return redirect('/');
+});
+
+Route::post('login_check', 'LoginController@check_login');
+
+
 Route::resource('usermanage', 'Usermanagecontroller');
 Route::resource('dashboard', 'Dashboardcontroller');
 
@@ -133,6 +147,9 @@ Route::get('getedituserright/{id}', 'UserAccessController@getedituserright');
 Route::get('deleteuseraccess/{id}', 'UserAccessController@deleteuseraccess');
 //Route::get('useracessrightdel/{id}', 'UserAccessController@useracessrightdel');
 Route::post('useracessrightdel', 'UserAccessController@useracessrightdel');
+Route::get('get_all_profile_data', 'UserAccessController@get_all_profile_data');
+
+
 
 //for Member Type
 

@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> Home/@lang('site_lables.Instructor')</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Instructor')</a></li>
                     <li class="active"></li>
                 </ul>
             </div>{{-- /breadcrumb--}}
@@ -113,7 +113,7 @@
                                                 <input type="text" class="form-control input-sm placeholdesize"
                                                     placeholder="@lang('site_lables.User_Id')" id="user_id"
                                                     name="user_id" required>
-                                                    <label class="text-danger " id="checkuser_id" style="display:none;font-color:red">Password And Conform Password Not Match</label>
+
                                             </div>
                                         </div>
                                         <div class="col-sm-2">

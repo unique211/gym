@@ -13,8 +13,13 @@ class DealsController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('deals');
+        }
 
-        return view('deals');
     }
     public function store(Request $request) //For insert or Update Record Of Room Master --
     {
@@ -403,7 +408,7 @@ class DealsController extends Controller
             $result[] = array(
                 'deal_id' => $val->deal_id,
                 'title' => $val->deal_title,
-                'image_video_url' => env('APP_URL') . "/gym/uploads/" . $val->upload_img,
+                'image_video_url' =>  $val->upload_img,
                 'is_video' => $video,
 
 

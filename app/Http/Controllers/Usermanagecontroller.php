@@ -10,8 +10,13 @@ class Usermanagecontroller extends Controller
     //
     public function index(Request $request)
     {
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('usermanagement');
+        }
 
-        return view('usermanagement');
     }
 
     public function login_request(Request $request)
@@ -129,7 +134,7 @@ class Usermanagecontroller extends Controller
                     'current_package_name' => $val->package_name,
                     'member_type' => $val->membertype,
                     'date_of_expire' => $val->dateofexpire,
-                    'image_url' => env('APP_URL') . "/gym/uploads/" . $val->image_url,
+                    'image_url' =>  $val->image_url,
                 );
             }
             return response()->json(['data' => $result, 'status' => 1]);

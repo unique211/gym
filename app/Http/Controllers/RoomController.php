@@ -13,29 +13,34 @@ class RoomController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('room');
+        }
 
-        return view('room');
     }
 
 
     public function store(Request $request)//For insert or Update Record Of Room Master --
     {
-      
-    
+
+
         $catid = $request->save_update;
-      
+
         $input = $request->all();
         if($catid ==""){
         $validator = Validator::make($input, [
             'room' => 'required',
             'statusinfo'=>'required',
-            
+
             ]);
         }else{
             $validator = Validator::make($input, [
                 'room' => 'required',
                 'statusinfo'=>'required',
-                
+
                 ]);
         }
             if($validator->fails()){
@@ -54,84 +59,84 @@ class RoomController extends Controller
                                 'room'       =>   $request->room,
                                 'status'=>$request->statusinfo,
                                 'user_id'=>1,
-                
+
                             ]
-                
+
                         );
-                
-                       
-                
-                        
+
+
+
+
                         if( $catid >0){
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Room master Module' ;
                             $Logmodel->operation_name ='Edit';
                             $Logmodel->reference_id = $catid;
                             $Logmodel->table_name = 'room_master';
                             $Logmodel->user_id = 1;
                             $Logmodel->save();
-                                
+
                         }else{
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Room master Module' ;
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $classcategory->rooom_id;
                             $Logmodel->table_name = 'room_master';
                             $Logmodel->user_id = 1;
-                            $Logmodel->save(); 
+                            $Logmodel->save();
                         }
-                       
-                
-                        return response()->json(['data'=> $classcategory]); 
+
+
+                        return response()->json(['data'=> $classcategory]);
                     }
-                    
+
                 }else{
                     $data= DB::table('room_master')->where('room',$request->room)->get();
                     $count=count($data);
                     if($count >0){
                         return response()->json('100');
-                    }else{ 
+                    }else{
                         $classcategory   =   Roommastermodel::updateOrCreate(
                             ['rooom_id' => $catid],
                             [
                                 'room'       =>   $request->room,
                                 'status'=>$request->statusinfo,
                                 'user_id'=>1,
-                
+
                             ]
-                
+
                         );
-                
+
                         if( $catid >0){
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Room master Module' ;
                             $Logmodel->operation_name ='Edit';
                             $Logmodel->reference_id = $catid;
                             $Logmodel->table_name = 'room_master';
                             $Logmodel->user_id = 1;
                             $Logmodel->save();
-                                
+
                         }else{
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Room master Module' ;
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $classcategory->rooom_id;
                             $Logmodel->table_name = 'room_master';
                             $Logmodel->user_id = 1;
-                            $Logmodel->save(); 
+                            $Logmodel->save();
                         }
-                       
-                
+
+
                         return response()->json(['data'=> $classcategory]);
                     }
                 }
-       
-      
-      
+
+
+
     }
 
         //return Response::json($package);
@@ -141,13 +146,13 @@ class RoomController extends Controller
       public function checkroomexist($catname){
         $data= DB::table('room_master')->where('room',$catname)->get();
         $count=count($data);
-        
+
         return response()->json($count);
     }
     public function editcheckroomexist($catname,$id){
         $data= DB::table('room_master')->where('room',$catname)->where('rooom_id !=',$id)->get();
         $count=count($data);
-        
+
         return response()->json($count);
     }
     public function getallroom(){
@@ -158,7 +163,7 @@ class RoomController extends Controller
         return response()->json($data);
     }
 
-    //for gettting single class 
+    //for gettting single class
     public function getsingleroom($id){
         $data = DB::table('room_master')
         ->select('room_master.*')
@@ -171,7 +176,7 @@ class RoomController extends Controller
             return response()->json(['msg'=>'Room Not Found']);
         }
 
-       
+
     }
     public function deleteroom($id){
         $Logmodel = new Logmodel;
@@ -181,7 +186,7 @@ class RoomController extends Controller
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'room_master';
         $Logmodel->user_id =1;
-        $Logmodel->save(); 
+        $Logmodel->save();
         $customer = Roommastermodel::where('rooom_id', $id)->delete();
         return Response::json($customer);
     }
@@ -190,21 +195,21 @@ class RoomController extends Controller
      public function destroy($id)
      {
          $Logmodel = new Logmodel;
- 
+
          $Logmodel->module_name ='Room Module' ;
          $Logmodel->operation_name ='Delete';
          $Logmodel->reference_id = $id;
          $Logmodel->table_name = 'room_master';
          $Logmodel->user_id =1;
-         $Logmodel->save(); 
+         $Logmodel->save();
          $customer = Roommastermodel::where('rooom_id', $id)->delete();
          if($customer >0){
              return Response::json(['msg'=>'Delete Room  Successfully',]);
          }else{
              return Response::json(['msg'=>'Delete Room  Not Successfully',]);
          }
-        
- 
+
+
      }
      //for update
      public function update(Request $request, $id)
@@ -222,17 +227,17 @@ class RoomController extends Controller
          $validator = Validator::make($input, [
              'room' => 'required|unique:room_master',
              'statusinfo'=>'required',
-             
+
              ]);
          }else{
              $validator = Validator::make($input, [
                  'room' => 'required',
                  'statusinfo'=>'required',
-                 
+
                  ]);
          }
              if($validator->fails()){
- 
+
                  return response()->json('less Arguments OR Class Category Already Exists ');
              }else{
                 $data= DB::table('room_master')->where('room',$request->room)->where('rooom_id', '!=',$catid)->get();
@@ -240,47 +245,47 @@ class RoomController extends Controller
                 if($count >0){
                     return response()->json(['data'=>'100','msg'=>'Room Already Exists']);
                 }else{
-       
+
          $classcategory   =   Roommastermodel::updateOrCreate(
              ['rooom_id' => $catid],
              [
                  'room'       =>   $request->room,
                  'status'=>$request->statusinfo,
                  'user_id'=>1,
- 
+
              ]
- 
+
          );
- 
-        
- 
-         
+
+
+
+
          if( $catid >0){
              $Logmodel = new Logmodel;
- 
+
              $Logmodel->module_name ='Room master Module' ;
              $Logmodel->operation_name ='Edit';
              $Logmodel->reference_id = $catid;
              $Logmodel->table_name = 'room_master';
              $Logmodel->user_id = 1;
              $Logmodel->save();
-                 
+
          }else{
              $Logmodel = new Logmodel;
- 
+
              $Logmodel->module_name ='Room master Module' ;
              $Logmodel->operation_name ='Insert';
              $Logmodel->reference_id = $classcategory->rooom_id;
              $Logmodel->table_name = 'room_master';
              $Logmodel->user_id = 1;
-             $Logmodel->save(); 
+             $Logmodel->save();
          }
-        
- 
+
+
          return response()->json(['data'=> $classcategory]);
         }
      }
-        
+
         }else{
             return response()->json(['msg'=>'Not Found Record']);
         }
@@ -288,7 +293,7 @@ class RoomController extends Controller
     //for change status
     public function roomchangestatus($id,$status){
 
-         
+
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name ='Room master Module' ;
@@ -296,7 +301,7 @@ class RoomController extends Controller
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'room_master';
         $Logmodel->user_id = 1;
-        $Logmodel->save(); 
+        $Logmodel->save();
 
         $customer = DB::update('update room_master set status = ? where rooom_id = ?',[$status,$id]);
         return Response::json($customer);
@@ -320,12 +325,12 @@ class RoomController extends Controller
                 $data2 = DB::table('class_sechedule_master')
                 ->select('class_sechedule_master.*')
                 ->where('room_id',$rooom_id)
-                ->get(); 
+                ->get();
                 $count2=count($data2);
                 if($count2 >0){
                     $active=1;
                 }else{
-                    $active=0;  
+                    $active=0;
                 }
 
                }

@@ -14,8 +14,13 @@ class GalleryController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('gallery');
+        }
 
-        return view('gallery');
     }
 
     public function galleryuploadimg(Request $request)
@@ -309,7 +314,7 @@ class GalleryController extends Controller
             $result[] = array(
                 'user_name' => "",
                 'description' => $desc,
-                'image_video_url' => env('APP_URL') . "/gym/gallaryimg/" . $val->uploadimg,
+                'image_video_url' => $val->uploadimg,
                 'is_video' => $video,
                 'posting_date_time' => $val->created_at,
                 'likes_count' => $val->nooflike,

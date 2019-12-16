@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> Home/Package</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Package')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Package</b></h4>
+                                <h4><b>@lang('site_lables.Package')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                         class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -34,41 +34,41 @@
                                     <form id="master_form" name="master_form">
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Package Name*</label>
+                                                <label>@lang('site_lables.Package_Name')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <input type="text" class="form-control input-sm placeholdesize"
-                                                    placeholder="Package Name" id="package_name" name="package_name" required>
+                                                    placeholder="@lang('site_lables.Package_Name')" id="package_name" name="package_name" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Package Point*</label>
+                                                <label>@lang('site_lables.Package_Point')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <input type="text" class="form-control input-sm placeholdesize"
-                                                    id="package_point" name="package_point" placeholder="Package Point" required>
+                                                    id="package_point" name="package_point" placeholder="@lang('site_lables.Package_Point')" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Package Price*</label>
+                                                <label>@lang('site_lables.Package_Price')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <input type="number" class="form-control input-sm placeholdesize"
-                                                   style="text-align:right;" placeholder="Package Price"  min="0" value="0" id="package_price" name="package_price" required>
+                                                   style="text-align:right;" placeholder="@lang('site_lables.Package_Price')"  min="0" value="0" id="package_price" name="package_price" required>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Status*</label>
+                                                <label>@lang('site_lables.Status')*</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -107,7 +107,7 @@
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Package List</b></h4>
+                                <h4><b>@lang('site_lables.Package_List')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                                                 class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -233,8 +233,8 @@ var checkpackagename="{{ url('chackpackagename') }}";
                   //  $("#fdate").val(date);
 
                   $('#status').bootstrapToggle({
-                on: 'Active',
-                off: 'Inactive'
+                on: '@lang('site_lables.Active')',
+                off: '@lang('site_lables.Inactive')'
                 });
 </script>
 <script type='text/javascript' src="{{ URL::asset('/resources/js/myjs/package_master.js',true) }}">

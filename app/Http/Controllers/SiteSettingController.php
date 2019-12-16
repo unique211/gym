@@ -14,18 +14,23 @@ class SiteSettingController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('site_setting');
+        }
 
-        return view('site_setting');
     }
     public function store(Request $request)//For insert or Update Record Of Package Master --
     {
-       
-    
+
+
         $packege_id = $request->save_update;
-      
+
         $input = $request->all();
-        
-       
+
+
         $validator = Validator::make($input, [
             'site_name' => 'required',
             'uploadimg_hidden' => 'required',
@@ -36,9 +41,9 @@ class SiteSettingController extends Controller
             'instagram'=>'required',
             'firebase'=>'required',
            // 'map'=>'required',
-            
+
             ]);
-       
+
             if($validator->fails()){
 
                 return response()->json('less Arguments OR Package Name Already Exists ');
@@ -50,7 +55,7 @@ class SiteSettingController extends Controller
                         return response()->json('100');
                     }else{
                         $data1= DB::table('sitesetting_master')->where('site_email',$request->email)->where('sitesetting_id','!=',$packege_id)->get();
-                        $count1=count($data1); 
+                        $count1=count($data1);
                         if($count >0){
                             return response()->json('101');
                         }else{
@@ -64,7 +69,7 @@ class SiteSettingController extends Controller
                                     'site_about_details2'  =>   $request->about_us_c,
                                     'site_contact_detalis1'        =>   $request->contact_us,
                                     'site_contact_detalis2'        =>   $request->contact_us_c,
-                                  
+
                                     'telephone_no'        =>   $request->tel_no,
                                     'website'        =>   $request->website,
                                     'facebook'=>$request->facebook,
@@ -72,15 +77,15 @@ class SiteSettingController extends Controller
                                     'firebase'=>$request->firebase,
                                     'map'=>$request->map,
                                     'user_id'=>1,
-                                   
-                    
+
+
                                 ]
-                    
+
                             );
-                    
-                      
+
+
                                 $Logmodel = new Logmodel;
-                    
+
                                 $Logmodel->module_name ='Site Setting Module' ;
                                 $Logmodel->operation_name ='Edit';
                                 $Logmodel->reference_id = $packege_id;
@@ -97,7 +102,7 @@ class SiteSettingController extends Controller
                     return response()->json('100');
                 }else{
                     $data1= DB::table('sitesetting_master')->where('site_email',$request->email)->get();
-                    $count1=count($data1); 
+                    $count1=count($data1);
                     if($count >0){
                         return response()->json('101');
                     }else{
@@ -111,7 +116,7 @@ class SiteSettingController extends Controller
                                 'site_about_details2'  =>   $request->about_us_c,
                                 'site_contact_detalis1'        =>   $request->contact_us,
                                 'site_contact_detalis2'        =>   $request->contact_us_c,
-                              
+
                                 'telephone_no'        =>   $request->tel_no,
                                 'website'        =>   $request->website,
                                 'facebook'=>$request->facebook,
@@ -119,15 +124,15 @@ class SiteSettingController extends Controller
                                 'firebase'=>$request->firebase,
                                 'map'=>$request->map,
                                 'user_id'=>1,
-                               
-                
+
+
                             ]
-                
+
                         );
-                
-                  
+
+
                             $Logmodel = new Logmodel;
-                
+
                             $Logmodel->module_name ='Site Setting Module' ;
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $package->sitesetting_id;
@@ -143,7 +148,7 @@ class SiteSettingController extends Controller
     public function getallsitesettinginfo(){
 
         $sitesetting= DB::table('sitesetting_master')->get();
-       
+
         return Response::json($sitesetting);
     }
     public function deletesitesetting($id){
@@ -154,8 +159,8 @@ class SiteSettingController extends Controller
     $Logmodel->reference_id = $id;
     $Logmodel->table_name = 'sitesetting_master';
     $Logmodel->user_id = 1;
-    $Logmodel->save(); 
+    $Logmodel->save();
     $customer = Sitesettingmodel::where('sitesetting_id', $id)->delete();
-    return response()->json( $customer); 
+    return response()->json( $customer);
     }
 }

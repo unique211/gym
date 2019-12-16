@@ -15,8 +15,13 @@ class ProfileManagerController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('profile_manager');
+        }
 
-        return view('profile_manager');
     }
     public function getallmenu(){
         $result=array();
@@ -44,9 +49,9 @@ class ProfileManagerController extends Controller
                          'menu_id'=>$menu_id,
                         'submenuname'=>$submenuname,
                      );
-                    } 
+                    }
                 }
-              
+
             }
             $result[]=array(
                 'menuid'=>$menuid,
@@ -75,11 +80,11 @@ class ProfileManagerController extends Controller
         $urdata = $request->studejsonObj;
         $u_rights = "";
         $cnt = 0;
-        
-        
+
+
 
         foreach ($urdata as $value) {
-           
+
 
             $u_rights = array(
                 'profileid' => $ref_id,
@@ -92,7 +97,7 @@ class ProfileManagerController extends Controller
             ->where('submenuid',$value["submenu"])
             ->where('profileid',$ref_id)
             ->get();
-       
+
             $count=count($result);
             if($count >0){
 
@@ -101,7 +106,7 @@ class ProfileManagerController extends Controller
                 ->Insert($u_rights);
             }
 
-          
+
             $cnt++;
         }
 
@@ -114,7 +119,7 @@ class ProfileManagerController extends Controller
             $Logmodel->table_name = 'profile_master';
            // $Logmodel->table_name = 'package_master';
             $Logmodel->save();
-                
+
         }else{
             $Logmodel = new Logmodel;
 
@@ -123,7 +128,7 @@ class ProfileManagerController extends Controller
             $Logmodel->reference_id = $customer->profile_id;
             $Logmodel->table_name = 'profile_master';
            // $Logmodel->table_name = 'package_master';
-            $Logmodel->save(); 
+            $Logmodel->save();
         }
         return Response::json($ref_id);
 
@@ -131,14 +136,14 @@ class ProfileManagerController extends Controller
     }
     public function get_all_profile() {
         $result =  DB::table('profile_master')
-        ->get(); 
+        ->get();
         return Response::json($result);
     }
     public function getallmenuright($id){
 
         $result =  DB::table('profile_details')
         ->where('profileid',$id)
-        ->get(); 
+        ->get();
         return Response::json($result);
     }
     public function deleteuserright(Request $request){

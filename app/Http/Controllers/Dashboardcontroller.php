@@ -9,9 +9,15 @@ class Dashboardcontroller extends Controller
     //
     public function index(Request $request){
 
-        return view('home');
-    
-    
-   
+        if (!$request->session()->exists('userid')) {
+            // user value cannot be found in session
+            return redirect('/');
+        } else {
+            return view('home');
+        }
+
+
+
+
 }
 }
