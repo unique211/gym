@@ -16,7 +16,6 @@ class Usermanagecontroller extends Controller
         } else {
             return view('usermanagement');
         }
-
     }
 
     public function login_request(Request $request)
@@ -74,7 +73,6 @@ class Usermanagecontroller extends Controller
                                 'link_id' => $val2->linkrelid,
                                 'member_id' => $val2->member_id,
                             );
-
                         }
 
                         return response()->json(['data' => $result, 'status' => 1]);
@@ -142,15 +140,62 @@ class Usermanagecontroller extends Controller
 
             return response()->json(['data' => $result, 'status' => 0]);
         }
+    }
+
+    public function update_member_api(Request $request)
+    {
+
+        $userid = $request->mobile_no;
 
 
+        $where = array('link_relation_ship.userid' => $userid);
+        $data = DB::table('link_relation_ship')
+            ->select('link_relation_ship.*', 'member_master.*', 'package_master.package_name')
+            ->join('member_master', 'member_master.member_id', '=', 'link_relation_ship.member_id')
+            ->join('package_master', 'package_master.packege_id', '=', 'member_master.currentpackage')
+            ->where($where)
+            ->get();
+
+        $cnt = count($data);
+        if ($cnt > 0) {
+            foreach ($data as $val) {
+               $member_id=$val->member_id;
+
+                $data = array(
+                    'membername' => $request->name,
+                    'balancepoint' => $request->balance_point,
+                    'address' => $request->address,
+                    'email' => $request->email_id,
+                    'dob' => $request->dob,
+                    'image_url' =>  $request->image_url,
+                );
+
+                DB::table('member_master')
+                ->where('member_id', $member_id)
+                ->update($data);
+
+            }
+
+            return response()->json(['status' => 1]);
+        } else {
+            return response()->json(['status' => 0]);
+        }
+    }
+
+    public function member_image_upload(Request $request)
+    {
 
 
-        //dd($endtime);
+        $extension = $request->file('file')->getClientOriginalExtension();
+
+        $dir = 'gallaryimg/member/';
+        $filename = uniqid() . '_' . time() . '.' . $extension;
+
+        // echo  dd($filename);
+        $request->file('file')->move($dir, $filename);
 
 
-
-
+        return $filename;
     }
 
     public function user_settings(Request $request)

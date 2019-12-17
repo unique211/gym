@@ -20,7 +20,6 @@ class GalleryController extends Controller
         } else {
             return view('gallery');
         }
-
     }
 
     public function galleryuploadimg(Request $request)
@@ -313,6 +312,7 @@ class GalleryController extends Controller
             }
             $result[] = array(
                 'user_name' => "",
+                'post_id' => $val->gallary_id,
                 'description' => $desc,
                 'image_video_url' => $val->uploadimg,
                 'is_video' => $video,
@@ -325,5 +325,28 @@ class GalleryController extends Controller
 
 
         return response()->json($result);
+    }
+
+    public function gallery_post_addlike(Request $request)
+    {
+
+        $post_id = $request->post_id;
+        $data = DB::table('gallary_master')
+            ->select('gallary_master.*')
+            ->where('gallary_id', $post_id)
+            ->first();
+        $total_likes = $data->nooflike;
+
+        $plus = intval($total_likes) + 1;
+
+        $set = array('nooflike' => $plus);
+
+        DB::table('gallary_master')
+            ->where('gallary_id', $post_id)
+            ->update($set);
+
+
+
+        return response()->json(['status' => 1]);
     }
 }

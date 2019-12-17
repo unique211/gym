@@ -89,6 +89,14 @@ Route::post('member_profile', 'Usermanagecontroller@member_profile');
 
 //my_bookings
 Route::post('my_bookings_api', 'ClassScheduleController@my_bookings_api');
+Route::post('my_bookings_details_api', 'ClassScheduleController@my_bookings_details_api');
+
+//update_member
+Route::post('update_member_api', 'Usermanagecontroller@update_member_api');
+Route::post('member_image_upload', 'Usermanagecontroller@member_image_upload');
+
+//add_like in gallary
+Route::post('gallery_post_addlike', 'GalleryController@gallery_post_addlike');
 
 });
 

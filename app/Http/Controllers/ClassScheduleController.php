@@ -20,10 +20,7 @@ class ClassScheduleController extends Controller
             return redirect('/');
         } else {
             return view('class_schedule');
-
         }
-
-
     }
     //getall class
     public function getdropallclass()
@@ -621,12 +618,83 @@ class ClassScheduleController extends Controller
                     'available' => $available,
                     'expire' => $expire,
                 );
-
             }
-            $result[] = array('date' => $class_schedule_date,'data'=>$result2);
-
-
+            $result[] = array('date' => $class_schedule_date, 'data' => $result2);
         }
+
+
+
+
+
+
+        return response()->json($result);
+    }
+
+    public function my_bookings_details_api(Request $request)
+    {
+        $link_id = $request->link_id;
+        $class_schedule_id = $request->classsechedule_id;
+        $result = array();
+     //   $result = "";
+
+
+
+
+
+
+
+            $data2 = DB::table('class_sechedule_master')
+                ->select('class_sechedule_master.*', 'class_master.class_description', 'class_master.class_name as classname', 'instuctor_master.instructor_name')
+                ->join('class_master', 'class_master.class_id', '=', 'class_sechedule_master.classsechedule_name')
+                ->join('booking_table', 'booking_table.class_schedule_id', '=', 'class_sechedule_master.classsechedule_id')
+                ->join('instuctor_master', 'instuctor_master.instructorid', '=', 'class_sechedule_master.instructor')
+              //  ->whereDate('class_sechedule_master.class_schedule', $class_schedule_date)
+                ->where('class_sechedule_master.status', 1)
+                ->where('booking_table.link_id', $link_id)
+                ->where('class_sechedule_master.classsechedule_id', $class_schedule_id)
+                ->where('booking_table.is_cancelled', 1)
+                ->where('booking_table.rating_points', -1)
+                ->get();
+
+
+            foreach ($data2 as $val2) {
+                $schedule_id = $val2->classsechedule_id;
+
+                $data2 = DB::table('booking_table')
+                    ->select('booking_table.*')
+                    ->where('booking_table.is_cancelled', 1)
+                    ->where('booking_table.class_schedule_id', $schedule_id)
+                    ->get()->count();
+
+                $available = intval($val2->max_vacancy) - intval($data2);
+
+                $expire = "";
+                date_default_timezone_set('Asia/Kolkata');
+                $date = date("Y-m-d H:i:s");
+                $schedule = $val2->class_schedule;
+                if ($schedule > $date) {
+                    $expire = "False";
+                } else {
+                    $expire = "True";
+                }
+
+                $result = array(
+                    'id' => $val2->classsechedule_id,
+                    'class_schedule' => $val2->class_schedule,
+                    'class_name' => $val2->classname,
+                    'instructor_name' => $val2->instructor_name,
+                    'duration' => $val2->class_duration,
+                    'vacancy' => $val2->max_vacancy,
+                    'class_description' => $val2->class_description,
+                    'min_cancelation' => $val2->min_cancelation,
+                    'min_booking' => $val2->min_booking,
+                    'status' => $val2->status,
+                    'available' => $available,
+                    'expire' => $expire,
+                );
+            }
+            $result = array('data' => $result);
+
 
 
 
