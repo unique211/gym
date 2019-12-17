@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/Profile Manager</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Profile_Manager')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default formhideshow">
                             <div class="panel-heading">
-                                <h4><b>Profile Manager</b></h4>
+                                <h4><b>@lang('site_lables.Profile_Manager')</b></h4>
 
                                 <button type="button"
                                     class="btn btn-primary btn-xs  pull-right closehideshow">@lang('site_lables.View_Profile')
@@ -36,7 +36,7 @@
                                         <div class="row">
                                             <div class="col-sm-2">
                                                 <div class="form-group">
-                                                    <label>Profile Type*</label>
+                                                    <label>@lang('site_lables.Profile_Type')*</label>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
@@ -48,7 +48,7 @@
                                                         <option value="Staff">Staff</option>
 
                                                     </select> --}}
-                                                    <input type="text" class="form-control" name="profiletype" id="profiletype" placeholder="Profile Type" required>
+                                                    <input type="text" class="form-control" name="profiletype" id="profiletype" placeholder="@lang('site_lables.Profile_Type')" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -183,7 +183,7 @@
 
                         <div class="panel panel-default tablehideshow">
                             <div class="panel-heading">
-                                <h4><b>Profile List</b></h4>
+                                <h4><b>@lang('site_lables.Profile_List')</b></h4>
 
                                 <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                         class="fa fa-plus"></i> @lang('site_lables.Add_Profile')</button>
@@ -194,7 +194,7 @@
                                     <table class="table-striped" id="data_table" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Profile Type</th>
+                                                <th>@lang('site_lables.Profile_Type')</th>
 
                                                 <th>Action</th>
 

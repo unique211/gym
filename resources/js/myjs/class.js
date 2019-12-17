@@ -153,7 +153,7 @@ $(document).ready(function() {
 
         } else {
             $('#status').bootstrapToggle('off');
-            // $('#status').bootstrapToggle('off');				
+            // $('#status').bootstrapToggle('off');
         }
         $('#class_name').val(classname);
         $('#class_category').val(classcategoryid).trigger('change');

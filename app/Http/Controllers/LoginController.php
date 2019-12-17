@@ -48,6 +48,7 @@ class LoginController extends Controller
             $get_user_id = "";
             $get_role = "";
             $get_id = "";
+            $ref_id = "";
 
 
             foreach ($user as $user1) {
@@ -55,6 +56,7 @@ class LoginController extends Controller
                 $get_user_id =  $user1->user_id;
                 $get_role =  $user1->role;
                 $get_id =  $user1->login_id;
+                $ref_id =  $user1->ref_id;
             }
 
 
@@ -67,10 +69,26 @@ class LoginController extends Controller
                     ->first();
 
                 $role = $role_id->profile_type;
+                $user_name="";
+
+                if($role=="Instructor"){
+                    $user_nm=DB::table('instuctor_master')
+                    ->select('instuctor_master.*')
+                    ->where('instructorid', $ref_id)
+                    ->first();
+                    $user_name=$user_nm->instructor_name;
+                }else{
+                    $user_nm=DB::table('useraccess_master')
+                    ->select('useraccess_master.*')
+                    ->where('useraccess_id', $ref_id)
+                    ->first();
+                    $user_name=$user_nm->user_name;
+                }
 
                 $request->session()->put('userid',  $user_id);
                 $request->session()->put('role',  $role);
                 $request->session()->put('id',  $get_id);
+                $request->session()->put('user_name',  $user_name);
             }
         }
 

@@ -45,29 +45,26 @@
 
         <li class="profile dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <strong><?php echo Session::get('userid');?></strong>
+                <strong><?php echo Session::get('user_name');?></strong>
                 <span><i class="fa fa-chevron-down"></i></span>
             </a>
             <ul class="dropdown-menu">
                 <li>
                     <a class="clearfix" href="#">
-                        <img src="<?php echo url('/'); ?>/resources/sass/img/user.jpg" alt="User Avatar">
-                        <div class="detail">
+
+
                             {{--  <strong>John Doe</strong>
                             <p class="grey">John_Doe@email.com</p>  --}}
-                            <strong><?php echo Session::get('userid');?></strong>
+                            <h4 class="text-center"><?php echo Session::get('user_name');?></h4>
+                            <hr>
                             <p class="grey">User Id : <?php echo Session::get('userid');?></p>
                             <p class="grey">Role : <?php echo Session::get('role');?></p>
-                        </div>
+                            <hr>
                     </a>
                 </li>
-                {{--  <li><a tabindex="-1" href="profile.html" class="main-link"><i class="fa fa-edit fa-lg"></i> Edit
-                        profile</a></li>
-                <li><a tabindex="-1" href="gallery.html" class="main-link"><i class="fa fa-picture-o fa-lg"></i> Photo
-                        Gallery</a></li>
-                <li><a tabindex="-1" href="#" class="theme-setting"><i class="fa fa-cog fa-lg"></i> Setting</a></li>
-                <li class="divider"></li>  --}}
-                <li><a tabindex="-1" class="main-link logoutConfirm_open" href="#logoutConfirm"><i
+
+                <li>
+                    <a tabindex="-1" class="main-link logoutConfirm_open text-center" href="#logoutConfirm"><i
                             class="fa fa-lock fa-lg"></i> Log out</a></li>
             </ul>
         </li>
