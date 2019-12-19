@@ -430,7 +430,7 @@ class ClassScheduleController extends Controller
 
         // $where=array('class_sechedule_master.class_schedule'=>$date);
         $data = DB::table('class_sechedule_master')
-            ->select('class_sechedule_master.*', 'class_master.class_description', 'class_master.class_name as classname', 'instuctor_master.instructor_name')
+            ->select('class_sechedule_master.*', 'class_master.class_description', 'class_master.class_name as classname', 'instuctor_master.instructor_name', 'instuctor_master.instructor_img')
             ->join('class_master', 'class_master.class_id', '=', 'class_sechedule_master.classsechedule_name')
             ->join('instuctor_master', 'instuctor_master.instructorid', '=', 'class_sechedule_master.instructor')
             ->whereDate('class_sechedule_master.class_schedule', $date)
@@ -465,6 +465,7 @@ class ClassScheduleController extends Controller
                     'class_schedule' => $val->class_schedule,
                     'class_name' => $val->classname,
                     'instructor_name' => $val->instructor_name,
+                    'instructor_image' => $val->instructor_img,
                     'duration' => $val->class_duration,
                     'vacancy' => $val->max_vacancy,
                     'class_description' => $val->class_description,
@@ -502,6 +503,19 @@ class ClassScheduleController extends Controller
         $result =  DB::table('booking_table')
             ->Insert($data);
 
+        $where = array('link_relation_ship.linkrelid' => $link_id);
+        $data = DB::table('link_relation_ship')
+            ->select('link_relation_ship.*', 'member_master.balancepoint')
+            ->join('member_master', 'member_master.member_id', '=', 'link_relation_ship.member_id')
+            ->where($where)
+            ->first();
+        $available = $data->balancepoint;
+        $member_id = $data->member_id;
+        $total = intval($available) - intval($points);
+
+       $result= DB::table('member_master')
+        ->where('member_id', $member_id)
+        ->update(['balancepoint' => $total]);
 
 
 
@@ -520,6 +534,30 @@ class ClassScheduleController extends Controller
         $result =  DB::table('booking_table')
             ->where('booking_id', $booking_id)
             ->update(['is_cancelled' => 0]);
+
+
+            $where1 = array('booking_table.booking_id' => $booking_id);
+            $data1 = DB::table('booking_table')
+            ->select('booking_table.*')
+            ->where($where1)
+            ->first();
+            $link_id=$data1->link_id;
+            $points=$data1->points;
+
+
+            $where = array('link_relation_ship.linkrelid' => $link_id);
+            $data = DB::table('link_relation_ship')
+                ->select('link_relation_ship.*', 'member_master.balancepoint')
+                ->join('member_master', 'member_master.member_id', '=', 'link_relation_ship.member_id')
+                ->where($where)
+                ->first();
+            $available = $data->balancepoint;
+            $member_id = $data->member_id;
+            $total = intval($available) + intval($points);
+
+            $result = DB::table('member_master')
+            ->where('member_id', $member_id)
+            ->update(['balancepoint' => $total]);
 
 
 
@@ -571,7 +609,7 @@ class ClassScheduleController extends Controller
             $result2 = array();
 
             $data2 = DB::table('class_sechedule_master')
-                ->select('class_sechedule_master.*', 'class_master.class_description', 'class_master.class_name as classname', 'instuctor_master.instructor_name')
+                ->select('class_sechedule_master.*', 'class_master.class_description', 'class_master.class_name as classname', 'instuctor_master.instructor_name', 'instuctor_master.instructor_img')
                 ->join('class_master', 'class_master.class_id', '=', 'class_sechedule_master.classsechedule_name')
                 ->join('booking_table', 'booking_table.class_schedule_id', '=', 'class_sechedule_master.classsechedule_id')
                 ->join('instuctor_master', 'instuctor_master.instructorid', '=', 'class_sechedule_master.instructor')
@@ -609,6 +647,7 @@ class ClassScheduleController extends Controller
                     'class_schedule' => $val2->class_schedule,
                     'class_name' => $val2->classname,
                     'instructor_name' => $val2->instructor_name,
+                    'instructor_image' => $val2->instructor_img,
                     'duration' => $val2->class_duration,
                     'vacancy' => $val2->max_vacancy,
                     'class_description' => $val2->class_description,
@@ -635,7 +674,7 @@ class ClassScheduleController extends Controller
         $link_id = $request->link_id;
         $class_schedule_id = $request->classsechedule_id;
         $result = array();
-     //   $result = "";
+        //   $result = "";
 
 
 
@@ -643,57 +682,65 @@ class ClassScheduleController extends Controller
 
 
 
-            $data2 = DB::table('class_sechedule_master')
-                ->select('class_sechedule_master.*', 'class_master.class_description', 'class_master.class_name as classname', 'instuctor_master.instructor_name')
-                ->join('class_master', 'class_master.class_id', '=', 'class_sechedule_master.classsechedule_name')
-                ->join('booking_table', 'booking_table.class_schedule_id', '=', 'class_sechedule_master.classsechedule_id')
-                ->join('instuctor_master', 'instuctor_master.instructorid', '=', 'class_sechedule_master.instructor')
-              //  ->whereDate('class_sechedule_master.class_schedule', $class_schedule_date)
-                ->where('class_sechedule_master.status', 1)
-                ->where('booking_table.link_id', $link_id)
-                ->where('class_sechedule_master.classsechedule_id', $class_schedule_id)
+        $data2 = DB::table('class_sechedule_master')
+            ->select('class_sechedule_master.*', 'class_master.class_description', 'class_master.class_name as classname', 'instuctor_master.instructor_name', 'instuctor_master.instructor_img')
+            ->join('class_master', 'class_master.class_id', '=', 'class_sechedule_master.classsechedule_name')
+            ->join('booking_table', 'booking_table.class_schedule_id', '=', 'class_sechedule_master.classsechedule_id')
+            ->join('instuctor_master', 'instuctor_master.instructorid', '=', 'class_sechedule_master.instructor')
+            //  ->whereDate('class_sechedule_master.class_schedule', $class_schedule_date)
+            ->where('class_sechedule_master.status', 1)
+            ->where('booking_table.link_id', $link_id)
+            ->where('class_sechedule_master.classsechedule_id', $class_schedule_id)
+            ->where('booking_table.is_cancelled', 1)
+            ->where('booking_table.rating_points', -1)
+            ->get();
+
+
+        foreach ($data2 as $val2) {
+            $schedule_id = $val2->classsechedule_id;
+
+            $data2 = DB::table('booking_table')
+                ->select('booking_table.*')
                 ->where('booking_table.is_cancelled', 1)
-                ->where('booking_table.rating_points', -1)
-                ->get();
+                ->where('booking_table.class_schedule_id', $schedule_id)
+                ->get()->count();
 
+            $available = intval($val2->max_vacancy) - intval($data2);
 
-            foreach ($data2 as $val2) {
-                $schedule_id = $val2->classsechedule_id;
-
-                $data2 = DB::table('booking_table')
-                    ->select('booking_table.*')
-                    ->where('booking_table.is_cancelled', 1)
-                    ->where('booking_table.class_schedule_id', $schedule_id)
-                    ->get()->count();
-
-                $available = intval($val2->max_vacancy) - intval($data2);
-
-                $expire = "";
-                date_default_timezone_set('Asia/Kolkata');
-                $date = date("Y-m-d H:i:s");
-                $schedule = $val2->class_schedule;
-                if ($schedule > $date) {
-                    $expire = "False";
-                } else {
-                    $expire = "True";
-                }
-
-                $result = array(
-                    'id' => $val2->classsechedule_id,
-                    'class_schedule' => $val2->class_schedule,
-                    'class_name' => $val2->classname,
-                    'instructor_name' => $val2->instructor_name,
-                    'duration' => $val2->class_duration,
-                    'vacancy' => $val2->max_vacancy,
-                    'class_description' => $val2->class_description,
-                    'min_cancelation' => $val2->min_cancelation,
-                    'min_booking' => $val2->min_booking,
-                    'status' => $val2->status,
-                    'available' => $available,
-                    'expire' => $expire,
-                );
+            $expire = "";
+            date_default_timezone_set('Asia/Kolkata');
+            $date = date("Y-m-d H:i:s");
+            $schedule = $val2->class_schedule;
+            if ($schedule > $date) {
+                $expire = "False";
+            } else {
+                $expire = "True";
             }
-            $result = array('data' => $result);
+            $is_booked = "";
+            if ($data2 > 0) {
+                $is_booked = "True";
+            } else {
+                $is_booked = "False";
+            }
+
+            $result = array(
+                'id' => $val2->classsechedule_id,
+                'class_schedule' => $val2->class_schedule,
+                'class_name' => $val2->classname,
+                'instructor_name' => $val2->instructor_name,
+                'instructor_image' => $val2->instructor_img,
+                'duration' => $val2->class_duration,
+                'vacancy' => $val2->max_vacancy,
+                'class_description' => $val2->class_description,
+                'min_cancelation' => $val2->min_cancelation,
+                'min_booking' => $val2->min_booking,
+                'status' => $val2->status,
+                'available' => $available,
+                'is_booked' => $is_booked,
+                'expire' => $expire,
+            );
+        }
+        $result = array('data' => $result);
 
 
 

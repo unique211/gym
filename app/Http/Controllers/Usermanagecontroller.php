@@ -46,7 +46,7 @@ class Usermanagecontroller extends Controller
                     DB::table('link_relation_ship')
                         ->where('userid', $userid)
                         ->update(['password' => $password]);
-                    $result = array(
+                    $result[] = array(
                         'username' => $userid,
                         'name' => $val->name,
                         'blance' => $val->balancepoint,
@@ -145,6 +145,14 @@ class Usermanagecontroller extends Controller
     public function update_member_api(Request $request)
     {
 
+        $extension = $request->file('file')->getClientOriginalExtension();
+        $dir = 'gallaryimg/member/';
+        $filename = uniqid() . '_' . time() . '.' . $extension;
+
+        // echo  dd($filename);
+        $request->file('file')->move($dir, $filename);
+        $image_name = $filename;
+
         $userid = $request->mobile_no;
 
 
@@ -159,7 +167,7 @@ class Usermanagecontroller extends Controller
         $cnt = count($data);
         if ($cnt > 0) {
             foreach ($data as $val) {
-               $member_id=$val->member_id;
+                $member_id = $val->member_id;
 
                 $data = array(
                     'membername' => $request->name,
@@ -167,13 +175,12 @@ class Usermanagecontroller extends Controller
                     'address' => $request->address,
                     'email' => $request->email_id,
                     'dob' => $request->dob,
-                    'image_url' =>  $request->image_url,
+                    'image_url' =>  $image_name,
                 );
 
                 DB::table('member_master')
-                ->where('member_id', $member_id)
-                ->update($data);
-
+                    ->where('member_id', $member_id)
+                    ->update($data);
             }
 
             return response()->json(['status' => 1]);
@@ -182,21 +189,7 @@ class Usermanagecontroller extends Controller
         }
     }
 
-    public function member_image_upload(Request $request)
-    {
 
-
-        $extension = $request->file('file')->getClientOriginalExtension();
-
-        $dir = 'gallaryimg/member/';
-        $filename = uniqid() . '_' . time() . '.' . $extension;
-
-        // echo  dd($filename);
-        $request->file('file')->move($dir, $filename);
-
-
-        return $filename;
-    }
 
     public function user_settings(Request $request)
     {
