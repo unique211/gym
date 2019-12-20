@@ -23,24 +23,24 @@ return [
 
     // Menu  User Access
     'User_Access' => 'User Access',
-   
-    'User_Name' => 'User_Name',
+
+    'User_Name' => 'User Name',
     'Email_ID' => 'Email ID',
     'Mobile_Number' => 'Mobile Number',
     'User_Type' => 'User Type',
-    'User_Id' => 'User_Id',
+    'User_Id' => 'User Id',
 
-    
+
     'Name' => 'Name',
     'Select_User_Type' => 'Select User Type',
     'Staff' => 'Staff',
     'Admin' => 'Admin',
     'Manager' => 'Manager',
     'Login_Details' => 'Login Details',
- 
+
     'Password' => 'Password',
     'Confirm_Password' => 'Confirm Password',
-    
+
     'Cancel' => 'Cancel',
     'Close' => 'Close',
     'User_Access_List' => 'User Access List',
@@ -69,16 +69,20 @@ return [
     'Class_Category'=>'Class Category',
     'Class' => 'Class',
     'Class_Schedule'=>'Class Schedule',
+    'Schedule'=>'Schedule',
     'Deals'=>'Deals',
-    'Gallary'=>'Gallary',
+    'Gallery'=>'Gallery',
     'Member_Attendence'=>'Member Attendence',
+    'Tacking'=>'Tacking',
+    'Member_Attendence_Tacking'=>'Member Attendence Tacking',
     'Settings'=>'Settings',
+    'Attendence'=>'Attendence',
     'Profile_Manager'=>'Profile Manager',
     'Attendence_&_Rating'=>'Attendence & Rating',
     'Class_Booking'=>'Class Booking',
-   
 
-    
+
+
 
 
 
@@ -112,7 +116,7 @@ return [
     'Usage' => 'Usage',
     'History' => 'History',
     'Date_and_Time' => 'Date & Time',
- 
+
     'Use' => 'Use',
     'Group' => 'Group',
     'Delete' => 'Delete',
@@ -125,7 +129,7 @@ return [
     'Adduseraccessinfo'=>'Add Users',
     'viewuseraccessinfo'=>'View Users',
 
-  				
+
     // Menu  member
 
 
@@ -133,7 +137,7 @@ return [
     'Current_Package'=>'Current Package',
     'Date_of_Expiry'=>'Date of Expiry',
     'Member_Count'=>'Member Count',
-
+    'Image'=>'Image',
 
 
     // Menu  Package
@@ -142,16 +146,16 @@ return [
     'Package_Name'=>'Package Name',
     'Package_Point'=>'Package Point',
     'Package_Price'=>'Package Price',
-   
+
     'Package_List'=>'Package List',
-    
+
 
     // Menu Class Category
 
     'Class_Category'=>'Class Category',
     'Class_Description'=>'Class Description',
     'Class_Category_List'=>'Class Category List',
-  
+
 
 
     // Menu Room
@@ -185,10 +189,12 @@ return [
     'Allow_share_of_post'=>'Allow share of post',
     'Yes'=>'Yes',
     'No'=>'No',
+
     'Allow_Share_Post'=>'Allow Share Post',
 
-    // Menu  Member Type 
+    // Menu  Member Type
     'Member_Type_List'=>'Member Type List',
+    'Students_List'=>'Students List',
 
     // Setting
 
@@ -219,10 +225,11 @@ return [
     'Number_of_members_booked'=>'Number of members booked',
 
 
-    
+
     'Max_vacancy'=>'Max vacancy',
 
     // Menu Attendence & Rating
+    'Attendence'=>'Attendence',
     'Attendence_&_Rating'=>'Attendence & Rating',
     'Attendence_&_Rating_Report'=>'Attendence & Rating Report',
 
@@ -230,15 +237,16 @@ return [
     'To'=>'To',
     'Search'=>'Search',
     'Date_&_Time'=>'Date & Time',
-  
+
     'Member_id'=>'Member id',
     'Member_Id'=>'Member Id',
     'Member_Name'=>'Member Name',
     'Instructor_Rating'=>'Instructor Rating',
-   
 
-    
-    
-    
+
+    'Send_Notification'=>'Send Notification',
+    'ON'=>'On',
+    'OFF'=>'Off',
+
 
 ];

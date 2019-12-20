@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/Attendence & Rating</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/ @lang('site_lables.Attendence_&_Rating')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -26,7 +26,7 @@
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Attendence & Rating Report</b></h4>
+                                <h4><b>@lang('site_lables.Attendence_&_Rating_Report')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                                                 class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -36,7 +36,7 @@
 
                                     <div class="col-sm-2">
                                         <div class="form-group">
-                                            <label>From*</label>
+                                            <label>@lang('site_lables.From')*</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group">
-                                            <label>To*</label>
+                                            <label>@lang('site_lables.To')*</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group">
-                                            <label>Class*</label>
+                                            <label>@lang('site_lables.Class')*</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -84,7 +84,7 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group">
-                                            <label>Instructor*</label>
+                                            <label>@lang('site_lables.Instructor')*</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -98,7 +98,7 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group">
-                                            <button type="button" class="btn btn-success">Search</button>
+                                            <button type="button" class="btn btn-success">@lang('site_lables.Search')</button>
                                         </div>
                                     </div>
                                 </div>
@@ -107,14 +107,14 @@
                                     <table class="table-striped" id="data_table" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Date & Time</th>
-                                                <th>Class Name</th>
-                                                <th>Member Id</th>
-                                                <th>Member Name</th>
-                                                <th>Instructor Rating</th>
+                                                <th>@lang('site_lables.Date_&_Time')</th>
+                                                <th>@lang('site_lables.Class_Name')</th>
+                                                <th>@lang('site_lables.Member_Id')</th>
+                                                <th>@lang('site_lables.Member_Name')</th>
+                                                <th>@lang('site_lables.Instructor_Rating')</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="table_tbody">
                                             <tr>
                                                 <td>01/01/2020 05:05:10</td>
                                                 <td><a href="#">Abc</a></td>

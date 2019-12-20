@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Gallary')</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Gallery')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>@lang('site_lables.Gallary')</b></h4>
+                                <h4><b>@lang('site_lables.Gallery')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                         class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -113,7 +113,7 @@
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>@lang('site_lables.Gallary_List')</b></h4>
+                                <h4><b>@lang('site_lables.Gallery') @lang('site_lables.List')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                                                 class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -121,43 +121,18 @@
                             <div class="panel-body ">
 
                                 <div class="table-responsive" id="show_master">
-                                    <table class="table-striped" id="data_table" style="width:100%">
+                                    <table class="table-striped" id="laravel_crud" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>no of Likes</th>
-                                                <th>Allow share of post</th>
-
-
-                                                <th>Action</th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Description')</font></th>
+                                                <th><font style="font-weight:bold"></font>@lang('site_lables.Allow_Share_Post')</th>
+                                                <th style="display:none;"><font style="font-weight:bold">@lang('site_lables.Upload_Img')</font></th>
+                                                <th class="not-export-column"><font style="font-weight:bold">@lang('site_lables.Action')</font>   </th>
 
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>05</td>
-                                                <td>Yes</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
+                                        <tbody id="table_tbody">
 
-                                            <tr>
-                                                <td>15</td>
-                                                <td>No</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>45</td>
-                                                <td>Yes</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

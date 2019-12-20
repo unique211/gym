@@ -239,7 +239,8 @@ class ClassScheduleController extends Controller
 
             ->join('class_master', 'class_master.class_id', '=', 'class_sechedule_master.classsechedule_name')
             ->join('room_master', 'room_master.rooom_id', '=', 'class_sechedule_master.room_id')
-            ->select('class_sechedule_master.*', 'class_master.class_name as classname', 'room_master.room as room')
+            ->join('instuctor_master', 'instuctor_master.instructorid', '=', 'class_sechedule_master.instructor')
+            ->select('class_sechedule_master.*', 'class_master.class_name as classname', 'room_master.room as room', 'instuctor_master.instructor_name')
             ->where('class_schedule', '>', date('Y-m-d H:i:s'))
             ->orderBy('class_schedule', 'DESC')
             ->get();
@@ -513,9 +514,9 @@ class ClassScheduleController extends Controller
         $member_id = $data->member_id;
         $total = intval($available) - intval($points);
 
-       $result= DB::table('member_master')
-        ->where('member_id', $member_id)
-        ->update(['balancepoint' => $total]);
+        $result = DB::table('member_master')
+            ->where('member_id', $member_id)
+            ->update(['balancepoint' => $total]);
 
 
 
@@ -536,26 +537,26 @@ class ClassScheduleController extends Controller
             ->update(['is_cancelled' => 0]);
 
 
-            $where1 = array('booking_table.booking_id' => $booking_id);
-            $data1 = DB::table('booking_table')
+        $where1 = array('booking_table.booking_id' => $booking_id);
+        $data1 = DB::table('booking_table')
             ->select('booking_table.*')
             ->where($where1)
             ->first();
-            $link_id=$data1->link_id;
-            $points=$data1->points;
+        $link_id = $data1->link_id;
+        $points = $data1->points;
 
 
-            $where = array('link_relation_ship.linkrelid' => $link_id);
-            $data = DB::table('link_relation_ship')
-                ->select('link_relation_ship.*', 'member_master.balancepoint')
-                ->join('member_master', 'member_master.member_id', '=', 'link_relation_ship.member_id')
-                ->where($where)
-                ->first();
-            $available = $data->balancepoint;
-            $member_id = $data->member_id;
-            $total = intval($available) + intval($points);
+        $where = array('link_relation_ship.linkrelid' => $link_id);
+        $data = DB::table('link_relation_ship')
+            ->select('link_relation_ship.*', 'member_master.balancepoint')
+            ->join('member_master', 'member_master.member_id', '=', 'link_relation_ship.member_id')
+            ->where($where)
+            ->first();
+        $available = $data->balancepoint;
+        $member_id = $data->member_id;
+        $total = intval($available) + intval($points);
 
-            $result = DB::table('member_master')
+        $result = DB::table('member_master')
             ->where('member_id', $member_id)
             ->update(['balancepoint' => $total]);
 
@@ -658,7 +659,7 @@ class ClassScheduleController extends Controller
                     'expire' => $expire,
                 );
             }
-            $result[] = array('date' => $class_schedule_date, 'data' => $result2);
+            $result[] = array('date' => $class_schedule_date, 'booking' => $result2);
         }
 
 
@@ -676,33 +677,32 @@ class ClassScheduleController extends Controller
         $result = array();
         //   $result = "";
 
-
-
-
-
-
-
-        $data2 = DB::table('class_sechedule_master')
+        $data1 = DB::table('class_sechedule_master')
             ->select('class_sechedule_master.*', 'class_master.class_description', 'class_master.class_name as classname', 'instuctor_master.instructor_name', 'instuctor_master.instructor_img')
             ->join('class_master', 'class_master.class_id', '=', 'class_sechedule_master.classsechedule_name')
-            ->join('booking_table', 'booking_table.class_schedule_id', '=', 'class_sechedule_master.classsechedule_id')
-            ->join('instuctor_master', 'instuctor_master.instructorid', '=', 'class_sechedule_master.instructor')
-            //  ->whereDate('class_sechedule_master.class_schedule', $class_schedule_date)
+            ->join('instuctor_master', 'class_sechedule_master.instructor', '=', 'instuctor_master.instructorid')
             ->where('class_sechedule_master.status', 1)
-            ->where('booking_table.link_id', $link_id)
             ->where('class_sechedule_master.classsechedule_id', $class_schedule_id)
-            ->where('booking_table.is_cancelled', 1)
-            ->where('booking_table.rating_points', -1)
             ->get();
+        //   select * from class_sechedule_master csm left join booking_table bt on bt.class_schedule_id = csm.classsechedule_id where csm.classsechedule_id = 16
+
+        foreach ($data1 as $val2) {
 
 
-        foreach ($data2 as $val2) {
+
             $schedule_id = $val2->classsechedule_id;
 
             $data2 = DB::table('booking_table')
                 ->select('booking_table.*')
                 ->where('booking_table.is_cancelled', 1)
                 ->where('booking_table.class_schedule_id', $schedule_id)
+                ->get()->count();
+
+            $data3 = DB::table('booking_table')
+                ->select('booking_table.*')
+                ->where('booking_table.is_cancelled', 1)
+                ->where('booking_table.class_schedule_id', $schedule_id)
+                ->where('booking_table.link_id', $link_id)
                 ->get()->count();
 
             $available = intval($val2->max_vacancy) - intval($data2);
@@ -717,13 +717,13 @@ class ClassScheduleController extends Controller
                 $expire = "True";
             }
             $is_booked = "";
-            if ($data2 > 0) {
+            if ($data3 > 0) {
                 $is_booked = "True";
             } else {
                 $is_booked = "False";
             }
 
-            $result = array(
+            $result= array(
                 'id' => $val2->classsechedule_id,
                 'class_schedule' => $val2->class_schedule,
                 'class_name' => $val2->classname,
@@ -741,12 +741,6 @@ class ClassScheduleController extends Controller
             );
         }
         $result = array('data' => $result);
-
-
-
-
-
-
 
         return response()->json($result);
     }

@@ -48,7 +48,7 @@
                 <li>
                     <a href="{{ url('user_access') }}">
                         <span class="menu-icon">
-                            <i class="fa fa-clock-o fa-lg"></i>
+                            <i class="fa fa-plus fa-lg"></i>
                         </span>
                         <span class="text">
                               @lang('site_lables.User_Access')
@@ -60,7 +60,7 @@
                 <li>
                     <a href="{{ url('instructor') }}">
                         <span class="menu-icon">
-                            <i class="fa fa-clock-o fa-lg"></i>
+                            <i class="fa fa-plus fa-lg"></i>
                         </span>
                         <span class="text">
                              @lang('site_lables.Instructor')
@@ -72,7 +72,7 @@
                 <li>
                     <a href="{{ url('member') }}">
                         <span class="menu-icon">
-                            <i class="fa fa-clock-o fa-lg"></i>
+                            <i class="fa fa-plus fa-lg"></i>
                         </span>
                         <span class="text">
                             @lang('site_lables.Member')
@@ -84,7 +84,7 @@
                 <li>
                     <a href="{{ url('package') }}">
                         <span class="menu-icon">
-                            <i class="fa fa-clock-o fa-lg"></i>
+                            <i class="fa fa-plus fa-lg"></i>
                         </span>
                         <span class="text">
                              @lang('site_lables.Package')
@@ -96,7 +96,7 @@
                 <li>
                     <a href="{{ url('class_category') }}">
                         <span class="menu-icon">
-                            <i class="fa fa-clock-o fa-lg"></i>
+                            <i class="fa fa-plus fa-lg"></i>
                         </span>
                         <span class="text">
                              @lang('site_lables.Class_Category')
@@ -108,7 +108,7 @@
                 <li>
                     <a href="{{ url('room') }}">
                         <span class="menu-icon">
-                            <i class="fa fa-clock-o fa-lg"></i>
+                            <i class="fa fa-plus fa-lg"></i>
                         </span>
                         <span class="text">
                              @lang('site_lables.Room')
@@ -120,7 +120,7 @@
                 <li>
                     <a href="{{ url('class') }}">
                         <span class="menu-icon">
-                            <i class="fa fa-clock-o fa-lg"></i>
+                            <i class="fa fa-plus fa-lg"></i>
                         </span>
                         <span class="text">
                              @lang('site_lables.Class')
@@ -132,7 +132,7 @@
                 <li>
                     <a href="{{ url('class_schedule') }}">
                         <span class="menu-icon">
-                            <i class="fa fa-clock-o fa-lg"></i>
+                            <i class="fa fa-plus fa-lg"></i>
                         </span>
                         <span class="text">
                              @lang('site_lables.Class_Schedule')
@@ -146,7 +146,7 @@
                 <li>
                     <a href="{{ url('deals') }}">
                         <span class="menu-icon">
-                            <i class="fa fa-clock-o fa-lg"></i>
+                            <i class="fa fa-plus fa-lg"></i>
                         </span>
                         <span class="text">
                              @lang('site_lables.Deals')
@@ -160,7 +160,7 @@
                 <li>
                     <a href="{{ url('gallery') }}">
                         <span class="menu-icon">
-                            <i class="fa fa-clock-o fa-lg"></i>
+                            <i class="fa fa-plus fa-lg"></i>
                         </span>
                         <span class="text">
                             @lang('site_lables.Gallery')
@@ -172,10 +172,10 @@
                 <li>
                     <a href="{{ url('member_attendence_taking') }}">
                         <span class="menu-icon">
-                            <i class="fa fa-clock-o fa-lg"></i>
+                            <i class="fa fa-plus fa-lg"></i>
                         </span>
                         <span class="text">
-                             @lang('site_lables.Member_Attendance_Taking')
+                             @lang('site_lables.Member_Attendence_Tacking')
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -195,10 +195,10 @@
 
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ url('language') }}"><span class="submenu-label">  @lang('site_lables.Language')</span></a></li>
-                        <li><a href="{{ url('member_type') }}"><span class="submenu-label">@lang('site_lables.Member_Type')</span></a></li>
-                        <li><a href="{{ url('site_setting') }}"><span class="submenu-label">@lang('site_lables.Site_Setting')</span></a></li>
-                        <li><a href="{{ url('mobile_notification') }}"><span class="submenu-label">@lang('site_lables.Mobile_Notification')</span></a></li>
+                        <li><a href="{{ url('language') }}"><span class="submenu-label"> <i class="fa fa-plus fa-lg"></i>  @lang('site_lables.Language')</span></a></li>
+                        <li><a href="{{ url('member_type') }}"><span class="submenu-label"> <i class="fa fa-plus fa-lg"></i> @lang('site_lables.Member_Type')</span></a></li>
+                        <li><a href="{{ url('site_setting') }}"><span class="submenu-label"> <i class="fa fa-plus fa-lg"></i> @lang('site_lables.Site_Setting')</span></a></li>
+                        <li><a href="{{ url('mobile_notification') }}"><span class="submenu-label"> <i class="fa fa-plus fa-lg"></i> @lang('site_lables.Mobile_Notification')</span></a></li>
 
                         <li><a href="{{ url('profile_manager') }}"><span class="submenu-label"> @lang('site_lables.Profile_Manager')</span></a></li>
                     </ul>
@@ -208,7 +208,7 @@
                 <li class="openable">
                     <a href="#">
                         <span class="menu-icon">
-                            <i class="fa fa-clock-o fa-lg"></i>
+                            <i class="fa fa-file fa-lg"></i>
                         </span>
                         <span class="text">
                             @lang('site_lables.Reports')
@@ -217,16 +217,16 @@
 
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ url('class_booking') }}"><span class="submenu-label">@lang('site_lables.Class_Booking')</span></a>
+                        <li><a href="{{ url('class_booking') }}"><span class="submenu-label"><i class="fa fa-plus fa-lg"></i> @lang('site_lables.Class_Booking')</span></a>
                         </li>
-                        <li><a href="{{ url('attendence_rating') }}"><span class="submenu-label"> @lang('site_lables.Attendence_&_Rating')</span></a></li>
+                        <li><a href="{{ url('attendence_rating') }}"><span class="submenu-label"><i class="fa fa-plus fa-lg"></i>  @lang('site_lables.Attendence_&_Rating')</span></a></li>
 
                     </ul>
                 </li>
                 {{-- <li>
                     <a href="{{ url('usermanage') }}">
                 <span class="menu-icon">
-                    <i class="fa fa-clock-o fa-lg"></i>
+                    <i class="fa fa-plus fa-lg"></i>
                 </span>
                 <span class="text">
                     User Management

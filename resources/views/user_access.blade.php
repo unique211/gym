@@ -266,61 +266,25 @@
                             <div class="panel-body ">
 
                                 <div class="table-responsive" id="show_master">
-                                    {{-- <table class="table-striped" id="data_table" style="width:100%">
+                                    <table id="laravel_crud" style="width:100%;" class=" table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Mobile</th>
-                                                <th>User Type</th>
-                                                <th>Action</th>
 
+
+                                                <th> <font style="font-weight:bold">@lang('site_lables.User_Name')</font></th>
+                                                <th><font style="font-weight:bold"></font>@lang('site_lables.Email_ID')</th>
+                                                <th style="text-align:right;" ><font style="font-weight:bold">@lang('site_lables.Mobile_Number')</font></th>
+                                                <th style="text-align:right;display:none;"><font style="font-weight:bold">@lang('site_lables.User_Type')</font></th>
+                                                <th style="text-align:right;"><font style="font-weight:bold">@lang('site_lables.User_Type')</font></th>
+                                                <th style="text-align:right;"><font style="font-weight:bold">@lang('site_lables.User_Id')</font></th>
+                                               <th class="not-export-column"><font style="font-weight:bold">@lang('site_lables.Action')</font>   </th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Ajaz</td>
-                                                <td>ajaz@gmail.com</td>
-                                                <td>9904760745</td>
-                                                <td>Staff</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ajaz</td>
-                                                <td>ajaz@gmail.com</td>
-                                                <td>9904760745</td>
-                                                <td>Staff</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ajaz</td>
-                                                <td>ajaz@gmail.com</td>
-                                                <td>9904760755</td>
-                                                <td>Staff</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ajaz</td>
-                                                <td>ajaz@gmail.com</td>
-                                                <td>9904760745</td>
-                                                <td>Staff</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
+                                        <tbody id="table_tbody">
+
 
                                         </tbody>
-                                    </table> --}}
+                                    </table>
                                 </div>
 
 

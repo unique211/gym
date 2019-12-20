@@ -207,46 +207,26 @@
                             <div class="panel-body ">
 
                                 <div class="table-responsive" id="show_master">
-                                    <table class="table-striped" id="data_table" style="width:100%">
+                                    <table class="table-striped" id="laravel_crud" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Class Name</th>
-                                                <th>Class Schedule</th>
-                                                <th>Max Vacancy</th>
-
-                                                <th>Action</th>
-
+                                                <th><font style="font-weight:bold"></font>@lang('site_lables.Class_Name')</th>
+                                                <th style="display:none;"><font style="font-weight:bold"></font>@lang('site_lables.Class_Id')</th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Class_Schedule')</font></th>
+                                                <th style="display:none;"><font style="font-weight:bold">@lang('site_lables.Instructor')</font></th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Instructor')</font></th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Max_Vacancy')</font></th>
+                                                <th style="display:none;"><font style="font-weight:bold;">@lang('site_lables.Class_Schedule')</font></th>
+                                                <th style="display:none;"><font style="font-weight:bold;"> @lang('site_lables.Class_Duration')</font></th>
+                                                <th style="display:none;"><font style="font-weight:bold;">@lang('site_lables.Room')</font></th>
+                                                <th style="display:none;"><font style="font-weight:bold;">@lang('site_lables.Min_Cancelation')</font></th>
+                                                <th style="display:none;"><font style="font-weight:bold;">@lang('site_lables.Min_Booking')</font></th>
+                                                <th style="display:none;"><font style="font-weight:bold;">@lang('site_lables.Endtime')</font></th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Status')</font></th>
+                                                <th class="not-export-column"><font style="font-weight:bold">@lang('site_lables.Action')</font>   </th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Class 1</td>
-                                                <td>12/12/2012 05:05:05</td>
-                                                <td> 1</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>Class 1</td>
-                                                <td>12/12/2012 05:05:05</td>
-                                                <td> 1</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Class 1</td>
-                                                <td>12/12/2012 05:05:05</td>
-                                                <td> 1</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
+                                        <tbody id="table_tbody">
 
                                         </tbody>
                                     </table>

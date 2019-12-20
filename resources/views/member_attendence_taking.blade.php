@@ -13,7 +13,7 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Member_Attendence_Taking')</a></li>
+                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Member_Attendence_Tacking')</a></li>
                     <li class="active"></li>
                 </ul>
             </div><!-- /breadcrumb-->
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>@lang('site_lables.Member_Attendence_Taking')</b></h4>
+                                <h4><b>@lang('site_lables.Member_Attendence_Tacking')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                         class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -44,19 +44,19 @@
                                         </div>
 
                                         <div class="row">
-                                            <h5>Class List</h5>
+                                            <h5>@lang('site_lables.Class_List')</h5>
                                             <table class="table table-striped">
 
                                                 <thead>
                                                     <tr>
                                                         <th>
-                                                           @lang('site_lables.CLass_Name')
+                                                           @lang('site_lables.Class_Name')
                                                         </th>
                                                         <th>
-                                                            Instructor Name
+                                                            @lang('site_lables.Instructor_Name')
                                                         </th>
                                                         <th>
-                                                            @lang('site_lables.Attendence')
+                                                           @lang('site_lables.Attendence')
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -89,7 +89,7 @@
 
                                                         <th></th>
                                                         <th></th>
-                                                        <th>Students List</th>
+                                                        <th>@lang('site_lables.Students_List')</th>
                                                         <th></th>
                                                         <th></th>
 
@@ -99,53 +99,53 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
+                                                            <input type="checkbox" name="member1" value="0">@lang('site_lables.Member_Name')
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
-                                                        </td>
-                                                        <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
-                                                        </td>
-                                                        <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
-                                                        </td>
-                                                        <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
-                                                        </td>
-                                                        <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="member1" value="0"> Member Name
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
                                                         </td>
                                                     </tr>
                                                 </tbody>

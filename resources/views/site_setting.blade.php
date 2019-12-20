@@ -13,7 +13,8 @@
         <div id="main-container">
             <div id="breadcrumb">
                 <ul class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="#"> @lang('site_lables.Home')/@lang('site_lables.Site_Setting')</a></li>
+                    <li><i class="fa fa-home"></i><a href="#">
+                            @lang('site_lables.Home')/@lang('site_lables.Site_Setting')</a></li>
                     <li class="active"></li>
                 </ul>
             </div>{{-- /breadcrumb--}}
@@ -42,8 +43,8 @@
                                                 <div class="col-sm-8">
 
                                                     <input type="text" class="form-control input-sm placeholdesize"
-                                                        placeholder="@lang('site_lables.Site_Name')" id="site_name" name="site_name"
-                                                        required>
+                                                        placeholder="@lang('site_lables.Site_Name')" id="site_name"
+                                                        name="site_name" required>
 
                                                 </div>
                                             </div>
@@ -56,8 +57,10 @@
                                                 <div class="col-sm-8">
 
 
-                                                    <input type="file" id="upload" name="upload" class="form-control" accept="image/*" required>
-                                                    <input type="hidden" id="uploadimg_hidden" name="uploadimg_hidden" value="">
+                                                    <input type="file" id="upload" name="upload" class="form-control"
+                                                        accept="image/*" required>
+                                                    <input type="hidden" id="uploadimg_hidden" name="uploadimg_hidden"
+                                                        value="">
                                                     <div id="msg" name="msg"></div>
                                                 </div>
                                             </div>
@@ -70,7 +73,8 @@
                                                 <div class="col-sm-8">
 
                                                     <input type="email" class="form-control input-sm placeholdesize"
-                                                        placeholder="@lang('site_lables.Email_Address')" id="email" name="email" required>
+                                                        placeholder="@lang('site_lables.Email_Address')" id="email"
+                                                        name="email" required>
 
                                                 </div>
                                             </div>
@@ -78,7 +82,8 @@
 
                                         </div>
                                         <div class="col-lg-6 ">
-                                            <img id="profileimg" src="{{ URL::asset('/resources/sass/img/no-image-available.png') }}"
+                                            <img id="profileimg"
+                                                src="{{ URL::asset('/resources/sass/img/no-image-available.png') }}"
                                                 alt="User Avatar" style="width:100px; height: 100px; float:right;">
                                             <br>
                                         </div>
@@ -91,13 +96,15 @@
                                                 </div>
                                                 <div class="col-sm-5">
 
-                                                    <textarea name="about_us" id="about_us" placeholder="@lang('site_lables.About_Us')"
+                                                    <textarea name="about_us" id="about_us"
+                                                        placeholder="@lang('site_lables.About_Us')"
                                                         class="form-control input-sm" rows="3"></textarea>
 
                                                 </div>
                                                 <div class="col-sm-5">
 
-                                                    <textarea name="about_us_c" id="about_us_c" placeholder="@lang('site_lables.About_Us')"
+                                                    <textarea name="about_us_c" id="about_us_c"
+                                                        placeholder="@lang('site_lables.About_Us')"
                                                         class="form-control input-sm" rows="3"></textarea>
 
                                                 </div>
@@ -111,15 +118,16 @@
                                                 </div>
                                                 <div class="col-sm-5">
 
-                                                    <textarea name="contact_us" id="contact_us" placeholder="@lang('site_lables.Contact_Us')"
+                                                    <textarea name="contact_us" id="contact_us"
+                                                        placeholder="@lang('site_lables.Contact_Us')"
                                                         class="form-control input-sm" rows="3"></textarea>
 
                                                 </div>
                                                 <div class="col-sm-5">
 
                                                     <textarea name="contact_us_c" id="contact_us_c"
-                                                        placeholder="@lang('site_lables.Contact_Us')" class="form-control input-sm"
-                                                        rows="3"></textarea>
+                                                        placeholder="@lang('site_lables.Contact_Us')"
+                                                        class="form-control input-sm" rows="3"></textarea>
 
                                                 </div>
                                             </div>
@@ -132,7 +140,8 @@
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <input type="number" class="form-control input-sm placeholdesize"
-                                                        placeholder="@lang('site_lables.Telephone_No')." id="tel_no" name="tel_no" required>
+                                                        placeholder="@lang('site_lables.Telephone_No')." id="tel_no"
+                                                        name="tel_no" required>
 
                                                 </div>
                                                 <div class="col-sm-2">
@@ -142,7 +151,8 @@
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <input type="text" class="form-control input-sm placeholdesize"
-                                                        placeholder="@lang('site_lables.Website')" id="website" name="website" required>
+                                                        placeholder="@lang('site_lables.Website')" id="website"
+                                                        name="website" required>
 
                                                 </div>
                                             </div>
@@ -154,7 +164,8 @@
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <input type="text" class="form-control input-sm placeholdesize"
-                                                        placeholder="@lang('site_lables.Facebook')" id="facebook" name="facebook" required>
+                                                        placeholder="@lang('site_lables.Facebook')" id="facebook"
+                                                        name="facebook" required>
 
                                                 </div>
                                                 <div class="col-sm-2">
@@ -164,7 +175,8 @@
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <input type="text" class="form-control input-sm placeholdesize"
-                                                        placeholder="@lang('site_lables.Instagram')" id="instagram" name="instagram" required>
+                                                        placeholder="@lang('site_lables.Instagram')" id="instagram"
+                                                        name="instagram" required>
 
                                                 </div>
                                             </div>
@@ -176,7 +188,8 @@
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <input type="text" class="form-control input-sm placeholdesize"
-                                                        placeholder="@lang('site_lables.Firebase')" id="firebase" name="firebase" required>
+                                                        placeholder="@lang('site_lables.Firebase')" id="firebase"
+                                                        name="firebase" required>
 
                                                 </div>
                                                 <div class="col-sm-2">
@@ -217,91 +230,63 @@
                         </div>{{-- /panel --}}
 
 
-                         <div class="panel panel-default tablehideshow">
+                        <div class="panel panel-default tablehideshow">
                             <div class="panel-heading">
                                 <h4><b>@lang('site_lables.Site_Setting')</b></h4>
                                 <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
-                                    class="fa fa-plus"></i>@lang('site_lables.Add_New')</button>
+                                        class="fa fa-plus"></i>@lang('site_lables.Add_New')</button>
 
                             </div>
                             <div class="panel-body ">
 
                                 <div class="table-responsive" id="show_master">
-                                    <table class="table-striped" id="data_table" style="width:100%">
+                                    <table class="table-striped" id="laravel_crud" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Instructor Id</th>
-                                                <th>Instructor Name</th>
-                                                <th>Instructor Image</th>
-                                                <th>Instructor Tel No.</th>
-
-
-                                                <th>Action</th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Site_Name')</font></th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Logo')</font></th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Email_Address')</font></th>
+                                                <th style="display:none;"><font style="font-weight:bold;">@lang('site_lables.Img_Url')</font></th>
+                                                <th  style="display:none;"><font style="font-weight:bold;">@lang('site_lables.About_Us_1')</font></th>
+                                                <th  style="display:none;"><font style="font-weight:bold;">@lang('site_lables.About_Us_2')</font></th>
+                                                <th  style="display:none;"><font style="font-weight:bold;">@lang('site_lables.Contact_Us_1')</font></th>
+                                                <th  style="display:none;"><font style="font-weight:bold;display:none;">@lang('site_lables.Contact_Us_2')</font></th>
+                                                <th  style="display:none;"><font style="font-weight:bold;display:none;">@lang('site_lables.Telephone_No')</font></th>
+                                                <th  style="display:none;"><font style="font-weight:bold;display:none;">@lang('site_lables.Website')</font></th>
+                                                <th  style="display:none;"><font style="font-weight:bold;display:none;">@lang('site_lables.Facebook')</font></th>
+                                                <th  style="display:none;"><font style="font-weight:bold;display:none;">@lang('site_lables.Instagram')</font></th>
+                                                <th  style="display:none;"><font style="font-weight:bold;display:none;">@lang('site_lables.Firebase')</font></th>
+                                                <th  style="display:none;"><font style="font-weight:bold;display:none;">@lang('site_lables.Map')</font></th>
+                                                <th class="not-export-column"><font style="font-weight:bold">@lang('site_lables.Action')</font>   </th>
 
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Ajaz</td>
-                                                <td><img src="{{ URL::asset('/resources/sass/img/no-image-available.png') }}"
-                        alt="User Avatar" style="width:50px; height: 50px;"></td>
-                        <td>9904760745</td>
-
-                        <td><Button type="button" class="btn btn-primary"><i
-                                    class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                        </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Ajaz</td>
-                            <td><img src="{{ URL::asset('/resources/sass/img/no-image-available.png') }}"
-                                    alt="User Avatar" style="width:50px; height: 50px;"></td>
-                            <td>9904760745</td>
-
-                            <td><Button type="button" class="btn btn-primary"><i
-                                        class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                    class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Ajaz</td>
-                            <td><img src="{{ URL::asset('/resources/sass/img/no-image-available.png') }}"
-                                    alt="User Avatar" style="width:50px; height: 50px; "></td>
-                            <td>9904760745</td>
-
-                            <td><Button type="button" class="btn btn-primary"><i
-                                        class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                    class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                            </td>
-                        </tr>
+                                        <tbody id="table_tbody">
 
 
-                        </tbody>
-                        </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
                     </div>
 
 
 
 
-
-
-
-
                 </div>
-            </div>
-        </div>
+            </div>{{-- /.padding-md --}}
+        </div>{{--   /main-container --}}
 
-
-
-
-    </div>
-    </div>{{-- /.padding-md --}}
-    </div>{{--   /main-container --}}
-
-    @include('layout.footer')
+        @include('layout.footer')
 
 
     </div>{{-- /wrapper --}}
@@ -318,7 +303,6 @@
 
 </body>
 <script>
-
     CKEDITOR.replace( 'about_us' );
     CKEDITOR.replace( 'contact_us' );
     CKEDITOR.replace( 'about_us_c' );
@@ -336,7 +320,7 @@
 
 </script>
 <script>
-     var add_data="{{route('site_setting.store') }}";
+    var add_data="{{route('site_setting.store') }}";
     var checkcategory="{{ url('checksitename') }}";
     var delete_data="{{ url('deletesitesetting') }}";
     var changestatus="{{ url('roomchangestatus') }}";
@@ -345,4 +329,5 @@
     $("#data_table").DataTable();
 </script>
 <script type='text/javascript' src="{{ URL::asset('/resources/js/myjs/sitesettingmaster.js',true) }}"></script>
+
 </html>

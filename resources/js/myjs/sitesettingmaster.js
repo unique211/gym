@@ -103,27 +103,7 @@ $(document).ready(function() {
 
             var data = eval(data);
             var html = '';
-            html += '<table id="laravel_crud" style="width:100%;" class=" table table-striped">' +
-                '<thead>' +
-                '<tr>' +
-                '<th><font style="font-weight:bold">Site Name</font></th>' +
-                '<th><font style="font-weight:bold">Logo</font></th>' +
-                '<th><font style="font-weight:bold">Email Address</font></th>' +
-                '<th style="display:none;"><font style="font-weight:bold;">Img Url</font></th>' +
-                '<th  style="display:none;"><font style="font-weight:bold;">About Us 1</font></th>' +
-                '<th  style="display:none;"><font style="font-weight:bold;">About Us 2</font></th>' +
-                '<th  style="display:none;"><font style="font-weight:bold;">Contact Us 1</font></th>' +
-                '<th  style="display:none;"><font style="font-weight:bold;display:none;">Contact Us 2</font></th>' +
-                '<th  style="display:none;"><font style="font-weight:bold;display:none;">Telephone No</font></th>' +
-                '<th  style="display:none;"><font style="font-weight:bold;display:none;">Website</font></th>' +
-                '<th  style="display:none;"><font style="font-weight:bold;display:none;">Facebook</font></th>' +
-                '<th  style="display:none;"><font style="font-weight:bold;display:none;">Instagram</font></th>' +
-                '<th  style="display:none;"><font style="font-weight:bold;display:none;">Firebase</font></th>' +
-                '<th  style="display:none;"><font style="font-weight:bold;display:none;">Map</font></th>' +
-                '<th class="not-export-column"><font style="font-weight:bold">Action</font>   </th>' +
-                '</tr>' +
-                '</thead>' +
-                '<tbody>';
+
             for (var i = 0; i < data.length; i++) {
                 var sr = i + 1;
                 var st = data[i].status;
@@ -182,8 +162,8 @@ $(document).ready(function() {
 
 
             }
-            html += '</tbody></table>';
-            $('#show_master').html(html);
+
+            $('#table_tbody').html(html);
             $('#laravel_crud').DataTable({
 
             });

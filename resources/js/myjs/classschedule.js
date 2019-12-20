@@ -123,26 +123,7 @@ $(document).ready(function() {
             //  var data = eval(data);
 
             var html = '';
-            html += '<table id="laravel_crud" style="width:100%;" class=" table table-striped">' +
-                '<thead>' +
-                '<tr>' +
 
-                '<th><font style="font-weight:bold"></font>Class Name</th>' +
-                '<th style="display:none;"><font style="font-weight:bold"></font>Class Id</th>' +
-                '<th><font style="font-weight:bold">Class Sechedule </font></th>' +
-                '<th><font style="font-weight:bold">Instractor</font></th>' +
-                '<th><font style="font-weight:bold">Max Vacancy</font></th>' +
-                '<th style="display:none;"><font style="font-weight:bold;">Class Schedule</font></th>' +
-                '<th style="display:none;"><font style="font-weight:bold;">Class Duration </font></th>' +
-                '<th style="display:none;"><font style="font-weight:bold;">Room</font></th>' +
-                '<th style="display:none;"><font style="font-weight:bold;">Min Cancelation</font></th>' +
-                '<th style="display:none;"><font style="font-weight:bold;">Min Booking</font></th>' +
-                '<th style="display:none;"><font style="font-weight:bold;">Endtime</font></th>' +
-                '<th><font style="font-weight:bold">Status</font></th>' +
-                '<th class="not-export-column"><font style="font-weight:bold">Action</font>   </th>' +
-                '</tr>' +
-                '</thead>' +
-                '<tbody>';
             for (var i = 0; i < data.length; i++) {
                 var sr = i + 1;
                 var st = data[i].status;
@@ -157,6 +138,7 @@ $(document).ready(function() {
                 var fdateslt = date.split('-');
                 var time = fdateslt[2].split(' ');
                 var checkouttime = time[0] + '/' + fdateslt[1] + '/' + fdateslt[0] + ' ' + time[1];
+
                 var checkdate = time[0] + '/' + fdateslt[1] + '/' + fdateslt[0];
 
                 var duration = getclassdutation(checkouttime, data[i].class_duration)
@@ -166,7 +148,8 @@ $(document).ready(function() {
                     '<td id="classname_' + data[i].classsechedule_id + '">' + data[i].classname + '</td>' +
                     '<td style="display:none;" id="classsechedule_name_' + data[i].classsechedule_id + '">' + data[i].classsechedule_name + '</td>' +
                     '<td   id="class_schedule_' + data[i].classsechedule_id + '">' + checkouttime + "-" + duration + '</td>' +
-                    '<td   id="instructor_' + data[i].classsechedule_id + '">' + data[i].instructor + '</td>' +
+                    '<td  style="display:none;" id="instructor_' + data[i].classsechedule_id + '">' + data[i].instructor + '</td>' +
+                    '<td   id="instructor_name' + data[i].classsechedule_id + '">' + data[i].instructor_name + '</td>' +
                     '<td   id="max_vacancy_' + data[i].classsechedule_id + '">' + data[i].max_vacancy + '</td>' +
 
                     '<td  style="display:none;" id="classsechedule_' + data[i].classsechedule_id + '">' + checkouttime + '</td>' +
@@ -192,8 +175,8 @@ $(document).ready(function() {
 
 
             }
-            html += '</tbody></table>';
-            $('#show_master').html(html);
+
+            $('#table_tbody').html(html);
             $('#laravel_crud').DataTable({
                 "fnDrawCallback": function() {
                     jQuery('#laravel_crud .btnstatus').bootstrapToggle();
@@ -226,7 +209,13 @@ $(document).ready(function() {
         var endtime = $('#endtime_' + id).html();
 
 
+        var fdateslt = min_cancelation.split('-');
+        var time = fdateslt[2].split(' ');
+        var min_cancelation1 = time[0] + '/' + fdateslt[1] + '/' + fdateslt[0] + ' ' + time[1];
 
+        var fdateslt = min_booking.split('-');
+        var time = fdateslt[2].split(' ');
+        var min_booking1 = time[0] + '/' + fdateslt[1] + '/' + fdateslt[0] + ' ' + time[1];
 
 
         if (status == 1) {
@@ -235,7 +224,7 @@ $(document).ready(function() {
 
         } else {
             $('#status').bootstrapToggle('off');
-            // $('#status').bootstrapToggle('off');				
+            // $('#status').bootstrapToggle('off');
         }
         $('#classsechedule_name').val(classsechedule_name).trigger('change');
         $('#class_schedule').val(classsechedule);
@@ -243,8 +232,8 @@ $(document).ready(function() {
         $('#max_vacancy').val(max_vacancy);
         $('#class_duration').val(class_duration);
         $('#room_id').val(room_id).trigger('change');
-        $('#min_cancelation').val(min_cancelation);
-        $('#min_booking').val(min_booking);
+        $('#min_cancelation').val(min_cancelation1);
+        $('#min_booking').val(min_booking1);
 
         $('#save_update').val(id);
         $('#statusinfo').val(status);
@@ -562,6 +551,7 @@ $(document).ready(function() {
 
         var date = class_schedule;
         var fdateslt = date.split('/');
+
         var time = fdateslt[2].split(' ');
         var checkouttime = time[0] + '/' + fdateslt[1] + '/' + fdateslt[0];
         var usrDate = time[0] + '/' + fdateslt[1] + '/' + fdateslt[0] + ' ' + time[1];

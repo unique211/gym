@@ -188,28 +188,19 @@
                                 <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                         class="fa fa-plus"></i> @lang('site_lables.Add_Profile')</button>
                             </div>
-                            <div class="panel-body ">
+                            <div class="panel-body">
 
                                 <div class="table-responsive" id="show_master">
-                                    <table class="table-striped" id="data_table" style="width:100%">
+                                    <table class="table-striped" id="laravel_crud" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>@lang('site_lables.Profile_Type')</th>
-
-                                                <th>Action</th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Sr.No.')</font></th>
+                                                <th><font style="font-weight:bold"></font>@lang('site_lables.Profile_Type')</th>
+                                                <th class="not-export-column"><font style="font-weight:bold">@lang('site_lables.Action')</font>   </th>
 
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Admin</td>
-
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
-
+                                        <tbody id="table_tbody">
 
 
                                         </tbody>

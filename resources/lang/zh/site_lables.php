@@ -23,24 +23,24 @@ return [
 
     // Menu  User Access
     'User_Access' => '用户访问',
-   
+
     'User_Name' => '用户名',
     'Email_ID' => '电子邮件ID',
     'Mobile_Number' => '手机号码',
     'User_Type' => '用户类型',
     'User_Id' => '用户身份',
 
-    
+
     'Name' => '名称',
     'Select_User_Type' => '选择用户类型',
     'Staff' => '员工',
     'Admin' => '管理员',
     'Manager' => '经理',
     'Login_Details' => '登录详细信息',
- 
+
     'Password' => '密码',
     'Confirm_Password' => '确认密码',
-    
+
     'Cancel' => '取消',
     'Close' => '关',
     'User_Access_List' => '用户访问列表',
@@ -68,16 +68,20 @@ return [
     'Class_Category'=>'班级类别',
     'Class' => '类',
     'Class_Schedule'=>'课程表',
+    'Schedule'=>'时间表',
     'Deals'=>'交易',
-    'Gallary'=>'Gallary',
+    'Gallery'=>'画廊',
     'Member_Attendence'=>'会员出席',
+    'Tacking'=>'大头钉',
+    'Member_Attendence_Tacking'=>'会员出席',
     'Settings'=>'设定值',
+    'Attendence'=>'出席人数',
     'Profile_Manager'=>'档案管理员',
     'Attendence_&_Rating'=>'出勤率',
     'Class_Booking'=>'课堂预订',
-   
 
-    
+
+
 
 
 
@@ -111,7 +115,7 @@ return [
     'Usage' => '用法',
     'History' => '历史',
     'Date_and_Time' => '约会时间',
- 
+
     'Use' => '使用',
     'Group' => '组',
     'Delete' => '删除',
@@ -124,7 +128,7 @@ return [
     'Adduseraccessinfo'=>'添加用户',
     'viewuseraccessinfo'=>'查看用户',
 
-  				
+
     // Menu  member
 
 
@@ -132,7 +136,7 @@ return [
     'Current_Package'=>'当前套餐',
     'Date_of_Expiry'=>'到期日期',
     'Member_Count'=>'会员人数',
-
+    'Image'=>'图片',
 
 
     // Menu  Package
@@ -141,16 +145,16 @@ return [
     'Package_Name'=>'包裹名字',
     'Package_Point'=>'包装点',
     'Package_Price'=>'套餐价格',
-   
+
     'Package_List'=>'包装清单',
-    
+
 
     // Menu Class Category
 
     'Class_Category'=>'班级类别',
     'Class_Description'=>'类说明',
     'Class_Category_List'=>'班级类别列表',
-  
+
 
 
     // Menu Room
@@ -186,8 +190,10 @@ return [
     'No'=>'没有',
     'Allow_Share_Post'=>'允许分享帖子',
 
-    // Menu  Member Type 
+    // Menu  Member Type
     'Member_Type_List'=>'会员类型列表',
+    'Students_List'=>'学生名单',
+
 
     // Setting
 
@@ -201,7 +207,7 @@ return [
     'Facebook'=>'脸书',
     'Firebase'=>'火力基地',
     'Website'=>'网站',
-    'Instagram'=>'Instagram的',
+    'Instagram'=>'Instagram',
     'Map'=>'地图',
     'View_All'=>'查看全部',
 
@@ -218,10 +224,11 @@ return [
     'Number_of_members_booked'=>'预订人数',
 
 
-    
+
     'Max_vacancy'=>'最大空缺',
 
     // Menu Attendence & Rating
+    'Attendence'=>'出席人数',
     'Attendence_&_Rating'=>'出勤率',
     'Attendence_&_Rating_Report'=>'出勤与评估报告',
 
@@ -229,15 +236,17 @@ return [
     'To'=>'至',
     'Search'=>'搜索',
     'Date_&_Time'=>'约会时间',
-  
+
     'Member_id'=>'会员ID',
     'Member_Id'=>'会员ID',
     'Member_Name'=>'成员名字',
     'Instructor_Rating'=>'教师评分',
-   
 
-    
-    
-    
+
+
+    'Send_Notification'=>'发送通知',
+    'ON'=>'上',
+    'OFF'=>'关',
+
 
 ];

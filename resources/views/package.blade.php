@@ -115,56 +115,25 @@
                             <div class="panel-body ">
 
                                 <div class="table-responsive" id="show_master">
-                                    {{-- <table class="table-striped" id="data_table" style="width:100%">
+                                    <table class="table-striped" id="laravel_crud" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Package Name</th>
-                                                <th>Package Point</th>
-                                                <th>Package Price</th>
-                                                <th>Action</th>
+
+
+                                                <th><font style="font-weight:bold">@lang('site_lables.Sr.No.')</font></th>
+                                                <th><font style="font-weight:bold"></font>@lang('site_lables.Package_Name')</th>
+                                                <th style="text-align:right;" ><font style="font-weight:bold">@lang('site_lables.Package_Point')</font></th>
+                                                <th style="text-align:right;"><font style="font-weight:bold">@lang('site_lables.Package_Price')</font></th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Status')</font></th>
+                                                <th class="not-export-column"><font style="font-weight:bold">@lang('site_lables.Action')</font>   </th>
 
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Ajaz</td>
-                                                <td>5</td>
-                                                <td>500</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ajaz</td>
-                                                <td>5</td>
-                                                <td>500</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ajaz 55</td>
-                                                <td>9</td>
-                                                <td>5660</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ajaz 9</td>
-                                                <td>51/td>
-                                                <td>600</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
+                                        <tbody id="table_tbody">
+
 
                                         </tbody>
-                                    </table> --}}
+                                    </table>
                                 </div>
 
 

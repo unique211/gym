@@ -206,16 +206,7 @@ $(document).ready(function() {
 
             var data = eval(data);
             var html = '';
-            html += '<table id="laravel_crud" style="width:100%;" class=" table table-striped">' +
-                '<thead>' +
-                '<tr>' +
-                '<th><font style="font-weight:bold">Sr. No.</font></th>' +
-                '<th><font style="font-weight:bold"></font>Profile Type</th>' +
 
-                '<th class="not-export-column"><font style="font-weight:bold">Action</font>   </th>' +
-                '</tr>' +
-                '</thead>' +
-                '<tbody>';
             for (var i = 0; i < data.length; i++) {
                 var sr = i + 1;
                 var st = data[i].status;
@@ -234,8 +225,8 @@ $(document).ready(function() {
 
 
             }
-            html += '</tbody></table>';
-            $('#show_master').html(html);
+
+            $('#table_tbody').html(html);
             $('#laravel_crud').DataTable({
 
                 // "fnDrawCallback": function() { //for display for bootstraptoggle button

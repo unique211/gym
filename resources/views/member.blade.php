@@ -177,7 +177,7 @@
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Image* </label>
+                                                <label>@lang('site_lables.Image')* </label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -276,72 +276,28 @@
                             </div>
                             <div class="panel-body ">
                                 <div class="table-responsive" id="show_master">
-                                    <table class="table-striped" id="data_table" style="width:100%">
+                                    <table class="table-striped" id="laravel_crud" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>User Id</th>
-                                                <th>Name</th>
-                                                <th>IC number</th>
-                                                <th>Current Package</th>
-                                                <th>Member Type</th>
-                                                <th>Date of Expire</th>
-                                                <th>Balance Point</th>
-                                                <th>Member Count</th>
-                                                <th>Action</th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.User_Id')</font></th>
+                                                <th><font style="font-weight:bold"></font>@lang('site_lables.Name')</th>
+                                                <th><font style="font-weight:bold"></font>@lang('site_lables.Ic_Number')</th>
+                                                <th><font style="font-weight:bold"></font>@lang('site_lables.Current_Package')</th>
+                                                <th><font style="font-weight:bold"></font>@lang('site_lables.Member_Type')</th>
+                                                <th><font style="font-weight:bold"></font>@lang('site_lables.Date_of_Expiry')</th>
+                                                <th><font style="font-weight:bold"></font>@lang('site_lables.Member_Count')</th>
+                                                <th style="display:none;"><font style="font-weight:bold"></font>Date of Birth</th>
+                                                <th style="display:none;"><font style="font-weight:bold"></font>Address</th>
+                                                <th style="display:none;"><font style="font-weight:bold"></font>Image</th>
+                                                <th style="display:none;"><font style="font-weight:bold"></font>Email Address</th>
+                                                <th style="display:none;"><font style="font-weight:bold"></font>Current Package</th>
+                                                <th style="display:none;"><font style="font-weight:bold"></font>Current Package</th>
+                                                <th style="display:none;"><font style="font-weight:bold"></font>Balance Point</th>
+                                                <th class="not-export-column"><font style="font-weight:bold">@lang('site_lables.Action')</font>   </th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Ajazkhan</td>
-                                                <td>123465</td>
-                                                <td>ABC</td>
-                                                <td>Individual</td>
-                                                <td>12/12/2020</td>
-                                                <td>5</td>
-                                                <td>1</td>
-                                                <td><Button type="button" class="btn btn-warning view_data"><i
-                                                            class="fa fa-eye"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-primary edit_data"><i
-                                                            class="fa fa-edit "></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger delete_data"><i
-                                                            class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Ajazkhan 2</td>
-                                                <td>123465</td>
-                                                <td>ABC</td>
-                                                <td>Individual</td>
-                                                <td>12/12/2026</td>
-                                                <td>5</td>
-                                                <td>1</td>
-                                                <td><Button type="button" class="btn btn-warning view_data"><i
-                                                            class="fa fa-eye"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-primary edit_data"><i
-                                                            class="fa fa-edit "></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger delete_data"><i
-                                                            class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Ajazkhan 9</td>
-                                                <td>123465</td>
-                                                <td>ABC</td>
-                                                <td>Individual</td>
-                                                <td>12/12/2021</td>
-                                                <td>5</td>
-                                                <td>1</td>
-                                                <td><Button type="button" class="btn btn-warning view_data"><i
-                                                            class="fa fa-eye"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-primary edit_data"><i
-                                                            class="fa fa-edit "></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger delete_data"><i
-                                                            class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
+                                        <tbody id="table_tbody">
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -419,7 +375,7 @@
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Address</label>
+                                                <label>@lang('site_lables.Address')</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -432,7 +388,7 @@
                                     <div class="row">
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Email address</label>
+                                                <label>@lang('site_lables.Email') @lang('site_lables.Address')</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -443,7 +399,7 @@
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Current Package</label>
+                                                <label>@lang('site_lables.Current_Package')</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -456,7 +412,7 @@
                                     <div class="row">
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Member Type</label>
+                                                <label>@lang('site_lables.Member_Type')</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -467,7 +423,7 @@
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Date of Expire</label>
+                                                <label>@lang('site_lables.Date_of_Expire')</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -481,7 +437,7 @@
                                     <div class="row">
                                         <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label>Balance Point</label>
+                                                <label>@lang('site_lables.BalancePoint')</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -495,7 +451,7 @@
                                     <div class="row">
                                         <div class="col-sm-12" id="linkrelationdata">
                                             <div style="margin-top:0px;border-bottom:1px solid;width:100%;">
-                                                <h5 class=""><b>Link relationship</b></h5>
+                                                <h5 class=""><b>@lang('site_lables.Link') @lang('site_lables.Relationship')</b></h5>
                                             </div>
                                             <br>
                                             <div class="table-responsive row form-group" >
@@ -505,10 +461,10 @@
                                                     <thead>
                                                         <input type="hidden" id="row" class="row" value="0">
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <th>Relationship</th>
-                                                            <th>Userid (Phone No)</th>
-                                                            <th>Password</th>
+                                                            <th>@lang('site_lables.Name')</th>
+                                                            <th>@lang('site_lables.Relationship')</th>
+                                                            <th>@lang('site_lables.User_Id')  (@lang('site_lables.Phone_Number'))</th>
+                                                            <th>@lang('site_lables.Password')</th>
 
                                                         </tr>
                                                     </thead>
@@ -527,7 +483,7 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div style="margin-top:0px;border-bottom:1px solid;width:100%;">
-                                                <h5 class=""><b>Point Usage History</b></h5>
+                                                <h5 class=""><b>@lang('site_lables.Point') @lang('site_lables.Usage') @lang('site_lables.History')</b></h5>
                                             </div>
                                             <br>
                                             <div class="table-responsive row form-group" id="">
@@ -536,11 +492,11 @@
                                                     class="table table-striped dataTable no-footer">
                                                     <thead>
                                                         <tr>
-                                                            <th>Date & Time</th>
-                                                            <th>User Id</th>
-                                                            <th> Class</th>
-                                                            <th>Point Use &nbsp; </th>
-                                                            <th>Instructor</th>
+                                                            <th>@lang('site_lables.Date_&_Time')</th>
+                                                            <th>@lang('site_lables.User_Id')</th>
+                                                            <th> @lang('site_lables.Class')</th>
+                                                            <th> @lang('site_lables.Point') @lang('site_lables.Use')</th>
+                                                            <th>@lang('site_lables.Instructor')</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="history_tbody">

@@ -308,28 +308,7 @@ $(document).ready(function() {
 
             var data = eval(data);
             var html = '';
-            html += '<table id="laravel_crud" style="width:100%;" class=" table table-striped">' +
-                '<thead>' +
-                '<tr>' +
-                '<th><font style="font-weight:bold">User Id</font></th>' +
-                '<th><font style="font-weight:bold"></font>Name</th>' +
-                '<th><font style="font-weight:bold"></font>Ic Number</th>' +
-                '<th><font style="font-weight:bold"></font>Current Package</th>' +
-                '<th><font style="font-weight:bold"></font>Member Type</th>' +
-                '<th><font style="font-weight:bold"></font>Date of Expiry</th>' +
-                '<th><font style="font-weight:bold"></font>Member Count</th>' +
-                '<th style="display:none;"><font style="font-weight:bold"></font>Date of Birth</th>' +
-                '<th style="display:none;"><font style="font-weight:bold"></font>Address</th>' +
-                '<th style="display:none;"><font style="font-weight:bold"></font>Image</th>' +
-                '<th style="display:none;"><font style="font-weight:bold"></font>Email Address</th>' +
-                '<th style="display:none;"><font style="font-weight:bold"></font>Current Package</th>' +
-                '<th style="display:none;"><font style="font-weight:bold"></font>Current Package</th>' +
 
-                '<th style="display:none;"><font style="font-weight:bold"></font>Balance Point</th>' +
-                '<th class="not-export-column"><font style="font-weight:bold">Action</font>   </th>' +
-                '</tr>' +
-                '</thead>' +
-                '<tbody>';
             for (var i = 0; i < data.length; i++) {
                 var sr = i + 1;
                 var st = data[i].status;
@@ -376,8 +355,8 @@ $(document).ready(function() {
 
 
             }
-            html += '</tbody></table>';
-            $('#show_master').html(html);
+
+            $('#table_tbody').html(html);
             $('#laravel_crud').DataTable({
 
             });
@@ -394,7 +373,7 @@ $(document).ready(function() {
         $(".deletehideshow").hide();
         $(".viewhideshow").show();
 
-        alert('from here');
+
         var id = $(this).attr("id");
         var status = $(this).attr("status");
         var userid = $('#userid_' + id).html();

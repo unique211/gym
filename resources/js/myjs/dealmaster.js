@@ -95,17 +95,7 @@ $(document).ready(function() {
             var end_date = "";
             var data = eval(data);
             var html = '';
-            html += '<table id="laravel_crud" style="width:100%;" class=" table table-striped">' +
-                '<thead>' +
-                '<tr>' +
-                '<th><font style="font-weight:bold">Title</font></th>' +
-                '<th><font style="font-weight:bold"></font>Strat Date</th>' +
-                '<th><font style="font-weight:bold">End Date</font></th>' +
-                '<th style="display:none;"><font style="font-weight:bold">Upload Img</font></th>' +
-                '<th class="not-export-column"><font style="font-weight:bold">Action</font>   </th>' +
-                '</tr>' +
-                '</thead>' +
-                '<tbody>';
+
             for (var i = 0; i < data.length; i++) {
                 var sr = i + 1;
 
@@ -128,10 +118,6 @@ $(document).ready(function() {
                     '<td id="end_date_' + data[i].deal_id + '">' + end_date + '</td>' +
                     '<td style="display:none;" id="uploadimg_' + data[i].deal_id + '">' + data[i].upload_img + '</td>' +
 
-
-
-
-
                     '<td class="not-export-column" ><button name="edit"  value="edit" class="edit_data btn btn-xs btn-success" id=' +
                     data[i].deal_id +
                     '><i class="fa fa-edit"></i></button>&nbsp;<button name="delete" value="Delete" class="delete_data btn btn-xs btn-danger" id=' +
@@ -139,8 +125,8 @@ $(document).ready(function() {
 
 
             }
-            html += '</tbody></table>';
-            $('#show_master').html(html);
+
+            $('#table_tbody').html(html);
             $('#laravel_crud').DataTable({});
 
 

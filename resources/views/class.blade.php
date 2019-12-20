@@ -105,7 +105,7 @@
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Class List</b></h4>
+                                <h4><b>@lang('site_lables.Class_List')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                                                 class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -113,49 +113,24 @@
                             <div class="panel-body ">
 
                                 <div class="table-responsive" id="show_master">
-                                    {{-- <table class="table-striped" id="data_table" style="width:100%">
+                                    <table class="table-striped" id="laravel_crud" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Class Name</th>
-                                                <th>Class Category</th>
-                                                <th>Class Description</th>
-
-                                                <th>Action</th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Sr.No.')</font></th>
+                                                <th><font style="font-weight:bold"></font>@lang('site_lables.Class_Name')</th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Class_Category')</font></th>
+                                                <th style="display:none;"><font style="font-weight:bold;">@lang('site_lables.Class_Category_ID')</font></th>
+                                                <th style="display:none;"><font style="font-weight:bold;">@lang('site_lables.Class_Description')</font></th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Status')</font></th>
+                                                <th class="not-export-column"><font style="font-weight:bold">@lang('site_lables.Action')</font>   </th>
 
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Class 1</td>
-                                                <td>Class cat 1</td>
-                                                <td>desc 1</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
+                                        <tbody id="table_tbody">
 
-                                            <tr>
-                                                <td>Class 8</td>
-                                                <td>Class cacxt 1</td>
-                                                <td>descxc 1</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Class 6</td>
-                                                <td>Class cat 1ew</td>
-                                                <td>desc 1ew</td>
-                                                <td><Button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-edit"></i></Button>&nbsp;<Button type="button"
-                                                        class="btn btn-danger"><i class="fa fa-trash-o"></i></Button>
-                                                </td>
-                                            </tr>
 
                                         </tbody>
-                                    </table> --}}
+                                    </table>
                                 </div>
 
 

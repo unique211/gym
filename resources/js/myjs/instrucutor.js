@@ -355,20 +355,7 @@ $(document).ready(function() {
 
 
             var html = '';
-            html += '<table id="laravel_crud" style="width:100%;" class=" table table-striped">' +
-                '<thead>' +
-                '<tr>' +
-                '<th><font style="font-weight:bold">Instructor Id</font></th>' +
-                '<th><font style="font-weight:bold"></font>Instructor Name</th>' +
-                '<th style="text-align:right; ><font style="font-weight:bold">Instructor Photo</font></th>' +
-                '<th style="text-align:right;"><font style="font-weight:bold">Instructor Tel No</font></th>' +
-                '<th style="text-align:right;display:none;"><font style="font-weight:bold">Instructor Tel No</font></th>' +
-                '<th style="text-align:right;display:none;"><font style="font-weight:bold">Instructor Tel No</font></th>' +
 
-                '<th class="not-export-column"><font style="font-weight:bold">Action</font>   </th>' +
-                '</tr>' +
-                '</thead>' +
-                '<tbody>';
             for (var i = 0; i < data.length; i++) {
                 var sr = i + 1;
                 var st = data[i].status;
@@ -391,8 +378,8 @@ $(document).ready(function() {
 
 
             }
-            html += '</tbody></table>';
-            $('#show_master').html(html);
+
+            $('#table_tbody').html(html);
             $('#laravel_crud').DataTable({
 
                 // "fnDrawCallback": function() { //for display for bootstraptoggle button

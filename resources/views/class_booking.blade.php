@@ -37,16 +37,16 @@
                                     <table class="table-striped" id="data_table" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Class Name</th>
-                                                <th>Schedule</th>
-                                                <th>Instructor Name</th>
-                                                <th>Number of members booked</th>
-                                                <th>Max vacancy</th>
+                                                <th>@lang('site_lables.Class_Name')</th>
+                                                <th>@lang('site_lables.Schedule')</th>
+                                                <th>@lang('site_lables.Instructor_Name')</th>
+                                                <th>@lang('site_lables.Number_of_members_booked')</th>
+                                                <th>@lang('site_lables.Max_vacancy')</th>
 
 
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="table_tbody">
                                             <tr>
                                                 <td>Class 5</td>
                                                 <td>10:00</td>
