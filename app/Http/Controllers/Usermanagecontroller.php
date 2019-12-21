@@ -109,7 +109,7 @@ class Usermanagecontroller extends Controller
 
         $where = array('link_relation_ship.userid' => $userid);
         $data = DB::table('link_relation_ship')
-            ->select('link_relation_ship.*', 'member_master.*', 'package_master.package_name')
+            ->select('link_relation_ship.*', 'member_master.balancepoint', 'member_master.membertype', 'member_master.dateofexpire', 'member_master.currentpackage', 'package_master.package_name')
             ->join('member_master', 'member_master.member_id', '=', 'link_relation_ship.member_id')
             ->join('package_master', 'package_master.packege_id', '=', 'member_master.currentpackage')
             ->where($where)
@@ -121,18 +121,17 @@ class Usermanagecontroller extends Controller
 
             foreach ($data as $val) {
 
-
                 $result[] = array(
                     'name' => $val->name,
                     'user_id' => $val->userid,
                     'balance_point' => $val->balancepoint,
                     'address' => $val->address,
-                    'email_id' => $val->email,
+                    'email_id' => $val->email_id,
                     'dob' => $val->dob,
                     'current_package_name' => $val->package_name,
                     'member_type' => $val->membertype,
                     'date_of_expire' => $val->dateofexpire,
-                    'image_url' =>  $val->image_url,
+                    'image_url' =>  $val->image,
                 );
             }
             return response()->json(['data' => $result, 'status' => 1]);
@@ -155,38 +154,50 @@ class Usermanagecontroller extends Controller
 
         $userid = $request->mobile_no;
 
+        $data = array(
+            'name' => $request->name,
+            'address' => $request->address,
+            'email_id' => $request->email_id,
+            'dob' => $request->dob,
+            'image' =>  $image_name,
+        );
+        DB::table('link_relation_ship')
+        ->where('userid', $userid)
+        ->update($data);
 
-        $where = array('link_relation_ship.userid' => $userid);
-        $data = DB::table('link_relation_ship')
-            ->select('link_relation_ship.*', 'member_master.*', 'package_master.package_name')
-            ->join('member_master', 'member_master.member_id', '=', 'link_relation_ship.member_id')
-            ->join('package_master', 'package_master.packege_id', '=', 'member_master.currentpackage')
-            ->where($where)
-            ->get();
+        return response()->json(['status' => 1]);
 
-        $cnt = count($data);
-        if ($cnt > 0) {
-            foreach ($data as $val) {
-                $member_id = $val->member_id;
+        // $where = array('link_relation_ship.userid' => $userid);
+        // $data = DB::table('link_relation_ship')
+        //     ->select('link_relation_ship.*', 'member_master.*', 'package_master.package_name')
+        //     ->join('member_master', 'member_master.member_id', '=', 'link_relation_ship.member_id')
+        //     ->join('package_master', 'package_master.packege_id', '=', 'member_master.currentpackage')
+        //     ->where($where)
+        //     ->get();
 
-                $data = array(
-                    'membername' => $request->name,
-                    'balancepoint' => $request->balance_point,
-                    'address' => $request->address,
-                    'email' => $request->email_id,
-                    'dob' => $request->dob,
-                    'image_url' =>  $image_name,
-                );
+        // $cnt = count($data);
+        // if ($cnt > 0) {
+        //     foreach ($data as $val) {
+        //         $member_id = $val->member_id;
 
-                DB::table('member_master')
-                    ->where('member_id', $member_id)
-                    ->update($data);
-            }
+        //         $data = array(
+        //             'membername' => $request->name,
+        //             'balancepoint' => $request->balance_point,
+        //             'address' => $request->address,
+        //             'email' => $request->email_id,
+        //             'dob' => $request->dob,
+        //             'image_url' =>  $image_name,
+        //         );
 
-            return response()->json(['status' => 1]);
-        } else {
-            return response()->json(['status' => 0]);
-        }
+        //         DB::table('link_relation_ship')
+        //             ->where('member_id', $member_id)
+        //             ->update($data);
+        //     }
+
+         //   return response()->json(['status' => 1]);
+        // } else {
+        //     return response()->json(['status' => 0]);
+        // }
     }
 
 
@@ -247,6 +258,32 @@ class Usermanagecontroller extends Controller
             return response()->json(['data' => $result, 'status' => 0]);
         }
 
+
+
+
+        //dd($endtime);
+
+
+
+
+    }
+
+    public function update_user_settings_api(Request $request)
+    {
+
+        $link_id = $request->link_id;
+
+        $data = array(
+            'receive_mobile_notification' => $request->receive_mobile_notification,
+            'prompt_me' => $request->prompt_me,
+            'language' => $request->language,
+
+        );
+        DB::table('user_settings')
+        ->where('link_id', $link_id)
+        ->update($data);
+
+        return response()->json(['status' => 1]);
 
 
 

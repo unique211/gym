@@ -253,4 +253,6 @@ return [
     'Send'=>'发送',
     'Notification'=>'通知',
     'Total_Members'=>'成员总数',
+    'English_Text'=>'英文文字',
+    'Chinese_Text'=>'中文文字',
 ];

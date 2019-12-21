@@ -185,18 +185,26 @@ $(document).ready(function() {
             }
 
             $('#table_tbody').html(html);
+
             $('#laravel_crud').DataTable({
 
                 "fnDrawCallback": function() {
                     jQuery('#laravel_crud .btnstatus').bootstrapToggle();
                 }
             });
+
             $('.btnstatus').bootstrapToggle({
                 on: 'Active',
                 off: 'Inactive'
             });
 
         })
+
+        $('#laravel_crud').DataTable({
+            "fnDrawCallback": function() {
+                jQuery('#laravel_crud .btnstatus').bootstrapToggle();
+            }
+        });
 
     }
     //for desplay in table with data toggel Buttton------End
@@ -540,8 +548,8 @@ $(document).ready(function() {
     $(document).on('blur', '#min_booking', function() {
         var class_schedule = $('#class_schedule').val();
         var min_booking = $('#min_booking').val();
-        var mintime = mincanclatontime(class_schedule, min_booking);
-
+        // var mintime = mincanclatontime(class_schedule, min_booking);
+        var mintime = checktime(min_booking);
 
         if (mintime == 0) {
             swal({

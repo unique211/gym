@@ -163,4 +163,38 @@ class SiteSettingController extends Controller
     $customer = Sitesettingmodel::where('sitesetting_id', $id)->delete();
     return response()->json( $customer);
     }
+
+    public function get_site_settings_api(){
+
+        $data= DB::table('sitesetting_master')->get();
+        $result = array();
+
+
+        foreach ($data as $val) {
+
+
+            $result[] = array(
+                'sitesetting_id' => $val->sitesetting_id,
+                'site_name' => $val->site_name,
+                'site_logo' =>  $val->site_logo,
+                'site_email' =>  $val->site_email,
+                'site_about_details_english' =>  $val->site_about_details1,
+                'site_about_details_chinese' =>  $val->site_about_details2,
+                'site_contact_detalis_english' =>  $val->site_contact_detalis1,
+                'site_contact_detalis_chinese' =>  $val->site_contact_detalis2,
+                'telephone_no' =>  $val->telephone_no,
+                'website' =>  $val->website,
+                'facebook' =>  $val->facebook,
+                'instagram' =>  $val->instagram,
+                'firebase' =>  $val->firebase,
+                'map' =>  $val->map,
+
+
+
+
+            );
+        }
+
+        return Response::json($result);
+    }
 }

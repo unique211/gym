@@ -214,7 +214,7 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-12" id="if_edit" style="display:none">
                                             <div style="margin-top:0px;border-bottom:1px solid;width:100%;">
                                                 <h5 class=""><b>@lang('site_lables.Point') @lang('site_lables.Usage')
                                                         @lang('site_lables.History')</b></h5>
@@ -229,8 +229,7 @@
                                                             <th>@lang('site_lables.Date_and_Time')</th>
                                                             <th>@lang('site_lables.User_Id')</th>
                                                             <th>@lang('site_lables.Class')</th>
-                                                            <th>@lang('site_lables.Point') @lang('site_lables.Use')
-                                                            </th>
+                                                            <th>@lang('site_lables.Point') @lang('site_lables.Use')</th>
                                                             <th>@lang('site_lables.Instructor')</th>
                                                         </tr>
                                                     </thead>
@@ -487,7 +486,7 @@
                                             </div>
                                             <br>
                                             <div class="table-responsive row form-group" id="">
-                                                <table id="history"
+                                                <table id="history2"
                                                     style="width: 100%; margin-left: 0px; table-layout: fixed;"
                                                     class="table table-striped dataTable no-footer">
                                                     <thead>
@@ -499,7 +498,7 @@
                                                             <th>@lang('site_lables.Instructor')</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="history_tbody">
+                                                    <tbody id="history_tbody2">
                                                         <tr>
                                                             <td>01/01/1999 12:00:00</td>
                                                             <td> abc</td>
@@ -568,6 +567,7 @@ var getgroupinfo="{{ url('getgroupwiseinfo') }}";
 var delete_data="{{ url('deletememberinfo') }}";
 var checkuseridexis="{{ url('checkuseridexist') }}";
 var uploadfileurl="{{ url('member_img') }}";
+var getpointusage="{{ url('getpointusage') }}"
 </script>
 <script>
     $('.date').datepicker({

@@ -254,6 +254,8 @@ return [
     'Send'=>'Send',
     'Notification'=>'Notification',
     'Total_Members'=>'Total Members',
+    'English_Text'=>'English Text',
+    'Chinese_Text'=>'Chinese Text',
 
 
 ];

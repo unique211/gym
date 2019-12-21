@@ -417,7 +417,7 @@ $(document).ready(function() {
         var instructor_telno = $('#instructor_telno_' + id).html();
         var instructor_img = $('#instructor_img' + id).html();
         var userid = $('#userid_' + id).html();
-
+        // alert(userid);
 
         $('#ins_id').val(instructor_id_);
         $('#name').val(instructor_name);

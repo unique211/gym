@@ -221,6 +221,7 @@ class DealsController extends Controller
         $data = DB::table('deal_master')
             //->where('end_date','>',date('Y-m-d H:i:s'))
             ->orderBy('start_date', 'DESC')
+           // ->orderBy('login_master.login_id', 'DESC')
             ->get();
 
         return response()->json($data);

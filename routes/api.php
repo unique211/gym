@@ -102,5 +102,11 @@ Route::post('update_member_api', 'Usermanagecontroller@update_member_api');
 //add_like in gallary
 Route::post('gallery_post_addlike', 'GalleryController@gallery_post_addlike');
 
+//get site settings
+Route::get('get_site_settings_api', 'SiteSettingController@get_site_settings_api');
+
+//update user settings
+Route::post('update_user_settings_api', 'Usermanagecontroller@update_user_settings_api');
+
 });
 

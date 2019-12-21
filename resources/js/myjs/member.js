@@ -62,7 +62,7 @@ $(document).ready(function() {
         $("#name").val('');
         $("#ic_number").val('');
         $("#address").val('');
-
+        $("#if_edit").hide();
     });
 
     $(document).on('change', '#member_type', function() {
@@ -452,6 +452,37 @@ $(document).ready(function() {
 
 
 
+        $.ajax({
+            data: {
+                id: id,
+
+            },
+            url: getpointusage,
+            type: "POST",
+            dataType: 'json',
+            // async: false,
+            success: function(data) {
+                var sr = 0;
+                var html = '';
+                for (var i = 0; i < data.length; i++) {
+                    html += '<tr>' +
+                        '<td id="userid_' + data[i].id + '">' + data[i].user_id + '</td>' +
+                        '<td id="membername_' + data[i].id + '">' + data[i].date_time + '</td>' +
+                        '<td id="icno_' + data[i].id + '">' + data[i].class_name + '</td>' +
+                        '<td id="packagename_' + data[i].id + '">' + data[i].point_use + '</td>' +
+                        '<td id="packagename_' + data[i].id + '">' + data[i].Instructor + '</td>' +
+                        '</tr>';
+
+                }
+                $('#history_tbody2').html(html);
+
+            }
+
+        });
+
+
+
+
 
     });
 
@@ -462,7 +493,10 @@ $(document).ready(function() {
         $(".formhideshow").show();
         $(".deletehideshow").show();
         $(".viewhideshow").hide();
+        $('#history_tbody').html('');
 
+
+        $("#if_edit").show();
         var id = $(this).attr("id");
         var status = $(this).attr("status");
         var userid = $('#userid_' + id).html();
@@ -538,6 +572,41 @@ $(document).ready(function() {
                     $('#tbl_id').val(sr);
                 }
 
+            }
+
+        });
+
+        if ($.fn.DataTable.isDataTable('#history')) {
+            $('#history').DataTable().destroy();
+        }
+        $('#history tbody').empty();
+
+        $.ajax({
+            data: {
+                id: id,
+
+            },
+            url: getpointusage,
+            type: "POST",
+            dataType: 'json',
+            // async: false,
+            success: function(data) {
+                var sr = 0;
+                var html = '';
+                for (var i = 0; i < data.length; i++) {
+                    html += '<tr>' +
+                        '<td id="userid_' + data[i].id + '">' + data[i].user_id + '</td>' +
+                        '<td id="membername_' + data[i].id + '">' + data[i].date_time + '</td>' +
+                        '<td id="icno_' + data[i].id + '">' + data[i].class_name + '</td>' +
+                        '<td id="packagename_' + data[i].id + '">' + data[i].point_use + '</td>' +
+                        '<td id="packagename_' + data[i].id + '">' + data[i].Instructor + '</td>' +
+                        '</tr>';
+
+                }
+                $('#history_tbody').html(html);
+                $('#history').DataTable({
+
+                });
             }
 
         });

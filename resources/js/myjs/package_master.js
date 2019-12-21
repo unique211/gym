@@ -116,20 +116,19 @@ $(document).ready(function() {
             }
 
             $('#table_tbody').html(html);
-            $('#laravel_crud').DataTable({
 
-                "fnDrawCallback": function() { //for display for bootstraptoggle button
-                    jQuery('#laravel_crud .btnstatus').bootstrapToggle();
-                }
+            $('.btnstatus').bootstrapToggle();
 
-            });
-
-            //$('.btnstatus').bootstrapToggle();
-            // $('.btnstatus').bootstrapToggle({
-            //     on: 'Active',
-            //     off: 'Inactive'
-            // });
         })
+
+        $('#laravel_crud').DataTable({
+
+            "fnDrawCallback": function() { //for display for bootstraptoggle button
+                jQuery('#laravel_crud .btnstatus').bootstrapToggle();
+            }
+
+        });
+
 
 
     }

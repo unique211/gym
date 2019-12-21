@@ -296,6 +296,7 @@ class UserAccessController extends Controller
         $getresult = array();
         $result =  DB::table('useraccess_master')
             ->select('useraccess_master.*')
+            ->orderBy('useraccess_master.useraccess_id', 'DESC')
             // ->join('login_master', 'login_master.ref_id', '=', 'useraccess_master.useraccess_id')
             // ->join('profile_master', 'profile_master.profile_id', '=', 'login_master.role')
             // ->where('profile_master.profile_type', '!=', 'Instructor')
@@ -311,6 +312,7 @@ class UserAccessController extends Controller
                     ->join('useraccess_master', 'useraccess_master.useraccess_id', '=', 'login_master.ref_id')
                     ->where('login_master.ref_id', $data->useraccess_id)
                     ->where('profile_master.profile_type', '!=', 'Instructor')
+                    ->orderBy('login_master.login_id', 'DESC')
                     //->where('role','!=',3)
                     ->get();
                 $cnt2 = count($result1);
