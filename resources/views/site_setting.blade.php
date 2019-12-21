@@ -95,14 +95,14 @@
 
                                                 </div>
                                                 <div class="col-sm-5">
-
+                                                    <label>@lang('site_lables.English_Text')</label>
                                                     <textarea name="about_us" id="about_us"
                                                         placeholder="@lang('site_lables.About_Us')"
                                                         class="form-control input-sm" rows="3"></textarea>
 
                                                 </div>
                                                 <div class="col-sm-5">
-
+                                                    <label>@lang('site_lables.Chinese_Text')</label>
                                                     <textarea name="about_us_c" id="about_us_c"
                                                         placeholder="@lang('site_lables.About_Us')"
                                                         class="form-control input-sm" rows="3"></textarea>
@@ -117,14 +117,14 @@
 
                                                 </div>
                                                 <div class="col-sm-5">
-
+                                                    <label>@lang('site_lables.English_Text')</label>
                                                     <textarea name="contact_us" id="contact_us"
                                                         placeholder="@lang('site_lables.Contact_Us')"
                                                         class="form-control input-sm" rows="3"></textarea>
 
                                                 </div>
                                                 <div class="col-sm-5">
-
+                                                    <label>@lang('site_lables.Chinese_Text')</label>
                                                     <textarea name="contact_us_c" id="contact_us_c"
                                                         placeholder="@lang('site_lables.Contact_Us')"
                                                         class="form-control input-sm" rows="3"></textarea>

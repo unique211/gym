@@ -70,7 +70,9 @@ $(document).ready(function() {
     datashow();
     //for desplay in table with data toggel Buttton------Strat
     function datashow() {
+
         if ($.fn.DataTable.isDataTable('#laravel_crud')) {
+
             $('#laravel_crud').DataTable().destroy();
         }
         $('#laravel_crud tbody').empty();
@@ -116,13 +118,17 @@ $(document).ready(function() {
             }
 
             $('#table_tbody').html(html);
-            $('#laravel_crud').DataTable({});
+
             $('.btnstatus').bootstrapToggle({
                 on: 'Active',
                 off: 'Inactive'
             });
 
+
         })
+        $('#laravel_crud').dataTable({
+            paging: false
+        });
 
     }
     //for desplay in table with data toggel Buttton------End
@@ -238,6 +244,7 @@ $(document).ready(function() {
                         if (data == true) {
 
                             $('.cancel').trigger('click');
+
                             datashow(); //call function show all data
                         } else {
                             errorTost("Data Delete Failed");

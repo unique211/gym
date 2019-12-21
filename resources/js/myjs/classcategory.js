@@ -118,17 +118,18 @@ $(document).ready(function() {
             }
 
             $('#table_tbody').html(html);
-            $('#laravel_crud').DataTable({
-                "fnDrawCallback": function() {
-                    jQuery('#laravel_crud .btnstatus').bootstrapToggle();
-                }
-            });
+
             $('.btnstatus').bootstrapToggle({
                 on: 'Active',
                 off: 'Inactive'
             });
 
         })
+        $('#laravel_crud').DataTable({
+            "fnDrawCallback": function() {
+                jQuery('#laravel_crud .btnstatus').bootstrapToggle();
+            }
+        });
 
     }
     //for desplay in table with data toggel Buttton------End

@@ -74,7 +74,16 @@ $(document).ready(function() {
         }
         $('#laravel_crud tbody').empty();
 
-        $.get('getallgallary', function(data) {
+
+        var allow = $("#allow_change").val();
+        var url = "";
+        if (allow == "All") {
+            url = 'getallgallary_all_data';
+        } else {
+            url = 'getallgallary';
+        }
+
+        $.get(url, function(data) {
             var startdate = "";
             var end_date = "";
             var st = "";
@@ -84,12 +93,16 @@ $(document).ready(function() {
             for (var i = 0; i < data.length; i++) {
                 var sr = i + 1;
                 st = data[i].allowshare;
-
-
+                var desc = "";
+                if (data[i].description == null) {
+                    desc = "";
+                } else {
+                    desc = data[i].description;
+                }
 
                 html += '<tr>' +
 
-                    '<td id="desc_' + data[i].gallary_id + '">' + data[i].description + '</td>' +
+                    '<td id="desc_' + data[i].gallary_id + '">' + desc + '</td>' +
 
 
                     '<td style="display:none;" id="uploadimg_' + data[i].gallary_id + '">' + data[i].uploadimg + '</td>';
@@ -303,5 +316,9 @@ $(document).ready(function() {
 
     });
 
+    $(document).on('change', '#allow_change', function() {
 
+        datashow();
+
+    });
 });

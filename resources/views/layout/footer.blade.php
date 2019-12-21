@@ -16,11 +16,13 @@
     <div class="row">
         <div class="col-sm-6">
             <span class="footer-brand">
-                <strong class="text-danger">Endless</strong> Admin
+                <strong class="text-danger">My Cycle</strong>
             </span>
             <p class="no-margin">
-                &copy; 2013 <strong>Endless Admin</strong>. ALL Rights Reserved.
+                &copy; 2019. ALL Rights Reserved.
             </p>
+
+
         </div><!-- /.col -->
     </div><!-- /.row-->
 </footer>

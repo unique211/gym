@@ -119,6 +119,22 @@
                                                                 class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
                             </div>
                             <div class="panel-body ">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label>@lang('site_lables.Allow_share_of_post')</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+
+                                          <select name="allow_change" id="allow_change" class="form-control">
+<option value="" selected disabled>Select</option>
+                                            <option value="All" >All</option>
+
+                                          </select>
+
+                                    </div>
+                                </div>
 
                                 <div class="table-responsive" id="show_master">
                                     <table class="table-striped" id="laravel_crud" style="width:100%">

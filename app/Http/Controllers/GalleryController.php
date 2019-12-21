@@ -135,6 +135,17 @@ class GalleryController extends Controller
         return Response::json($data);
     }
 
+    public function getallgallary_all_data()
+    {
+        $data = DB::table('gallary_master')
+            ->select('gallary_master.*')
+            ->orderBy('gallary_id', 'DESC')
+
+            ->get();
+
+        return Response::json($data);
+    }
+
     public function getsingleallgallary($id)
     {
         $data = DB::table('gallary_master')

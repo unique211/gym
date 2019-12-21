@@ -31,7 +31,10 @@ Route::post('login_check', 'LoginController@check_login');
 
 
 Route::resource('usermanage', 'Usermanagecontroller');
+
+
 Route::resource('dashboard', 'Dashboardcontroller');
+Route::get('upcoming_booking_details', 'Dashboardcontroller@upcoming_booking_details');
 
 Route::resource('language', 'LanguagesController');
 
@@ -121,6 +124,7 @@ Route::get('deletedeals/{id}', 'DealsController@deletedeals');
 Route::resource('gallery', 'GalleryController');
 Route::match(['get', 'post'], 'galleryuploadimg', 'GalleryController@galleryuploadimg');
 Route::get('getallgallary', 'GalleryController@getallgallary');
+Route::get('getallgallary_all_data', 'GalleryController@getallgallary_all_data');
 Route::get('changepostshare/{id}/{status}', 'GalleryController@changepostshare');
 Route::get('deletegallary/{id}', 'GalleryController@deletegallary');
 
@@ -176,6 +180,7 @@ Route::post('getpackagepoint', 'MemberController@getpackagepoint');
 Route::get('getallmember', 'MemberController@getallmember');
 Route::post('deletemembers', 'MemberController@deletemembers');
 Route::post('getgroupwiseinfo', 'MemberController@getgroupwiseinfo');
+Route::post('getpointusage', 'MemberController@getpointusage');
 Route::get('deletememberinfo/{id}', 'MemberController@deletememberinfo');
 Route::get('checkuseridexist/{userid}', 'MemberController@checkuseridexist');
 Route::get('checkuseridexist/{userid}/{id}', 'MemberController@checkedituseridexist');

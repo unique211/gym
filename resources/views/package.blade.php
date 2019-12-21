@@ -74,7 +74,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <input type="hidden" id="statusinfo" name="statusinfo" value="">
-                                                <input type="checkbox"  id="status" checked data-toggle="toggle"      data-on="Active" data-off="Inactive"  data-onstyle="success" data-offstyle="danger"  required>
+                                                <input type="checkbox" name="status" id="status" checked data-toggle="toggle"    data-on="Active" data-off="Inactive"  data-onstyle="success" data-offstyle="danger"  >
                                                 {{-- <input type="checkbox" id="status" name="status" value=""> --}}
                                             </div>
                                         </div>
