@@ -55,9 +55,9 @@
                                                         <th>
                                                             @lang('site_lables.Instructor_Name')
                                                         </th>
-                                                        <th>
+                                                        {{-- <th>
                                                            @lang('site_lables.Attendence')
-                                                        </th>
+                                                        </th> --}}
                                                     </tr>
                                                 </thead>
                                                 <tbody id="classlisttbody">
@@ -81,9 +81,12 @@
                                             </table>
                                         </div>
 
-                                        <div class="row">
+                                            <div class="row">
+                                                <h6 style="text-align:center;"><b>@lang('site_lables.Students_List')</b></h6>
+                                            </div>
+                                        <div class="row" id="studebt_list">
 
-                                            <table id="student_table" class="table table-striped">
+                                            {{-- <table id="student_table" class="table table-striped">
                                                 <thead>
                                                     <tr>
 
@@ -94,9 +97,9 @@
                                                         <th></th>
 
                                                     </tr>
-                                                </thead>
+                                                </thead> --}}
 
-                                                <tbody>
+                                                {{-- <tbody id="student_table_tbody">
                                                     <tr>
                                                         <td>
                                                             <input type="checkbox" name="member1" value="0">@lang('site_lables.Member_Name')
@@ -148,14 +151,15 @@
                                                             <input type="checkbox" name="member1" value="0"> @lang('site_lables.Member_Name')
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            </table>
+                                                </tbody>--}}
+                                            {{-- </table> --}}
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="col-lg-10"></div>
                                             <div class="col-lg-2 " style="text-align: right">
                                                 <input type="hidden" id="save_update" value="">
+                                                <input type="hidden" id="classsecid" value="">
 
                                                 <button type="submit"
                                                     class="btn btn-sm btn-success btn-sm ">@lang('site_lables.Save')</button>
@@ -271,6 +275,8 @@
 
 });
 var getdata="{{ url('getbetweenclasssechedule') }}";
+var getsechedulemember="{{ url('getsechedulemember') }}";
+var saveattandance="{{ route('member_attendence_taking.store') }}";
 
 </script>
 <script>
