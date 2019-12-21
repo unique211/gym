@@ -118,15 +118,18 @@ $(document).ready(function() {
     datashow();
     //for desplay in table with data toggel Buttton------Strat
     function datashow() {
-        if ($.fn.DataTable.isDataTable('#laravel_crud')) {
-            $('#laravel_crud').DataTable().destroy();
-        }
+        // if ($.fn.DataTable.isDataTable('#laravel_crud')) {
+
+        // }
+
         $('#laravel_crud tbody').empty();
 
         $.get('getscedulaclass', function(data) {
 
             //  var data = eval(data);
-
+            var table = $('#laravel_crud').DataTable();
+            table.destroy();
+            // $('#laravel_crud').DataTable().destroy();
             var html = '';
 
             for (var i = 0; i < data.length; i++) {
@@ -183,6 +186,7 @@ $(document).ready(function() {
 
             $('#table_tbody').html(html);
             $('#laravel_crud').DataTable({
+
                 "fnDrawCallback": function() {
                     jQuery('#laravel_crud .btnstatus').bootstrapToggle();
                 }

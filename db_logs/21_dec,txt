@@ -9,3 +9,7 @@ CREATE TABLE `notification_master` (
  `updated_at` timestamp NULL DEFAULT NULL,
  PRIMARY KEY (`id`)
 )
+
+
+
+ALTER TABLE `booking_table` ADD `bookingstatus` INT(1) NOT NULL COMMENT '1-attended 0- not attendaed' AFTER `rating_points`;

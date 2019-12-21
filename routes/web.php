@@ -183,6 +183,7 @@ Route::match(['get', 'post'], 'member_img', 'MemberController@uploadimg');
 
 //for member attadance
 Route::post('getbetweenclasssechedule', 'MemberAttendenceTakingController@getbetweenclasssechedule');
-
+Route::post('getsechedulemember', 'MemberAttendenceTakingController@getsechedulemember');
+Route::get('getallattebdance', 'MemberController@getallattebdance');
 
 
