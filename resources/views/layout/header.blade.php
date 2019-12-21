@@ -28,7 +28,8 @@
 
 <div id="top-nav" class="fixed skin-6">
     <a href="#" class="brand">
-        <span>Gym</span>
+        {{--  <span>Gym</span>  --}}
+        <img src="<?php echo url('/'); ?>/resources/sass/img/MyCycle.png" style="height:35px;width:120px" >
         {{--  <span class="text-toggle">Classes</span>  --}}
     </a><!-- /brand -->
     <button type="button" class="navbar-toggle pull-left" id="sidebarToggle">

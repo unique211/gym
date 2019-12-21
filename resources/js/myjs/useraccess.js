@@ -371,7 +371,10 @@ $(document).ready(function() {
             $('#user_type').html(html);
         });
 
-
+        if ($.fn.DataTable.isDataTable('#laravel_crud')) {
+            $('#laravel_crud').DataTable().destroy();
+        }
+        $('#laravel_crud tbody').empty();
 
 
         $.get('getall_useraccess', function(data) {

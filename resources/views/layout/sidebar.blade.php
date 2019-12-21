@@ -200,7 +200,7 @@
                         <li><a href="{{ url('site_setting') }}"><span class="submenu-label"> <i class="fa fa-plus fa-lg"></i> @lang('site_lables.Site_Setting')</span></a></li>
                         <li><a href="{{ url('mobile_notification') }}"><span class="submenu-label"> <i class="fa fa-plus fa-lg"></i> @lang('site_lables.Mobile_Notification')</span></a></li>
 
-                        <li><a href="{{ url('profile_manager') }}"><span class="submenu-label"> @lang('site_lables.Profile_Manager')</span></a></li>
+                        <li><a href="{{ url('profile_manager') }}"><span class="submenu-label"><i class="fa fa-plus fa-lg"></i> @lang('site_lables.Profile_Manager')</span></a></li>
                     </ul>
                 </li>
 

@@ -202,6 +202,11 @@ $(document).ready(function() {
     datashow();
 
     function datashow() {
+        if ($.fn.DataTable.isDataTable('#laravel_crud')) {
+            $('#laravel_crud').DataTable().destroy();
+        }
+        $('#laravel_crud tbody').empty();
+
         $.get('get_all_profile', function(data) {
 
             var data = eval(data);
