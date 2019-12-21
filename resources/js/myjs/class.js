@@ -70,6 +70,11 @@ $(document).ready(function() {
     datashow();
     //for desplay in table with data toggel Buttton------Strat
     function datashow() {
+        if ($.fn.DataTable.isDataTable('#laravel_crud')) {
+            $('#laravel_crud').DataTable().destroy();
+        }
+        $('#laravel_crud tbody').empty();
+
         $.get('getallclass', function(data) {
 
             var data = eval(data);

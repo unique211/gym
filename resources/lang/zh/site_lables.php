@@ -248,5 +248,9 @@ return [
     'ON'=>'上',
     'OFF'=>'关',
 
-
+    'Notification_Text'=>'通知文字',
+    'Select_All'=>'全选',
+    'Send'=>'发送',
+    'Notification'=>'通知',
+    'Total_Members'=>'成员总数',
 ];

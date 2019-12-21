@@ -1,0 +1,11 @@
+CREATE TABLE `notification_master` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `notification_text` varchar(1000) DEFAULT NULL,
+ `member_list` varchar(250) DEFAULT NULL,
+ `count` int(11) DEFAULT NULL,
+ `user_id` int(11) DEFAULT NULL,
+ `status` tinyint(1) DEFAULT '1',
+ `created_at` datetime DEFAULT NULL,
+ `updated_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+)

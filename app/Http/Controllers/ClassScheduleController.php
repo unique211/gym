@@ -610,7 +610,7 @@ class ClassScheduleController extends Controller
             $result2 = array();
 
             $data2 = DB::table('class_sechedule_master')
-                ->select('class_sechedule_master.*', 'class_master.class_description', 'class_master.class_name as classname', 'instuctor_master.instructor_name', 'instuctor_master.instructor_img')
+                ->select('class_sechedule_master.*', 'class_master.class_description', 'class_master.class_name as classname', 'instuctor_master.instructor_name', 'instuctor_master.instructor_img', 'booking_table.booking_id')
                 ->join('class_master', 'class_master.class_id', '=', 'class_sechedule_master.classsechedule_name')
                 ->join('booking_table', 'booking_table.class_schedule_id', '=', 'class_sechedule_master.classsechedule_id')
                 ->join('instuctor_master', 'instuctor_master.instructorid', '=', 'class_sechedule_master.instructor')
@@ -645,6 +645,7 @@ class ClassScheduleController extends Controller
 
                 $result2[] = array(
                     'id' => $val2->classsechedule_id,
+                    'booking_id' => $val2->booking_id,
                     'class_schedule' => $val2->class_schedule,
                     'class_name' => $val2->classname,
                     'instructor_name' => $val2->instructor_name,

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 16, 2019 at 02:57 PM
+-- Generation Time: Dec 21, 2019 at 09:03 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -144,17 +144,15 @@ INSERT INTO `class_sechedule_master` (`classsechedule_id`, `classsechedule_name`
 (3, 2, '2019-12-02 09:48:17', 1, 12, '12', 5, '2019-12-03 09:48:24', '2019-10-29 06:13:46', 0, '2019-12-01 22:48:32', '2019-12-01 22:48:32', 1, NULL),
 (4, 2, '2019-12-20 06:15:06', 3, 10, '112', 5, '2019-12-11 07:12:02', '2019-05-10 08:12:41', 0, '2019-12-11 06:48:43', '2019-12-02 22:31:30', 1, NULL),
 (5, 2, '2019-10-19 06:15:06', 3, 10, '112', 5, '2019-12-11 07:12:02', '2019-05-10 08:12:41', 0, '2019-12-11 06:53:39', '2019-12-02 22:33:05', 1, NULL),
-(6, 7, '2019-12-26 03:26:02', 1, -5, '50', 4, '2019-12-03 03:26:02', '2019-12-03 03:26:02', 1, '2019-12-11 06:47:50', '2019-12-03 04:29:44', 1, NULL),
+(6, 7, '2019-12-26 03:26:02', 1, 2, '50', 5, '2019-12-24 03:26:02', '2019-12-30 03:26:02', 1, '2019-12-20 06:10:52', '2019-12-20 00:40:52', 1, '1970-01-01 00:00:00'),
 (7, 4, '2019-12-24 01:12:47', 1, 1, '10', 5, '2019-12-04 01:16:47', '2019-12-04 01:16:47', 1, '2019-12-11 06:53:15', '2019-12-04 02:06:28', 1, NULL),
-(8, 2, '2019-12-19 01:21:00', 1, 120, '10', 5, '2019-12-05 01:22:00', '2019-12-05 01:22:00', 1, '2019-12-11 06:53:31', '2019-12-04 02:17:25', 1, NULL),
+(8, 2, '2019-12-17 01:21:00', 1, 120, '10', 5, '2019-12-05 01:22:00', '2019-12-05 01:22:00', 1, '2019-12-17 12:10:44', '2019-12-04 02:17:25', 1, NULL),
 (9, 2, '2019-12-04 03:06:32', 1, 10, '10', 7, '2019-12-04 03:08:32', '2019-12-04 03:10:32', 1, '2019-12-04 04:02:04', '2019-12-04 04:02:04', 1, NULL),
 (10, 4, '2019-12-18 15:29:29', 1, 10, '10', 5, '2019-12-04 16:27:42', '2019-12-04 17:27:50', 1, '2019-12-11 06:53:20', '2019-12-04 04:27:57', 1, NULL),
 (11, 4, '2019-12-11 17:54:39', 2, 10, '120', 5, '2019-12-05 18:02:39', '2019-12-05 18:49:39', 1, '2019-12-11 06:54:46', '2019-12-04 06:50:12', 1, '0000-00-00 00:00:00'),
-(12, 2, '2019-12-19 17:57:57', 1, 30, '20', 7, '2019-12-05 18:52:57', '2019-12-05 18:52:57', 1, '2019-12-11 06:53:27', '2019-12-04 06:53:24', 1, '2019-12-04 18:17:57'),
-(13, 4, '2019-12-19 18:04:56', 1, 5, '100', 5, '2019-12-05 18:59:56', '2019-12-05 19:59:56', 1, '2019-12-11 06:49:38', '2019-12-04 07:00:37', 1, '2019-12-05 19:44:56'),
 (14, 2, '2019-12-11 09:23:58', 1, 10, '1', 7, '2019-12-10 09:18:58', '2019-12-08 11:12:58', 1, '2019-12-11 06:54:58', '2019-12-06 22:20:17', 1, '2019-12-08 09:24:58'),
-(15, 4, '2019-12-26 16:13:14', 3, 10, '50', 7, '2019-12-08 16:08:14', '2019-12-08 16:08:14', 1, '2019-12-11 06:48:15', '2019-12-07 05:08:35', 1, '2019-12-07 17:03:14'),
-(16, 4, '2019-12-26 16:26:35', 7, 5, '10', 7, '2019-12-07 17:08:35', '2019-12-07 17:09:35', 1, '2019-12-11 06:47:58', '2019-12-07 05:09:15', 1, '2019-12-07 16:36:35');
+(15, 4, '2019-12-26 16:13:14', 1, 10, '50', 7, '2019-12-31 16:08:14', '2019-12-31 16:08:14', 1, '2019-12-20 06:08:48', '2019-12-20 00:38:48', 1, '1970-01-01 00:00:00'),
+(16, 4, '2019-12-26 16:26:35', 1, 5, '10', 7, '2019-12-07 17:08:35', '2019-12-07 17:09:35', 1, '2019-12-20 06:05:06', '2019-12-20 00:35:06', 1, '1970-01-01 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -216,7 +214,7 @@ CREATE TABLE `gallary_master` (
 --
 
 INSERT INTO `gallary_master` (`gallary_id`, `uploadimg`, `description`, `is_video`, `nooflike`, `allowshare`, `status`, `created_at`, `updated_at`, `user_id`) VALUES
-(2, '5de6380075ce7_1575368704.png', NULL, 0, 5, 0, 1, '2019-12-03 11:07:05', '2019-12-03 04:55:07', 1),
+(2, '5de6380075ce7_1575368704.png', NULL, 0, 6, 0, 1, '2019-12-17 11:21:03', '2019-12-03 04:55:07', 1),
 (3, '5de64391380a1_1575371665.png', NULL, 0, 5, 0, 1, '2019-12-03 11:16:43', '2019-12-03 05:46:43', 1),
 (4, '5de637e8b959a_1575368680.png', NULL, 0, 5, 0, 1, '2019-12-03 11:15:18', '2019-12-03 05:44:34', 1),
 (6, '5de645d96a33a_1575372249.png', NULL, 0, 21, 0, 1, '2019-12-03 05:54:12', '2019-12-03 05:54:12', 1),
@@ -337,7 +335,7 @@ CREATE TABLE `link_relation_ship` (
 --
 
 INSERT INTO `link_relation_ship` (`linkrelid`, `member_id`, `name`, `userid`, `relation`, `password`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 'rakesh dfgdg', '9874656321', 'Main Member', '1234567', 1, '2019-12-10 09:02:40', '0000-00-00 00:00:00'),
+(1, 2, 'rakesh dfgdg', '9874656321', 'Main Member', '', 1, '2019-12-19 07:17:11', '0000-00-00 00:00:00'),
 (2, 2, 'rakesh dfgdg', '0', 'asds', '12', 1, '2019-12-07 06:31:33', '0000-00-00 00:00:00'),
 (10, 9, 'asds', '9632587410', 'Main Member', 'null', 1, '2019-12-12 12:35:58', '0000-00-00 00:00:00'),
 (11, 9, 'qwqw', '7574865414', 'friend', 'c6350f241e315a51', 1, '2019-12-12 12:35:58', '0000-00-00 00:00:00');
@@ -729,7 +727,17 @@ INSERT INTO `log_master` (`log_id`, `dateandtime`, `module_name`, `operation_nam
 (336, '2019-12-16 10:46:51', 'User Access  Module', 'Edit', 1, 'useraccess_master', 1, '2019-12-16 05:16:51', '2019-12-16 05:16:51'),
 (337, '2019-12-16 10:51:08', 'Instructor Module', 'Insert', 1, 'profile_master', 1, '2019-12-16 05:21:08', '2019-12-16 05:21:08'),
 (338, '2019-12-16 11:07:59', 'User Access  Module', 'Edit', 1, 'useraccess_master', 1, '2019-12-16 05:37:59', '2019-12-16 05:37:59'),
-(339, '2019-12-16 11:24:11', 'Instructor Module', 'Insert', 1, 'profile_master', 1, '2019-12-16 05:54:11', '2019-12-16 05:54:11');
+(339, '2019-12-16 11:24:11', 'Instructor Module', 'Insert', 1, 'profile_master', 1, '2019-12-16 05:54:11', '2019-12-16 05:54:11'),
+(340, '2019-12-20 06:05:06', 'Class Schedule Module', 'Edit', 16, 'class_sechedule_master', 1, '2019-12-20 00:35:06', '2019-12-20 00:35:06'),
+(341, '2019-12-20 06:08:48', 'Class Schedule Module', 'Edit', 15, 'class_sechedule_master', 1, '2019-12-20 00:38:48', '2019-12-20 00:38:48'),
+(342, '2019-12-20 06:10:52', 'Class Schedule Module', 'Edit', 6, 'class_sechedule_master', 1, '2019-12-20 00:40:52', '2019-12-20 00:40:52'),
+(343, '2019-12-21 04:15:56', 'Package Module', 'Edit', 24, 'package_master', 1, '2019-12-20 22:45:56', '2019-12-20 22:45:56'),
+(344, '2019-12-21 07:13:20', 'Notification Master Module', 'Insert', 1, 'notification_master', 1, '2019-12-21 07:13:20', '2019-12-21 07:13:20'),
+(345, '2019-12-21 07:13:26', 'Notification Master Module', 'Insert', 2, 'notification_master', 1, '2019-12-21 07:13:26', '2019-12-21 07:13:26'),
+(346, '2019-12-21 07:14:17', 'Notification Master Module', 'Insert', 3, 'notification_master', 1, '2019-12-21 07:14:17', '2019-12-21 07:14:17'),
+(347, '2019-12-21 07:15:45', 'Notification Master Module', 'Insert', 1, 'notification_master', 1, '2019-12-21 07:15:45', '2019-12-21 07:15:45'),
+(348, '2019-12-21 07:16:02', 'Notification Master Module', 'Insert', 2, 'notification_master', 1, '2019-12-21 07:16:02', '2019-12-21 07:16:02'),
+(349, '2019-12-21 07:34:38', 'Notification Master Module', 'Insert', 3, 'notification_master', 1, '2019-12-21 07:34:38', '2019-12-21 07:34:38');
 
 -- --------------------------------------------------------
 
@@ -785,7 +793,7 @@ CREATE TABLE `member_master` (
 
 INSERT INTO `member_master` (`member_id`, `membername`, `icno`, `dob`, `address`, `email`, `image_url`, `currentpackage`, `membertype`, `dateofexpire`, `balancepoint`, `status`, `created_at`, `updated_at`, `user_id`) VALUES
 (2, 'rakesh dfgdg', '123456', '2019-12-17', 'fdgfd', 'abcd@gmail.com', '', 3, 'Group', '2019-12-07', '211212.00', 1, '2019-12-07 01:01:33', '2019-12-07 01:01:33', 1),
-(9, 'asds', '1234567890', '2019-12-07', 'fdgfd', 'abcd@gmail.com', '5df2342541407_1576154149.jpg', 3, 'Group', '2019-12-05', '211212.00', 1, '2019-12-12 12:35:58', '2019-12-12 07:05:58', 1);
+(9, 'qwqw', '1234567890', '2019-12-17', 'fdgfd', 'abcd@gmail.com', '5df2342541407_1576154149.jpg', 3, 'Group', '2019-12-05', '211212.00', 1, '2019-12-17 10:45:39', '2019-12-12 07:05:58', 1);
 
 -- --------------------------------------------------------
 
@@ -819,6 +827,32 @@ INSERT INTO `menu_master` (`menu_id`, `menuname`, `status`, `created_at`, `updat
 (11, 'Member Attendence ', 1, '2019-12-05 04:26:44', '0000-00-00 00:00:00'),
 (12, 'Settings', 1, '2019-12-05 04:27:18', '0000-00-00 00:00:00'),
 (13, 'Reports', 1, '2019-12-05 04:27:18', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification_master`
+--
+
+CREATE TABLE `notification_master` (
+  `id` int(11) NOT NULL,
+  `notification_text` varchar(1000) DEFAULT NULL,
+  `member_list` varchar(250) DEFAULT NULL,
+  `count` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `notification_master`
+--
+
+INSERT INTO `notification_master` (`id`, `notification_text`, `member_list`, `count`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'hello', '1', 1, 1, 1, '2019-12-21 12:45:45', '2019-12-21 07:15:45'),
+(2, 'hello', '1,10,11', 3, 1, 1, '2019-12-21 12:46:02', '2019-12-21 07:16:02'),
+(3, 'this is Testing, this is Testing, this is Testing, this is Testing, this is Testing, this is Testing, this is Testing, this is Testing,this is Testing,this is Testing,this is Testing,this is Testing, this is Testing, this is Testing,', '1,2,10,11', 4, 1, 1, '2019-12-21 13:04:38', '2019-12-21 07:34:38');
 
 -- --------------------------------------------------------
 
@@ -859,7 +893,7 @@ INSERT INTO `package_master` (`packege_id`, `package_name`, `package_point`, `pa
 (21, 'sagar789', '123212', '1502.00', 1, 1, '2019-11-30 01:08:39', '2019-11-30 01:08:39'),
 (22, 'package1234', '21', '123.00', 1, 1, '2019-12-04 04:33:09', '2019-12-03 23:03:09'),
 (23, 'package123', '21', '123.00', 1, 1, '2019-11-30 01:30:54', '2019-11-30 01:30:54'),
-(24, 'package122', '12', '12.00', 1, 1, '2019-11-30 01:51:55', '2019-11-30 01:51:55'),
+(24, 'package122', '13', '12.00', 1, 1, '2019-12-21 04:15:56', '2019-12-20 22:45:56'),
 (25, 'as', '0', '1.00', 1, 1, '2019-12-04 04:02:53', '2019-12-03 22:32:53');
 
 -- --------------------------------------------------------
@@ -1245,6 +1279,12 @@ ALTER TABLE `menu_master`
   ADD PRIMARY KEY (`menu_id`);
 
 --
+-- Indexes for table `notification_master`
+--
+ALTER TABLE `notification_master`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `package_master`
 --
 ALTER TABLE `package_master`
@@ -1366,7 +1406,7 @@ ALTER TABLE `login_master`
 -- AUTO_INCREMENT for table `log_master`
 --
 ALTER TABLE `log_master`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=340;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=350;
 
 --
 -- AUTO_INCREMENT for table `membertype_master`
@@ -1385,6 +1425,12 @@ ALTER TABLE `member_master`
 --
 ALTER TABLE `menu_master`
   MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `notification_master`
+--
+ALTER TABLE `notification_master`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `package_master`

@@ -249,4 +249,11 @@ return [
     'OFF'=>'Off',
 
 
+    'Notification_Text'=>'Notification Text',
+    'Select_All'=>'Select All',
+    'Send'=>'Send',
+    'Notification'=>'Notification',
+    'Total_Members'=>'Total Members',
+
+
 ];

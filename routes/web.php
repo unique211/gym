@@ -55,6 +55,11 @@ Route::resource('class_booking', 'ClassBookingController');
 Route::resource('attendence_rating', 'AttendenceRatingController');
 
 Route::resource('mobile_notification', 'MobileNotificationController');
+Route::get('get_all_members', 'MobileNotificationController@get_all_members');
+Route::get('get_all_notifications', 'MobileNotificationController@get_all_notifications');
+
+
+
 Route::resource('member_attendence_taking', 'MemberAttendenceTakingController');
 Route::resource('profile_manager', 'ProfileManagerController');
 
