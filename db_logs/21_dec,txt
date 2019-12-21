@@ -9,3 +9,5 @@ CREATE TABLE `notification_master` (
  `updated_at` timestamp NULL DEFAULT NULL,
  PRIMARY KEY (`id`)
 )
+
+ALTER TABLE link_relation_ship ADD dob DATE NULL AFTER relation, ADD image VARCHAR(250) NULL AFTER dob, ADD address VARCHAR(250) NULL AFTER image, ADD email_id VARCHAR(50) NULL AFTER address;
