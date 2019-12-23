@@ -55,7 +55,9 @@ $(document).ready(function() {
                 }
             });
         } else {
-            swal('End Date Greater  Strat Date And Strat Date  Greater Current Time')
+
+            swal('Start Date Time is always greater then Current Time & End Date Time is always greater then Start Date Time!!!');
+
         }
 
 
@@ -299,7 +301,7 @@ $(document).ready(function() {
         var checktime1 = checktime(class_schedule);
         if (checktime1 == 0) {
             swal({
-                title: "Start Date Greater Current Time",
+                title: "Start Date Time is always greater then Current Time !!!",
 
             });
         }
@@ -313,7 +315,7 @@ $(document).ready(function() {
         var checktime1 = mincanclatontime(stratdate, enddate);
         if (checktime1 == 0) {
             swal({
-                title: "End Date Greater Start Date",
+                title: "End Date Time is always greater then Start Date Time !!!",
 
             });
         }

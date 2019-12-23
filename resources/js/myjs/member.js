@@ -54,6 +54,27 @@ $(document).ready(function() {
         $("#address").val('rajkot');
 
     });
+    $(document).on('blur', '#user_id', function() {
+        var user_id = $("#user_id").val();
+        $("#submit_btn").attr("disabled", false);
+        if (user_id != "") {
+            $.get('checkuserid_member/' + user_id, function(data) {
+
+                if (data == 0 || data == "0") {
+
+                    $("#user_id").val(user_id);
+                    $("#submit_btn").attr("disabled", false);
+
+                } else {
+                    swal("User id Already Exists Please Enter Another User id");
+                    $("#user_id").val('');
+                    $("#submit_btn").attr("disabled", true);
+                }
+            });
+
+        }
+
+    });
     $(document).on('click', '.closehideshow', function() {
         $(".deletehideshow").hide();
         $(".viewhideshow").hide();
@@ -63,6 +84,7 @@ $(document).ready(function() {
         $("#ic_number").val('');
         $("#address").val('');
         $("#if_edit").hide();
+        form_clear();
     });
 
     $(document).on('change', '#member_type', function() {
@@ -452,22 +474,18 @@ $(document).ready(function() {
 
 
 
-        $.ajax({
-            data: {
-                id: id,
 
-            },
-            url: getpointusage,
-            type: "POST",
-            dataType: 'json',
-            // async: false,
+
+        $.ajax({
+            type: "GET",
+            url: getpointusage + '/' + id,
             success: function(data) {
                 var sr = 0;
                 var html = '';
                 for (var i = 0; i < data.length; i++) {
                     html += '<tr>' +
-                        '<td id="userid_' + data[i].id + '">' + data[i].user_id + '</td>' +
-                        '<td id="membername_' + data[i].id + '">' + data[i].date_time + '</td>' +
+                        '<td id="userid_' + data[i].id + '">' + data[i].date_time + '</td>' +
+                        '<td id="membername_' + data[i].id + '">' + data[i].user_id + '</td>' +
                         '<td id="icno_' + data[i].id + '">' + data[i].class_name + '</td>' +
                         '<td id="packagename_' + data[i].id + '">' + data[i].point_use + '</td>' +
                         '<td id="packagename_' + data[i].id + '">' + data[i].Instructor + '</td>' +
@@ -477,7 +495,6 @@ $(document).ready(function() {
                 $('#history_tbody2').html(html);
 
             }
-
         });
 
 
@@ -546,6 +563,8 @@ $(document).ready(function() {
         $('#uploadimg_hidden').val(image_url_);
         $('#msg').html(image_url_);
 
+
+
         $.ajax({
             data: {
                 id: id,
@@ -581,22 +600,19 @@ $(document).ready(function() {
         }
         $('#history tbody').empty();
 
-        $.ajax({
-            data: {
-                id: id,
+        // alert(getpointusage);
 
-            },
-            url: getpointusage,
-            type: "POST",
-            dataType: 'json',
-            // async: false,
+
+        $.ajax({
+            type: "GET",
+            url: getpointusage + '/' + id,
             success: function(data) {
                 var sr = 0;
                 var html = '';
                 for (var i = 0; i < data.length; i++) {
                     html += '<tr>' +
-                        '<td id="userid_' + data[i].id + '">' + data[i].user_id + '</td>' +
-                        '<td id="membername_' + data[i].id + '">' + data[i].date_time + '</td>' +
+                        '<td id="userid_' + data[i].id + '">' + data[i].date_time + '</td>' +
+                        '<td id="membername_' + data[i].id + '">' + data[i].user_id + '</td>' +
                         '<td id="icno_' + data[i].id + '">' + data[i].class_name + '</td>' +
                         '<td id="packagename_' + data[i].id + '">' + data[i].point_use + '</td>' +
                         '<td id="packagename_' + data[i].id + '">' + data[i].Instructor + '</td>' +
@@ -608,8 +624,9 @@ $(document).ready(function() {
 
                 });
             }
-
         });
+
+
 
 
 
@@ -619,6 +636,27 @@ $(document).ready(function() {
 
     //form clear
     function form_clear() {
+
+        $('#user_id').val('');
+        $('#password').val('');
+        $('#name').val('');
+        $('#save_update').val('');
+
+        $('#dob').val('');
+        $('#ic_number').val('');
+
+
+        $('#address').val('');
+        $('#email').val('');
+        $('#package').val('');
+        $('#doe').val('');
+
+        $('#bal_point').val('');
+
+        $('#member_type').val('');
+
+
+
         $('#user_id').val('');
         $('#password').val('');
         $('#name').val('');
@@ -637,6 +675,9 @@ $(document).ready(function() {
         $('#upload').val('');
         $('#uploadimg_hidden').val('');
         $('#msg').html('');
+        $("#submit_btn").attr("disabled", false);
+        $('#history_tbody').html('');
+        $('#history_tbody2').html('');
     }
 
     //delete of member
@@ -704,10 +745,11 @@ $(document).ready(function() {
 
                 if (data == 0) {
                     $("#btnsave").attr("disabled", false);
-                    $('#cpass_error').show();
+
                 } else {
                     $("#btnsave").attr("disabled", true);
-                    $('#cpass_error').show();
+                    swal("User id Already Exists Please Enter Another User id");
+
                 }
 
 

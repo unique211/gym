@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use Redirect, Response;
-
+use Session;
 class LoginController extends Controller
 {
     public function index(Request $request)
@@ -87,7 +87,7 @@ class LoginController extends Controller
 
                 $request->session()->put('userid',  $user_id);
                 $request->session()->put('role',  $role);
-                $request->session()->put('id',  $get_id);
+                $request->session()->put('login_id',  $get_id);
                 $request->session()->put('user_name',  $user_name);
             }
         }

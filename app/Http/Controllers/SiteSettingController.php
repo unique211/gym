@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Redirect, Response;
 use App\Logmodel;
 use Validator;
-
+use Session;
 class SiteSettingController extends Controller
 {
     public function index(Request $request)
@@ -25,7 +25,7 @@ class SiteSettingController extends Controller
     public function store(Request $request)//For insert or Update Record Of Package Master --
     {
 
-
+        $user_id = Session::get('login_id');
         $packege_id = $request->save_update;
 
         $input = $request->all();
@@ -76,7 +76,7 @@ class SiteSettingController extends Controller
                                     'instagram'=>$request->instagram,
                                     'firebase'=>$request->firebase,
                                     'map'=>$request->map,
-                                    'user_id'=>1,
+                                    'user_id'=>$user_id,
 
 
                                 ]
@@ -90,7 +90,7 @@ class SiteSettingController extends Controller
                                 $Logmodel->operation_name ='Edit';
                                 $Logmodel->reference_id = $packege_id;
                                 $Logmodel->table_name = 'sitesetting_master';
-                               // $Logmodel->table_name = 'package_master';
+                                $Logmodel->user_id = $user_id;
                                 $Logmodel->save();
                                 return Response::json($package);
                     }
@@ -123,7 +123,7 @@ class SiteSettingController extends Controller
                                 'instagram'=>$request->instagram,
                                 'firebase'=>$request->firebase,
                                 'map'=>$request->map,
-                                'user_id'=>1,
+                                'user_id'=>$user_id,
 
 
                             ]
@@ -137,7 +137,7 @@ class SiteSettingController extends Controller
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $package->sitesetting_id;
                             $Logmodel->table_name = 'sitesetting_master';
-                           // $Logmodel->table_name = 'package_master';
+                            $Logmodel->user_id = $user_id;
                             $Logmodel->save();
                             return Response::json($package);
                 }
@@ -153,12 +153,12 @@ class SiteSettingController extends Controller
     }
     public function deletesitesetting($id){
  $Logmodel = new Logmodel;
-
+ $user_id = Session::get('login_id');
     $Logmodel->module_name ='Site Setting Module' ;
     $Logmodel->operation_name ='Delete';
     $Logmodel->reference_id = $id;
     $Logmodel->table_name = 'sitesetting_master';
-    $Logmodel->user_id = 1;
+    $Logmodel->user_id = $user_id;
     $Logmodel->save();
     $customer = Sitesettingmodel::where('sitesetting_id', $id)->delete();
     return response()->json( $customer);

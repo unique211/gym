@@ -68,7 +68,7 @@ $(document).ready(function() {
                     }
                 });
             } else {
-                swal('Min Cancelation And  Min Booking Greater Class Schedule And Class Schedule Greater Current Time')
+                swal('Min Cancelation Time,Min Booking Time And Class Schedule Time is Always Greater then Current Time !!!');
             }
         } else {
             swal('Class Duration (In Minutes) And Max Vacancy Greater Zero');
@@ -118,17 +118,17 @@ $(document).ready(function() {
     datashow();
     //for desplay in table with data toggel Buttton------Strat
     function datashow() {
-        // if ($.fn.DataTable.isDataTable('#laravel_crud')) {
 
-        // }
-
+        if ($.fn.DataTable.isDataTable('#laravel_crud')) {
+            $('#laravel_crud').DataTable().destroy();
+        }
         $('#laravel_crud tbody').empty();
+
 
         $.get('getscedulaclass', function(data) {
 
             //  var data = eval(data);
-            var table = $('#laravel_crud').DataTable();
-            table.destroy();
+
             // $('#laravel_crud').DataTable().destroy();
             var html = '';
 
@@ -186,12 +186,7 @@ $(document).ready(function() {
 
             $('#table_tbody').html(html);
 
-            $('#laravel_crud').DataTable({
 
-                "fnDrawCallback": function() {
-                    jQuery('#laravel_crud .btnstatus').bootstrapToggle();
-                }
-            });
 
             $('.btnstatus').bootstrapToggle({
                 on: 'Active',
@@ -520,7 +515,7 @@ $(document).ready(function() {
         var checktime1 = checktime(class_schedule);
         if (checktime1 == 0) {
             swal({
-                title: "Class Schedule Greater Current Time",
+                title: "Class Schedule Time is always greater then Current Time !!!",
 
             });
         }
@@ -536,7 +531,7 @@ $(document).ready(function() {
 
         if (mintime == 0) {
             swal({
-                title: "Min Cancelation  Greater Current Time",
+                title: "Min Cancelation Time is always greater then Current Time !!!",
 
             });
         }
@@ -553,7 +548,7 @@ $(document).ready(function() {
 
         if (mintime == 0) {
             swal({
-                title: "Min Booking  Greater Current Time",
+                title: "Min Booking Time is always greater then Current Time !!!",
 
             });
         }

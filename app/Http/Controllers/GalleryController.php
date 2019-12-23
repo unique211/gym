@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Gallarymodel;
-
+use Session;
 use Illuminate\Support\Facades\DB;
 use Redirect, Response;
 use App\Logmodel;
@@ -41,7 +41,7 @@ class GalleryController extends Controller
     public function store(Request $request) //For insert or Update Record Of Room Master --
     {
 
-
+        $user_id = Session::get('login_id');
         $catid = $request->save_update;
 
         $input = $request->all();
@@ -88,7 +88,7 @@ class GalleryController extends Controller
                     'description' => $request->desc,
                     'allowshare' => $request->allowshare,
                     'is_video' => $is_video,
-                    'user_id' => 1,
+                    'user_id' => $user_id,
 
                 ]
 
@@ -104,7 +104,7 @@ class GalleryController extends Controller
                 $Logmodel->operation_name = 'Edit';
                 $Logmodel->reference_id = $catid;
                 $Logmodel->table_name = 'gallary_master';
-                $Logmodel->user_id = 1;
+                $Logmodel->user_id = $user_id;
                 $Logmodel->save();
             } else {
                 $Logmodel = new Logmodel;
@@ -113,7 +113,7 @@ class GalleryController extends Controller
                 $Logmodel->operation_name = 'Insert';
                 $Logmodel->reference_id = $dealdata->gallary_id;
                 $Logmodel->table_name = 'gallary_master';
-                $Logmodel->user_id = 1;
+                $Logmodel->user_id = $user_id;
                 $Logmodel->save();
             }
 
@@ -164,14 +164,14 @@ class GalleryController extends Controller
     }
     public function changepostshare($id, $status)
     {
-
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name = 'Gallary Master Module';
         $Logmodel->operation_name = 'Change Allowshare';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'gallary_master';
-        $Logmodel->user_id = 1;
+        $Logmodel->user_id = $user_id;
         $Logmodel->save();
 
         $customer = DB::update('update gallary_master set allowshare = ? where gallary_id = ?', [$status, $id]);
@@ -179,12 +179,14 @@ class GalleryController extends Controller
     }
     public function deletegallary($id)
     {
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name = 'Gallary Master Module';
         $Logmodel->operation_name = 'Delete';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'gallary_master';
+        $Logmodel->user_id = $user_id;
         // $Logmodel->table_name = 'package_master';
         $Logmodel->save();
         $customer = Gallarymodel::where('gallary_id', $id)->delete();
@@ -196,7 +198,7 @@ class GalleryController extends Controller
     public function update(Request $request, $id)
     {
         $catid = $id;
-
+        $user_id = Session::get('login_id');
         $input = $request->all();
 
 
@@ -243,7 +245,7 @@ class GalleryController extends Controller
                     'description' => $request->desc,
                     'allowshare' => $request->allowshare,
                     'is_video' => $is_video,
-                    'user_id' => 1,
+                    'user_id' => $user_id,
 
                 ]
 
@@ -259,7 +261,7 @@ class GalleryController extends Controller
                 $Logmodel->operation_name = 'Edit';
                 $Logmodel->reference_id = $catid;
                 $Logmodel->table_name = 'gallary_master';
-                $Logmodel->user_id = 1;
+                $Logmodel->user_id = $user_id;
                 $Logmodel->save();
             } else {
                 $Logmodel = new Logmodel;
@@ -268,7 +270,7 @@ class GalleryController extends Controller
                 $Logmodel->operation_name = 'Insert';
                 $Logmodel->reference_id = $dealdata->gallary_id;
                 $Logmodel->table_name = 'gallary_master';
-                $Logmodel->user_id = 1;
+                $Logmodel->user_id = $user_id;
                 $Logmodel->save();
             }
 
@@ -278,12 +280,14 @@ class GalleryController extends Controller
     }
     public function destroy($id)
     {
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name = 'Gallary Master Module';
         $Logmodel->operation_name = 'Delete';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'gallary_master';
+        $Logmodel->user_id = $user_id;
         // $Logmodel->table_name = 'package_master';
         $Logmodel->save();
         $customer = Gallarymodel::where('gallary_id', $id)->delete();
@@ -342,22 +346,83 @@ class GalleryController extends Controller
     {
 
         $post_id = $request->post_id;
+        $link_id = $request->link_id;
+        $data1 = DB::table('gallary_liked_master')
+            ->select('gallary_liked_master.*')
+            ->where('post_id', $post_id)
+            ->where('link_id', $link_id)
+            ->get();
+        $cnt1 = count($data1);
+
+        if ($cnt1 > 0) {
+            return response()->json(['status' => 0, 'message' => 'Already Liked']);
+        } else {
+            $data = DB::table('gallary_master')
+                ->select('gallary_master.*')
+                ->where('gallary_id', $post_id)
+                ->get();
+            $cnt = count($data);
+            if ($cnt > 0) {
+                foreach ($data as $val) {
+                    $total_likes = $val->nooflike;
+
+
+                    $plus = intval($total_likes) + 1;
+
+                    $set = array('nooflike' => $plus);
+
+                    DB::table('gallary_master')
+                        ->where('gallary_id', $post_id)
+                        ->update($set);
+
+                    date_default_timezone_set('Asia/Kolkata');
+                    $date = date("Y-m-d H:i:s");
+
+                    $insert = array(
+                        'link_id' => $link_id,
+                        'post_id' => $post_id,
+                        'add_date' => $date,
+                    );
+                    $inser_data =  DB::table('gallary_liked_master')
+                    ->Insert($insert);
+                }
+                return response()->json(['status' => 1, 'message' => 'Liked']);
+            } else {
+                return response()->json(['status' => -1, 'message' => 'This Post is Not Available']);
+            }
+        }
+
+
+
+
+
+
+
+
+
         $data = DB::table('gallary_master')
             ->select('gallary_master.*')
             ->where('gallary_id', $post_id)
-            ->first();
-        $total_likes = $data->nooflike;
 
-        $plus = intval($total_likes) + 1;
+            ->get();
+        $cnt = count($data);
+        if ($cnt > 0) {
 
-        $set = array('nooflike' => $plus);
-
-        DB::table('gallary_master')
-            ->where('gallary_id', $post_id)
-            ->update($set);
-
+            return response()->json(['status' => 0, 'message' => 'Already Liked']);
+        } else {
+            foreach ($data as $val) {
+                $total_likes = $val->nooflike;
 
 
-        return response()->json(['status' => 1]);
+                $plus = intval($total_likes) + 1;
+
+                $set = array('nooflike' => $plus);
+
+                DB::table('gallary_master')
+                    ->where('gallary_id', $post_id)
+                    ->update($set);
+            }
+            return response()->json(['status' => 1]);
+        }
     }
 }

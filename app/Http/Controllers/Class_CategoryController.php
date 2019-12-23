@@ -7,6 +7,7 @@ use App\Classcategorymodel;
 use Redirect, Response;
 use App\Logmodel;
 use Validator;
+use Session;
 use Illuminate\Support\Facades\DB;
 
 class Class_CategoryController extends Controller
@@ -25,7 +26,7 @@ class Class_CategoryController extends Controller
     public function store(Request $request) //For insert or Update Record Of Package Master --
     {
 
-
+        $user_id = $request->session()->get('login_id');
         $catid = $request->save_update;
 
         $input = $request->all();
@@ -58,7 +59,7 @@ class Class_CategoryController extends Controller
                             'classcategory_name'       =>   $request->classcategory_name,
                             'category_description'        =>   $request->category_description,
                             'status' => $request->statusinfo,
-                            'user_id' => 1,
+                            'user_id' => $user_id,
 
                         ]
 
@@ -74,7 +75,7 @@ class Class_CategoryController extends Controller
                         $Logmodel->operation_name = 'Edit';
                         $Logmodel->reference_id = $catid;
                         $Logmodel->table_name = 'classcategory_master';
-                        $Logmodel->user_id = 1;
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                     } else {
                         $Logmodel = new Logmodel;
@@ -83,7 +84,7 @@ class Class_CategoryController extends Controller
                         $Logmodel->operation_name = 'Insert';
                         $Logmodel->reference_id = $classcategory->classcategory_id;
                         $Logmodel->table_name = 'classcategory_master';
-                        $Logmodel->user_id = 1;
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                     }
 
@@ -103,7 +104,7 @@ class Class_CategoryController extends Controller
                             'classcategory_name'       =>   $request->classcategory_name,
                             'category_description'        =>   $request->category_description,
                             'status' => $request->statusinfo,
-                            'user_id' => 1,
+                            'user_id' => $user_id,
 
                         ]
 
@@ -119,7 +120,7 @@ class Class_CategoryController extends Controller
                         $Logmodel->operation_name = 'Edit';
                         $Logmodel->reference_id = $catid;
                         $Logmodel->table_name = 'classcategory_master';
-                        $Logmodel->user_id = 1;
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                     } else {
                         $Logmodel = new Logmodel;
@@ -128,7 +129,7 @@ class Class_CategoryController extends Controller
                         $Logmodel->operation_name = 'Insert';
                         $Logmodel->reference_id = $classcategory->classcategory_id;
                         $Logmodel->table_name = 'classcategory_master';
-                        $Logmodel->user_id = 1;
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                     }
 
@@ -167,12 +168,14 @@ class Class_CategoryController extends Controller
     //for deleting category
     public function deletecategory($id)
     {
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name = 'Class Category Module';
         $Logmodel->operation_name = 'Delete';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'classcategory_master';
+        $Logmodel->user_id = $user_id;
         // $Logmodel->table_name = 'package_master';
         $Logmodel->save();
         $customer = Classcategorymodel::where('classcategory_id', $id)->delete();
@@ -195,12 +198,14 @@ class Class_CategoryController extends Controller
     //for deleting through api
     public function destroy($id)
     {
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name = 'Class Category Module';
         $Logmodel->operation_name = 'Delete';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'classcategory_master';
+        $Logmodel->user_id = $user_id;
         // $Logmodel->table_name = 'package_master';
         $Logmodel->save();
         $customer = Classcategorymodel::where('classcategory_id', $id)->delete();
@@ -213,6 +218,7 @@ class Class_CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $catid = $id;
+        $user_id = $request->session()->get('login_id');
 
         $data = DB::table('classcategory_master')
             ->select('classcategory_master.*')
@@ -251,7 +257,7 @@ class Class_CategoryController extends Controller
                             'classcategory_name'       =>   $request->classcategory_name,
                             'category_description'        =>   $request->category_description,
                             'status' => $request->statusinfo,
-                            'user_id' => 1,
+                            'user_id' => $user_id,
 
                         ]
 
@@ -267,7 +273,7 @@ class Class_CategoryController extends Controller
                         $Logmodel->operation_name = 'Edit';
                         $Logmodel->reference_id = $catid;
                         $Logmodel->table_name = 'classcategory_master';
-                        $Logmodel->user_id = 1;
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                     } else {
                         $Logmodel = new Logmodel;
@@ -276,7 +282,7 @@ class Class_CategoryController extends Controller
                         $Logmodel->operation_name = 'Insert';
                         $Logmodel->reference_id = $classcategory->classcategory_id;
                         $Logmodel->table_name = 'classcategory_master';
-                        $Logmodel->user_id = 1;
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                     }
 
@@ -291,6 +297,8 @@ class Class_CategoryController extends Controller
 
     public function categorychangestatus($id, $status)
     {
+
+        $user_id = Session::get('login_id');
 
         $data1 = DB::table('class_master')
             ->select('class_master.*')
@@ -308,7 +316,7 @@ class Class_CategoryController extends Controller
             $Logmodel->operation_name = 'Change Status';
             $Logmodel->reference_id = $id;
             $Logmodel->table_name = 'classcategory_master';
-            $Logmodel->user_id = 1;
+            $Logmodel->user_id = $user_id;
             $Logmodel->save();
 
             $customer = DB::update('update classcategory_master set status = ? where classcategory_id = ?', [$status, $id]);

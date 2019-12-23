@@ -40,7 +40,7 @@ class ClassScheduleController extends Controller
     public function store(Request $request) //For insert or Update Record Of Room Master --
     {
 
-
+        $user_id = Session::get('login_id');
         $catid = $request->save_update;
 
         $input = $request->all();
@@ -100,7 +100,7 @@ class ClassScheduleController extends Controller
                         'min_cancelation' => $min_cancelation,
                         'min_booking' => $min_booking,
                         'status' => $request->statusinfo,
-                        'user_id' => 1,
+                        'user_id' => $user_id,
                         'endtime' => $classendtime,
 
                     ]
@@ -117,7 +117,7 @@ class ClassScheduleController extends Controller
                     $Logmodel->operation_name = 'Edit';
                     $Logmodel->reference_id = $catid;
                     $Logmodel->table_name = 'class_sechedule_master';
-                    $Logmodel->user_id = 1;
+                    $Logmodel->user_id = $user_id;
                     $Logmodel->save();
                 } else {
                     $Logmodel = new Logmodel;
@@ -126,7 +126,7 @@ class ClassScheduleController extends Controller
                     $Logmodel->operation_name = 'Insert';
                     $Logmodel->reference_id = $classcategory->classsechedule_id;
                     $Logmodel->table_name = 'class_sechedule_master';
-                    $Logmodel->user_id = 1;
+                    $Logmodel->user_id = $user_id;
                     $Logmodel->save();
                 }
 
@@ -192,7 +192,7 @@ class ClassScheduleController extends Controller
                         'min_cancelation' => $min_cancelation,
                         'min_booking' => $min_booking,
                         'status' => $request->statusinfo,
-                        'user_id' => 1,
+                        'user_id' => $user_id,
                         'endtime' => $classendtime,
 
                     ]
@@ -209,7 +209,7 @@ class ClassScheduleController extends Controller
                     $Logmodel->operation_name = 'Edit';
                     $Logmodel->reference_id = $catid;
                     $Logmodel->table_name = 'class_sechedule_master';
-                    $Logmodel->user_id = 1;
+                    $Logmodel->user_id = $user_id;
                     $Logmodel->save();
                 } else {
                     $Logmodel = new Logmodel;
@@ -218,7 +218,7 @@ class ClassScheduleController extends Controller
                     $Logmodel->operation_name = 'Insert';
                     $Logmodel->reference_id = $classcategory->classsechedule_id;
                     $Logmodel->table_name = 'class_sechedule_master';
-                    $Logmodel->user_id = 1;
+                    $Logmodel->user_id = $user_id;
                     $Logmodel->save();
                 }
 
@@ -248,13 +248,14 @@ class ClassScheduleController extends Controller
     }
     public function deleteclasssechedule($id)
     {
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name = 'Class Schedule Module';
         $Logmodel->operation_name = 'Delete';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'class_sechedule_master';
-        $Logmodel->user_id = 1;
+        $Logmodel->user_id = $user_id;
         $Logmodel->save();
         $customer = Classsechedulemodel::where('classsechedule_id', $id)->delete();
         return Response::json($customer);
@@ -262,6 +263,7 @@ class ClassScheduleController extends Controller
     //for update
     public function update(Request $request, $id)
     {
+        $user_id = Session::get('login_id');
         $catid = $id;
 
         $data = DB::table('class_sechedule_master')
@@ -324,7 +326,7 @@ class ClassScheduleController extends Controller
                     'min_cancelation' => $min_cancelation,
                     'min_booking' => $min_booking,
                     'status' => $request->statusinfo,
-                    'user_id' => 1,
+                    'user_id' => $user_id,
 
                 ]
 
@@ -340,7 +342,7 @@ class ClassScheduleController extends Controller
                 $Logmodel->operation_name = 'Edit';
                 $Logmodel->reference_id = $catid;
                 $Logmodel->table_name = 'class_sechedule_master';
-                $Logmodel->user_id = 1;
+                $Logmodel->user_id = $user_id;
                 $Logmodel->save();
             } else {
                 $Logmodel = new Logmodel;
@@ -349,7 +351,7 @@ class ClassScheduleController extends Controller
                 $Logmodel->operation_name = 'Insert';
                 $Logmodel->reference_id = $classcategory->classsechedule_id;
                 $Logmodel->table_name = 'class_sechedule_master';
-                $Logmodel->user_id = 1;
+                $Logmodel->user_id = $user_id;
                 $Logmodel->save();
             }
 
@@ -364,7 +366,7 @@ class ClassScheduleController extends Controller
     //for deleting through api
     public function destroy($id)
     {
-
+        $user_id = Session::get('login_id');
         $customer = Classsechedulemodel::where('classsechedule_id', $id)->delete();
         if ($customer > 0) {
             $Logmodel = new Logmodel;
@@ -373,7 +375,7 @@ class ClassScheduleController extends Controller
             $Logmodel->operation_name = 'Delete';
             $Logmodel->reference_id = $id;
             $Logmodel->table_name = 'class_sechedule_master';
-            $Logmodel->user_id = 1;
+            $Logmodel->user_id = $user_id;
             $Logmodel->save();
             return Response::json(['msg' => 'Delete Class Schedule Successfully',]);
         } else {
@@ -393,14 +395,14 @@ class ClassScheduleController extends Controller
     }
     public function changeclasssechedulestatus($id, $status)
     {
-
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name = 'Class Schedule  Module';
         $Logmodel->operation_name = 'Change Status';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'class_sechedule_master';
-        $Logmodel->user_id = 1;
+        $Logmodel->user_id = $user_id;
         $Logmodel->save();
 
         $customer = DB::update('update class_sechedule_master set status = ? where classsechedule_id = ?', [$status, $id]);

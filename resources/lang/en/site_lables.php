@@ -72,13 +72,13 @@ return [
     'Schedule'=>'Schedule',
     'Deals'=>'Deals',
     'Gallery'=>'Gallery',
-    'Member_Attendence'=>'Member Attendence',
-    'Tacking'=>'Tacking',
-    'Member_Attendence_Tacking'=>'Member Attendence Tacking',
+    'Member_Attendence'=>'Member Attendance',
+    'Tacking'=>'Tracking',
+    'Member_Attendence_Tacking'=>'Member Attendance Tracking',
     'Settings'=>'Settings',
-    'Attendence'=>'Attendence',
+    'Attendence'=>'Attendance',
     'Profile_Manager'=>'Profile Manager',
-    'Attendence_&_Rating'=>'Attendence & Rating',
+    'Attendence_&_Rating'=>'Attendance & Rating',
     'Class_Booking'=>'Class Booking',
 
 
@@ -229,9 +229,9 @@ return [
     'Max_vacancy'=>'Max vacancy',
 
     // Menu Attendence & Rating
-    'Attendence'=>'Attendence',
-    'Attendence_&_Rating'=>'Attendence & Rating',
-    'Attendence_&_Rating_Report'=>'Attendence & Rating Report',
+    'Attendence'=>'Attendance',
+    'Attendence_&_Rating'=>'Attendance & Rating',
+    'Attendence_&_Rating_Report'=>'Attendance & Rating Report',
 
     'From'=>'From',
     'To'=>'To',
@@ -241,8 +241,7 @@ return [
     'Member_id'=>'Member id',
     'Member_Id'=>'Member Id',
     'Member_Name'=>'Member Name',
-    'Instructor_Rating'=>'Rating',
-    'Attandance'=>'Attandance',
+    'Instructor_Rating'=>'Instructor Rating',
 
 
     'Send_Notification'=>'Send Notification',
@@ -257,6 +256,10 @@ return [
     'Total_Members'=>'Total Members',
     'English_Text'=>'English Text',
     'Chinese_Text'=>'Chinese Text',
+
+
+    'Number_of_Members'=>'Number of Members',
+    'Upcoming_Booking_Details'=>'Upcoming Booking Details',
 
 
 ];

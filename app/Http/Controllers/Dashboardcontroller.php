@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Redirect, Response;
-
+use Session;
 use Validator;
 
 
@@ -26,10 +26,15 @@ class Dashboardcontroller extends Controller
     public function upcoming_booking_details()
     {
         $result = array();
+
+        date_default_timezone_set('Asia/Kolkata');
+        $date = date("Y-m-d H:i:s");
+
         $data = DB::table('class_sechedule_master')
             ->select('class_sechedule_master.*', 'class_master.class_name as classname', 'instuctor_master.instructor_name')
             ->join('class_master', 'class_master.class_id', '=', 'class_sechedule_master.classsechedule_name')
             ->join('instuctor_master', 'instuctor_master.instructorid', '=', 'class_sechedule_master.instructor')
+            ->whereDate('class_sechedule_master.class_schedule', '<=', $date)
             ->orderBy('class_schedule', 'ASC')
             ->get();
 

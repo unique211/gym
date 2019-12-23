@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Redirect, Response;
 use App\Logmodel;
 use App\Roommastermodel;
-
+use Session;
 use Validator;
 use Illuminate\Support\Facades\DB;
 class RoomController extends Controller
@@ -26,7 +26,7 @@ class RoomController extends Controller
     public function store(Request $request)//For insert or Update Record Of Room Master --
     {
 
-
+        $user_id = Session::get('login_id');
         $catid = $request->save_update;
 
         $input = $request->all();
@@ -58,7 +58,7 @@ class RoomController extends Controller
                             [
                                 'room'       =>   $request->room,
                                 'status'=>$request->statusinfo,
-                                'user_id'=>1,
+                                'user_id'=>$user_id,
 
                             ]
 
@@ -74,7 +74,7 @@ class RoomController extends Controller
                             $Logmodel->operation_name ='Edit';
                             $Logmodel->reference_id = $catid;
                             $Logmodel->table_name = 'room_master';
-                            $Logmodel->user_id = 1;
+                            $Logmodel->user_id = $user_id;
                             $Logmodel->save();
 
                         }else{
@@ -84,7 +84,7 @@ class RoomController extends Controller
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $classcategory->rooom_id;
                             $Logmodel->table_name = 'room_master';
-                            $Logmodel->user_id = 1;
+                            $Logmodel->user_id = $user_id;
                             $Logmodel->save();
                         }
 
@@ -103,7 +103,7 @@ class RoomController extends Controller
                             [
                                 'room'       =>   $request->room,
                                 'status'=>$request->statusinfo,
-                                'user_id'=>1,
+                                'user_id'=>$user_id,
 
                             ]
 
@@ -116,7 +116,7 @@ class RoomController extends Controller
                             $Logmodel->operation_name ='Edit';
                             $Logmodel->reference_id = $catid;
                             $Logmodel->table_name = 'room_master';
-                            $Logmodel->user_id = 1;
+                            $Logmodel->user_id = $user_id;
                             $Logmodel->save();
 
                         }else{
@@ -126,7 +126,7 @@ class RoomController extends Controller
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $classcategory->rooom_id;
                             $Logmodel->table_name = 'room_master';
-                            $Logmodel->user_id = 1;
+                            $Logmodel->user_id = $user_id;
                             $Logmodel->save();
                         }
 
@@ -179,13 +179,14 @@ class RoomController extends Controller
 
     }
     public function deleteroom($id){
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name ='Room master Module' ;
         $Logmodel->operation_name ='Delete';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'room_master';
-        $Logmodel->user_id =1;
+        $Logmodel->user_id = $user_id;
         $Logmodel->save();
         $customer = Roommastermodel::where('rooom_id', $id)->delete();
         return Response::json($customer);
@@ -194,13 +195,14 @@ class RoomController extends Controller
      //for deleting through api
      public function destroy($id)
      {
+        $user_id = Session::get('login_id');
          $Logmodel = new Logmodel;
 
          $Logmodel->module_name ='Room Module' ;
          $Logmodel->operation_name ='Delete';
          $Logmodel->reference_id = $id;
          $Logmodel->table_name = 'room_master';
-         $Logmodel->user_id =1;
+         $Logmodel->user_id = $user_id;
          $Logmodel->save();
          $customer = Roommastermodel::where('rooom_id', $id)->delete();
          if($customer >0){
@@ -215,7 +217,7 @@ class RoomController extends Controller
      public function update(Request $request, $id)
      {
          $catid = $id;
-
+         $user_id = Session::get('login_id');
          $data = DB::table('room_master')
          ->select('room_master.*')
          ->where('rooom_id',$catid)
@@ -251,7 +253,7 @@ class RoomController extends Controller
              [
                  'room'       =>   $request->room,
                  'status'=>$request->statusinfo,
-                 'user_id'=>1,
+                 'user_id'=>$user_id,
 
              ]
 
@@ -267,7 +269,7 @@ class RoomController extends Controller
              $Logmodel->operation_name ='Edit';
              $Logmodel->reference_id = $catid;
              $Logmodel->table_name = 'room_master';
-             $Logmodel->user_id = 1;
+             $Logmodel->user_id = $user_id;
              $Logmodel->save();
 
          }else{
@@ -277,7 +279,7 @@ class RoomController extends Controller
              $Logmodel->operation_name ='Insert';
              $Logmodel->reference_id = $classcategory->rooom_id;
              $Logmodel->table_name = 'room_master';
-             $Logmodel->user_id = 1;
+             $Logmodel->user_id = $user_id;
              $Logmodel->save();
          }
 
@@ -293,14 +295,14 @@ class RoomController extends Controller
     //for change status
     public function roomchangestatus($id,$status){
 
-
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name ='Room master Module' ;
         $Logmodel->operation_name ='Change Status';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'room_master';
-        $Logmodel->user_id = 1;
+        $Logmodel->user_id = $user_id;
         $Logmodel->save();
 
         $customer = DB::update('update room_master set status = ? where rooom_id = ?',[$status,$id]);

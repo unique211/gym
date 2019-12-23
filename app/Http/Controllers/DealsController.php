@@ -7,6 +7,7 @@ use App\Dealmodel;
 use Redirect, Response;
 use App\Logmodel;
 use Validator;
+use Session;
 use Illuminate\Support\Facades\DB;
 
 class DealsController extends Controller
@@ -24,7 +25,7 @@ class DealsController extends Controller
     public function store(Request $request) //For insert or Update Record Of Room Master --
     {
 
-
+        $user_id = Session::get('login_id');
         $catid = $request->save_update;
 
         $input = $request->all();
@@ -89,7 +90,7 @@ class DealsController extends Controller
                             'is_video' => $is_video,
                             'start_date' => $start_date,
                             'end_date' => $end_date,
-                            'user_id' => 1,
+                            'user_id' => $user_id,
 
                         ]
 
@@ -105,7 +106,7 @@ class DealsController extends Controller
                         $Logmodel->operation_name = 'Edit';
                         $Logmodel->reference_id = $catid;
                         $Logmodel->table_name = 'deal_master';
-                        $Logmodel->user_id = 1;
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                     } else {
                         $Logmodel = new Logmodel;
@@ -114,7 +115,7 @@ class DealsController extends Controller
                         $Logmodel->operation_name = 'Insert';
                         $Logmodel->reference_id = $dealdata->deal_id;
                         $Logmodel->table_name = 'deal_master';
-                        $Logmodel->user_id = 1;
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                     }
 
@@ -145,7 +146,7 @@ class DealsController extends Controller
                             'is_video' => $is_video,
                             'start_date' => $start_date,
                             'end_date' => $end_date,
-                            'user_id' => 1,
+                            'user_id' => $user_id,
 
                         ]
 
@@ -161,7 +162,7 @@ class DealsController extends Controller
                         $Logmodel->operation_name = 'Edit';
                         $Logmodel->reference_id = $catid;
                         $Logmodel->table_name = 'deal_master';
-                        $Logmodel->user_id = 1;
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                     } else {
                         $Logmodel = new Logmodel;
@@ -170,7 +171,7 @@ class DealsController extends Controller
                         $Logmodel->operation_name = 'Insert';
                         $Logmodel->reference_id = $dealdata->deal_id;
                         $Logmodel->table_name = 'deal_master';
-                        $Logmodel->user_id = 1;
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                     }
 
@@ -244,6 +245,7 @@ class DealsController extends Controller
 
     public function deletedeals($id)
     {
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
 
@@ -252,7 +254,7 @@ class DealsController extends Controller
         $Logmodel->operation_name = 'Delete';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'deal_master';
-        $Logmodel->user_id = 1;
+        $Logmodel->user_id = $user_id;
         $Logmodel->save();
         $customer = Dealmodel::where('deal_id', $id)->delete();
         return Response::json($customer);
@@ -261,6 +263,7 @@ class DealsController extends Controller
     //for update
     public function update(Request $request, $id)
     {
+        $user_id = Session::get('login_id');
         $catid = $id;
         $data = DB::table('deal_master')
             ->select('deal_master.*')
@@ -319,7 +322,7 @@ class DealsController extends Controller
                         'is_video' => $is_video,
                         'start_date' => $start_date,
                         'end_date' => $end_date,
-                        'user_id' => 1,
+                        'user_id' => $user_id,
 
                     ]
 
@@ -335,7 +338,7 @@ class DealsController extends Controller
                     $Logmodel->operation_name = 'Edit';
                     $Logmodel->reference_id = $catid;
                     $Logmodel->table_name = 'deal_master';
-                    $Logmodel->user_id = 1;
+                    $Logmodel->user_id = $user_id;
                     $Logmodel->save();
                 } else {
                     $Logmodel = new Logmodel;
@@ -344,7 +347,7 @@ class DealsController extends Controller
                     $Logmodel->operation_name = 'Insert';
                     $Logmodel->reference_id = $dealdata->deal_id;
                     $Logmodel->table_name = 'deal_master';
-                    $Logmodel->user_id = 1;
+                    $Logmodel->user_id = $user_id;
                     $Logmodel->save();
                 }
 
@@ -361,6 +364,7 @@ class DealsController extends Controller
     public function destroy($id)
     {
 
+        $user_id = Session::get('login_id');
         $customer = Dealmodel::where('deal_id', $id)->delete();
         if ($customer > 0) {
             $Logmodel = new Logmodel;
@@ -369,7 +373,7 @@ class DealsController extends Controller
             $Logmodel->operation_name = 'Delete';
             $Logmodel->reference_id = $id;
             $Logmodel->table_name = 'deal_master';
-            $Logmodel->user_id = 1;
+            $Logmodel->user_id = $user_id;
             $Logmodel->save();
             return Response::json(['msg' => 'Delete Deal  Successfully',]);
         } else {
