@@ -241,7 +241,7 @@ return [
     'Member_id'=>'Member id',
     'Member_Id'=>'Member Id',
     'Member_Name'=>'Member Name',
-    'Instructor_Rating'=>'Instructor Rating',
+    'Instructor_Rating'=>'Rating',
 
 
     'Send_Notification'=>'Send Notification',

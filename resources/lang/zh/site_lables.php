@@ -240,7 +240,7 @@ return [
     'Member_id'=>'会员ID',
     'Member_Id'=>'会员ID',
     'Member_Name'=>'成员名字',
-    'Instructor_Rating'=>'教师评分',
+    'Instructor_Rating'=>'评分',
 
 
 
