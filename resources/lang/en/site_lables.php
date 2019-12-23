@@ -242,6 +242,7 @@ return [
     'Member_Id'=>'Member Id',
     'Member_Name'=>'Member Name',
     'Instructor_Rating'=>'Rating',
+    'Attandance'=>'Attandance',
 
 
     'Send_Notification'=>'Send Notification',

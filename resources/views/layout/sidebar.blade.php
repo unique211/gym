@@ -217,8 +217,8 @@
 
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ url('class_booking') }}"><span class="submenu-label"><i class="fa fa-plus fa-lg"></i> @lang('site_lables.Class_Booking')</span></a>
-                        </li>
+                        {{-- <li><a href="{{ url('class_booking') }}"><span class="submenu-label"><i class="fa fa-plus fa-lg"></i> @lang('site_lables.Class_Booking')</span></a>
+                        </li> --}}
                         <li><a href="{{ url('attendence_rating') }}"><span class="submenu-label"><i class="fa fa-plus fa-lg"></i>  @lang('site_lables.Attendence_&_Rating')</span></a></li>
 
                     </ul>

@@ -40,7 +40,7 @@ $(document).ready(function() {
                 $('#data_table tbody').empty();
                 if (data.length > 0) {
 
-
+                    var Attendence = '';
                     var html = "";
                     for (var i = 0; i < data.length; i++) {
 
@@ -49,6 +49,12 @@ $(document).ready(function() {
                         var time = fdateslt[2].split(' ');
                         var datetime = time[0] + '/' + fdateslt[1] + '/' + fdateslt[0] + ' ' + time[1];
                         if (data[i].instructorname != "" && data[i].classname != "") {
+
+                            if (data[i].attandancestatus == 1) {
+                                Attendence = "Present";
+                            } else {
+                                Attendence = "Absent";
+                            }
                             html += '<tr>' +
                                 '<td id="id_' + data[i].bookid + '">' + datetime + '</td>' +
                                 '<td id="classname_' + data[i].bookid + '">' + data[i].classname + '</td>' +
@@ -56,6 +62,7 @@ $(document).ready(function() {
                                 '<td id="classcategory_' + data[i].bookid + '">' + data[i].membername + '</td>' +
                                 '<td id="classcategory_' + data[i].bookid + '">' + data[i].instructorname + '</td>' +
                                 '<td id="classcategory_' + data[i].bookid + '">' + data[i].rating_points + '</td>' +
+                                '<td id="classcategory_' + data[i].bookid + '">' + Attendence + '</td>' +
                                 '</tr>';
                         }
 
@@ -124,7 +131,7 @@ $(document).ready(function() {
 
                 html += '<option selected disabled value="" >Select</option>';
 
-                html += '<option   value="All" >All</option>';
+                html += '<option  selected  value="All" >All</option>';
 
                 for (i = 0; i < data.length; i++) {
                     var id = '';
@@ -161,7 +168,7 @@ $(document).ready(function() {
                 var name = '';
 
                 html += '<option selected disabled value="" >Select</option>';
-                html += '<option   value="All" >All</option>';
+                html += '<option selected  value="All" >All</option>';
                 for (i = 0; i < data.length; i++) {
                     var id = '';
 

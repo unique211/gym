@@ -115,6 +115,7 @@
                                                 <th>@lang('site_lables.Member_Name')</th>
                                                 <th>@lang('site_lables.Instructor_Name')</th>
                                                 <th>@lang('site_lables.Instructor_Rating')</th>
+                                                <th>@lang('site_lables.Attandance')</th>
                                             </tr>
                                         </thead>
                                         <tbody id="table_tbody">
