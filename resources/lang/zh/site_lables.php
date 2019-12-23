@@ -255,4 +255,5 @@ return [
     'Total_Members'=>'成员总数',
     'English_Text'=>'英文文字',
     'Chinese_Text'=>'中文文字',
+    'Attandance'=>'出勤率',
 ];
