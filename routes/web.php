@@ -191,4 +191,8 @@ Route::post('getbetweenclasssechedule', 'MemberAttendenceTakingController@getbet
 Route::post('getsechedulemember', 'MemberAttendenceTakingController@getsechedulemember');
 Route::get('getallattebdance', 'MemberController@getallattebdance');
 
+//for attandancereport
+
+Route::post('getattandancedata', 'AttendenceRatingController@getattandancedata');
+
 
