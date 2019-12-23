@@ -23,6 +23,7 @@ class Usermanagecontroller extends Controller
 
         $userid = $request->mobile_no;
         $password = $request->mac_address;
+        $firebase_token = $request->firebase_token;
         $result = array();
 
 
@@ -39,9 +40,16 @@ class Usermanagecontroller extends Controller
             ->get();
 
         $cnt = count($data);
+
         if ($cnt > 0) {
             foreach ($data as $val) {
                 $pass = $val->password;
+
+
+                DB::table('link_relation_ship')
+                ->where($where)
+                ->update(['firebase_token' => $firebase_token]);
+
                 if ($pass == "") {
                     DB::table('link_relation_ship')
                         ->where('userid', $userid)
@@ -52,7 +60,9 @@ class Usermanagecontroller extends Controller
                         'blance' => $val->balancepoint,
                         'link_id' => $val->linkrelid,
                         'member_id' => $val->member_id,
+
                     );
+
                     return response()->json(['data' => $result, 'status' => 1]);
                 } else {
                     $where = array('link_relation_ship.userid' => $userid, 'link_relation_ship.password' => $password);
@@ -71,7 +81,7 @@ class Usermanagecontroller extends Controller
                                 'name' => $val2->name,
                                 'balance' => $val2->balancepoint,
                                 'link_id' => $val2->linkrelid,
-                                'member_id' => $val2->member_id,
+                                'member_id' => $val2->member_id
                             );
                         }
 
