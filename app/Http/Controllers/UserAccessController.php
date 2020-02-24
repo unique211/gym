@@ -20,7 +20,6 @@ class UserAccessController extends Controller
         } else {
             return view('user_access');
         }
-
     }
     public function getallprofileright($usertype)
     {
@@ -65,6 +64,7 @@ class UserAccessController extends Controller
     public function store(Request $request)
     {
         $ID = $request->save_update;
+        $user_id = $request->session()->get('login_id');
 
         if ($ID > 0) {
             $data = DB::table('useraccess_master')->where('user_name', $request->name)->where('useraccess_id', '!=', $ID)->get();
@@ -85,7 +85,7 @@ class UserAccessController extends Controller
                             'email_id'        =>  $request->email,
                             'mobileno'        =>  $request->phone,
                             'status'        => 1,
-                            'user_id'        => 1,
+                            'user_id'        => $user_id,
                         ]
 
                     );
@@ -158,8 +158,6 @@ class UserAccessController extends Controller
                         $customer2 = DB::table('login_master')
                             ->where($where)
                             ->update($set);
-
-
                     }
 
                     if ($ID > 0) {
@@ -169,7 +167,7 @@ class UserAccessController extends Controller
                         $Logmodel->operation_name = 'Edit';
                         $Logmodel->reference_id = $ID;
                         $Logmodel->table_name = 'useraccess_master';
-                        // $Logmodel->table_name = 'package_master';
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                     } else {
                         $Logmodel = new Logmodel;
@@ -178,6 +176,8 @@ class UserAccessController extends Controller
                         $Logmodel->operation_name = 'Insert';
                         $Logmodel->reference_id = $ref_id;
                         $Logmodel->table_name = 'useraccess_master';
+                        $Logmodel->user_id = $user_id;
+
                         // $Logmodel->table_name = 'package_master';
                         $Logmodel->save();
                     }
@@ -202,7 +202,7 @@ class UserAccessController extends Controller
                             'email_id'        =>  $request->email,
                             'mobileno'        =>  $request->phone,
                             'status'        => 1,
-                            'user_id'        => 1,
+                            'user_id'        => $user_id,
                         ]
 
                     );
@@ -274,6 +274,7 @@ class UserAccessController extends Controller
                         $Logmodel->operation_name = 'Edit';
                         $Logmodel->reference_id = $ID;
                         $Logmodel->table_name = 'useraccess_master';
+                        $Logmodel->user_id = $user_id;
                         // $Logmodel->table_name = 'package_master';
                         $Logmodel->save();
                     } else {
@@ -283,6 +284,7 @@ class UserAccessController extends Controller
                         $Logmodel->operation_name = 'Insert';
                         $Logmodel->reference_id = $ref_id;
                         $Logmodel->table_name = 'useraccess_master';
+                        $Logmodel->user_id = $user_id;
                         // $Logmodel->table_name = 'package_master';
                         $Logmodel->save();
                     }
@@ -334,6 +336,33 @@ class UserAccessController extends Controller
                         $userid = $data1->user_id;
                         $role = $data1->role;
                         $profile_type = $data1->profile_type;
+
+
+                        $is_instructor =  DB::table('profile_master')
+                            ->where('profile_type', 'Instructor')
+                            ->first();
+                        $instructor = $is_instructor->profile_id;
+
+                        $data = DB::table('login_master')
+                            ->select('login_master.*')
+                            ->where('login_master.login_id', $userid)
+                            ->first();
+                        $ref_id = $data->ref_id;
+
+                        $userid_name = "";
+                        if ($data->role == $instructor) {
+                            $data1 = DB::table('instuctor_master')
+                                ->select('instuctor_master.*')
+                                ->where('instuctor_master.instructorid', $ref_id)
+                                ->first();
+                            $userid_name = $data1->instructor_name;
+                        } else {
+                            $data1 = DB::table('useraccess_master')
+                                ->select('useraccess_master.*')
+                                ->where('useraccess_master.useraccess_id', $ref_id)
+                                ->first();
+                            $userid_name = $data1->user_name;
+                        }
                     }
 
                     $getresult[] = array(
@@ -343,7 +372,7 @@ class UserAccessController extends Controller
                         'mobileno' => $mobileno,
                         'role' => $role,
                         'profile_type' => $profile_type,
-                        'userid' => $userid,
+                        'userid' => $userid_name,
                         'status' => $status,
 
                     );
@@ -368,7 +397,7 @@ class UserAccessController extends Controller
     }
     public function deleteuseraccess($id)
     {
-
+        $user_id = Session::get('login_id');
         // DB::table('login_master')->where('ref_id', $id)->where('role',$id)delete();
         // DB::update('update login_master set status = ? where ref_id = ? And  role !=? ',[0,$id,"Instructor"]);
 
@@ -381,6 +410,7 @@ class UserAccessController extends Controller
         $Logmodel->operation_name = 'Delete';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'useraccess_master';
+        $Logmodel->user_id = $user_id;
         // $Logmodel->table_name = 'package_master';
         $Logmodel->save();
 

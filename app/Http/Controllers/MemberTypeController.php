@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Redirect, Response;
 use App\Logmodel;
 use Validator;
+use Session;
 class MemberTypeController extends Controller
 {
     public function index(Request $request)
@@ -26,7 +27,7 @@ class MemberTypeController extends Controller
     public function store(Request $request)//For insert or Update Record Of Package Master --
     {
 
-
+        $user_id = Session::get('login_id');
         $membertypeid = $request->save_update;
 
         $input = $request->all();
@@ -51,7 +52,7 @@ class MemberTypeController extends Controller
                             ['membertype_id' => $membertypeid],
                             [
                                 'member_type'       =>   $request->member_type,
-                                'user_id'       => 1,
+                                'user_id'       => $user_id,
 
 
                             ]
@@ -64,7 +65,7 @@ class MemberTypeController extends Controller
                         $Logmodel->operation_name ='Edit';
                         $Logmodel->reference_id = $membertypeid;
                         $Logmodel->table_name = 'membertype_master';
-                        $Logmodel->user_id = 1;
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                         return response()->json(['data'=> $package]);
                     }
@@ -78,7 +79,7 @@ class MemberTypeController extends Controller
                             ['membertype_id' => $membertypeid],
                             [
                                 'member_type'       =>   $request->member_type,
-                                'user_id'       => 1,
+                                'user_id'       => $user_id,
 
 
                             ]
@@ -91,7 +92,7 @@ class MemberTypeController extends Controller
                         $Logmodel->operation_name ='Insert';
                         $Logmodel->reference_id = $package->membertype_id;
                         $Logmodel->table_name = 'membertype_master';
-                        $Logmodel->user_id = 1;
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                         return response()->json(['data'=> $package]);
                     }
@@ -114,7 +115,7 @@ class MemberTypeController extends Controller
     public function update(Request $request, $id)
     {
         $membertypeid = $id;
-
+        $user_id = Session::get('login_id');
         $data= DB::table('membertype_master')->where('member_type',$request->member_type)->where('membertype_id','!=',$membertypeid)->get();
         $count=count($data);
         if($count >0){
@@ -124,7 +125,7 @@ class MemberTypeController extends Controller
                 ['membertype_id' => $membertypeid],
                 [
                     'member_type'       =>   $request->member_type,
-                    'user_id'       => 1,
+                    'user_id'       => $user_id,
 
 
                 ]
@@ -137,7 +138,7 @@ class MemberTypeController extends Controller
             $Logmodel->operation_name ='Edit';
             $Logmodel->reference_id = $membertypeid;
             $Logmodel->table_name = 'membertype_master';
-            $Logmodel->user_id = 1;
+            $Logmodel->user_id = $user_id;
             $Logmodel->save();
             return response()->json(['data'=> $package]);
     }
@@ -147,14 +148,17 @@ public function getallmemberttype(){
     return response()->json( $data);
 }
 public function deletemembertype($id){
+    $user_id = Session::get('login_id');
+
     $Logmodel = new Logmodel;
 
     $Logmodel->module_name ='Member Type Module' ;
     $Logmodel->operation_name ='Delete';
     $Logmodel->reference_id = $id;
     $Logmodel->table_name = 'membertype_master';
-    $Logmodel->user_id = 1;
+    $Logmodel->user_id = $user_id;
     $Logmodel->save();
+
     $customer = Membertypemodel::where('membertype_id', $id)->delete();
     return response()->json( $customer);
 
@@ -163,6 +167,7 @@ public function destroy($id)
 {
 
     $customer = Membertypemodel::where('membertype_id', $id)->delete();
+    $user_id = Session::get('login_id');
     if($customer >0){
         $Logmodel = new Logmodel;
 
@@ -170,7 +175,7 @@ public function destroy($id)
     $Logmodel->operation_name ='Delete';
     $Logmodel->reference_id = $id;
     $Logmodel->table_name = 'membertype_master';
-    $Logmodel->user_id = 1;
+    $Logmodel->user_id = $user_id;
     $Logmodel->save();
         return Response::json(['msg'=>'Delete Record  Successfully']);
     }else{
@@ -184,4 +189,12 @@ public function getsinglegmembertype($id){
     return Response::json(['data'=>$data]);
 
 }
+
+public function checkuserid_member($userid)
+{
+    $profile = DB::table('link_relation_ship')->where('userid', $userid)->get();
+    $count = count($profile);
+    return Response::json($count);
+}
+
 }

@@ -478,12 +478,17 @@ $(document).ready(function() {
 
     //form-clear
     function form_clear() {
+        getallmenu();
+        $("#submit_btn").attr("disabled", false);
         $('#ins_id').val('');
         $('#name').val('');
         $('#tel_no').val('');
         $('#user_id').val('');
         $('#imghidden').val('');
         $('#msgid').html('');
+        $('#save_update').val('');
+        $('#profileimg').attr('src', imgurl + '/resources/sass/img/no-image-available.png/');
+
         $('.hidepassword').show();
         $("#photo").attr("required", true);
         $("#password").attr("required", true);
@@ -492,6 +497,10 @@ $(document).ready(function() {
         $("#cpassword").val('');
 
     }
+
+    $(document).on('click', '.closehideshow', function() {
+        form_clear();
+    });
 
     //for check same instuctor
 

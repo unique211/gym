@@ -10,6 +10,7 @@ use Redirect, Response;
 use App\Memberattandancemodel;
 use App\Logmodel;
 use Validator;
+use Session;
 
 class MemberAttendenceTakingController extends Controller
 {
@@ -97,7 +98,7 @@ class MemberAttendenceTakingController extends Controller
     public function store(Request $request){
 
         $attadance_id = $request->save_update;
-
+        $user_id = Session::get('login_id');
 
         // $package   =   Memberattandancemodel::updateOrCreate(
         //     ['attadance_id' => $attadance_id],
@@ -130,7 +131,8 @@ class MemberAttendenceTakingController extends Controller
             $Logmodel->operation_name ='Insert';
             $Logmodel->reference_id =$request->class_schedule;
             $Logmodel->table_name = 'membertype_master';
-            $Logmodel->user_id = 1;
+            $Logmodel->user_id = $user_id;
+
             $Logmodel->save();
             return response()->json(true);
         }else{
@@ -140,7 +142,8 @@ class MemberAttendenceTakingController extends Controller
             $Logmodel->operation_name ='Edit';
             $Logmodel->reference_id = $attadance_id;
             $Logmodel->table_name = 'meber_attandance';
-            $Logmodel->user_id = 1;
+            $Logmodel->user_id = $user_id;
+
             $Logmodel->save();
             return response()->json(['data'=> true]);
         }

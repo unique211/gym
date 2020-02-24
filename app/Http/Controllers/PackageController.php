@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Redirect, Response;
 use App\Logmodel;
 use Validator;
+use Session;
+
 class PackageController extends Controller
 {
     public function index(Request $request)
@@ -24,7 +26,7 @@ class PackageController extends Controller
     public function store(Request $request)//For insert or Update Record Of Package Master --
     {
 
-
+        $user_id = Session::get('login_id');
         $packege_id = $request->save_update;
 
         $input = $request->all();
@@ -64,7 +66,7 @@ class PackageController extends Controller
                                 'package_point'        =>   $request->package_point,
                                 'package_price'        =>   $request->package_price,
                                 'status'=>$request->statusinfo,
-
+                                'user_id' => $user_id,
 
                             ]
 
@@ -80,7 +82,7 @@ class PackageController extends Controller
                             $Logmodel->operation_name ='Edit';
                             $Logmodel->reference_id = $packege_id;
                             $Logmodel->table_name = 'package_master';
-                           // $Logmodel->table_name = 'package_master';
+                            $Logmodel->user_id = $user_id;
                             $Logmodel->save();
 
                         }else{
@@ -90,7 +92,7 @@ class PackageController extends Controller
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $package->packege_id;
                             $Logmodel->table_name = 'package_master';
-                           // $Logmodel->table_name = 'package_master';
+                            $Logmodel->user_id = $user_id;
                             $Logmodel->save();
                         }
 
@@ -113,7 +115,7 @@ class PackageController extends Controller
                 'package_point'        =>   $request->package_point,
                 'package_price'        =>   $request->package_price,
                 'status'=>$request->statusinfo,
-
+                'user_id' => $user_id,
 
             ]
 
@@ -129,7 +131,7 @@ class PackageController extends Controller
             $Logmodel->operation_name ='Edit';
             $Logmodel->reference_id = $packege_id;
             $Logmodel->table_name = 'package_master';
-           // $Logmodel->table_name = 'package_master';
+            $Logmodel->user_id = $user_id;
             $Logmodel->save();
 
         }else{
@@ -139,7 +141,7 @@ class PackageController extends Controller
             $Logmodel->operation_name ='Insert';
             $Logmodel->reference_id = $package->packege_id;
             $Logmodel->table_name = 'package_master';
-           // $Logmodel->table_name = 'package_master';
+            $Logmodel->user_id = $user_id;
             $Logmodel->save();
         }
 
@@ -160,19 +162,20 @@ class PackageController extends Controller
             return Response::json($data);
     }
     public function deletepackage($id){
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name ='Package Module' ;
         $Logmodel->operation_name ='Delete';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'package_master';
-       // $Logmodel->table_name = 'package_master';
+        $Logmodel->user_id = $user_id;
         $Logmodel->save();
         $customer = Packagemodel::where('packege_id', $id)->delete();
         return Response::json($customer);
     }
     public function changestatus($id,$status){
-
+        $user_id = Session::get('login_id');
        // dd($id,$status);
         $Logmodel = new Logmodel;
 
@@ -180,7 +183,7 @@ class PackageController extends Controller
         $Logmodel->operation_name ='Change Status';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'package_master';
-       // $Logmodel->table_name = 'package_master';
+        $Logmodel->user_id = $user_id;
         $Logmodel->save();
 
         $customer = DB::update('update package_master set status = ? where packege_id = ?',[$status,$id]);
@@ -189,7 +192,7 @@ class PackageController extends Controller
     public function update(Request $request, $id)
     {
         $packege_id = $id;
-
+        $user_id = Session::get('login_id');
         $input = $request->all();
 
         $validator = Validator::make($input, [
@@ -216,7 +219,7 @@ class PackageController extends Controller
                             'package_point'        =>   $request->package_point,
                             'package_price'        =>   $request->package_price,
                             'status'=>$request->statusinfo,
-
+                            'user_id' => $user_id,
 
                         ]
 
@@ -232,7 +235,7 @@ class PackageController extends Controller
                         $Logmodel->operation_name ='Edit';
                         $Logmodel->reference_id = $packege_id;
                         $Logmodel->table_name = 'package_master';
-                       // $Logmodel->table_name = 'package_master';
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
 
                     }else{
@@ -242,7 +245,7 @@ class PackageController extends Controller
                         $Logmodel->operation_name ='Insert';
                         $Logmodel->reference_id = $package->packege_id;
                         $Logmodel->table_name = 'package_master';
-                       // $Logmodel->table_name = 'package_master';
+                        $Logmodel->user_id = $user_id;
                         $Logmodel->save();
                     }
 
@@ -270,13 +273,14 @@ class PackageController extends Controller
     }
     public function destroy($id)
     {
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name ='Package Module' ;
         $Logmodel->operation_name ='Delete';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'package_master';
-       // $Logmodel->table_name = 'package_master';
+        $Logmodel->user_id = $user_id;
         $Logmodel->save();
         $customer = Packagemodel::where('packege_id', $id)->delete();
         if($customer >0){

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Redirect, Response;
 use App\Logmodel;
 use App\Classmastermodel;
-
+use Session;
 use Validator;
 use Illuminate\Support\Facades\DB;
 class ClassController extends Controller
@@ -36,7 +36,7 @@ class ClassController extends Controller
 
     public function store(Request $request)//For insert or Update Record Of class Master --
     {
-
+        $user_id = Session::get('login_id');
 
         $catid = $request->save_update;
 
@@ -75,7 +75,7 @@ class ClassController extends Controller
                                 'class_category'       =>   $request->class_category,
                                 'class_description'       =>   $request->class_description,
                                 'status'=>$request->statusinfo,
-                                'user_id'=>1,
+                                'user_id'=>$user_id,
 
                             ]
 
@@ -91,7 +91,7 @@ class ClassController extends Controller
                             $Logmodel->operation_name ='Edit';
                             $Logmodel->reference_id = $catid;
                             $Logmodel->table_name = 'class_master';
-                            $Logmodel->user_id = 1;
+                            $Logmodel->user_id = $user_id;
                             $Logmodel->save();
 
                         }else{
@@ -101,7 +101,7 @@ class ClassController extends Controller
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $classcategory->class_id;
                             $Logmodel->table_name = 'class_master';
-                            $Logmodel->user_id = 1;
+                            $Logmodel->user_id = $user_id;
                             $Logmodel->save();
                         }
 
@@ -121,7 +121,7 @@ class ClassController extends Controller
                                 'class_category'       =>   $request->class_category,
                                 'class_description'       =>   $request->class_description,
                                 'status'=>$request->statusinfo,
-                                'user_id'=>1,
+                                'user_id'=>$user_id,
 
                             ]
 
@@ -137,7 +137,7 @@ class ClassController extends Controller
                             $Logmodel->operation_name ='Edit';
                             $Logmodel->reference_id = $catid;
                             $Logmodel->table_name = 'class_master';
-                            $Logmodel->user_id = 1;
+                            $Logmodel->user_id = $user_id;
                             $Logmodel->save();
 
                         }else{
@@ -147,7 +147,7 @@ class ClassController extends Controller
                             $Logmodel->operation_name ='Insert';
                             $Logmodel->reference_id = $classcategory->class_id;
                             $Logmodel->table_name = 'class_master';
-                            $Logmodel->user_id = 1;
+                            $Logmodel->user_id = $user_id;
                             $Logmodel->save();
                         }
 
@@ -191,13 +191,14 @@ class ClassController extends Controller
 
     }
     public function deleteclass($id){
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name ='Class master Module' ;
         $Logmodel->operation_name ='Delete';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'class_master';
-        $Logmodel->user_id =1;
+        $Logmodel->user_id =$user_id;
         $Logmodel->save();
         $customer = Classmastermodel::where('class_id', $id)->delete();
         return Response::json($customer);
@@ -206,14 +207,14 @@ class ClassController extends Controller
       //for change status
       public function classchangestatus($id,$status){
 
-
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name ='Class master Module' ;
         $Logmodel->operation_name ='Change Status';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'class_master';
-        $Logmodel->user_id = 1;
+        $Logmodel->user_id = $user_id;
         $Logmodel->save();
 
         $customer = DB::update('update class_master set status = ? where class_id = ?',[$status,$id]);
@@ -222,6 +223,7 @@ class ClassController extends Controller
      //for update
      public function update(Request $request, $id)
      {
+        $user_id = Session::get('login_id');
         $catid = $id;
         $data = DB::table('class_master')
          ->select('class_master.*')
@@ -266,7 +268,7 @@ class ClassController extends Controller
                 'class_category'       =>   $request->class_category,
                 'class_description'       =>   $request->class_description,
                 'status'=>$request->statusinfo,
-                'user_id'=>1,
+                'user_id'=>$user_id,
 
             ]
 
@@ -282,7 +284,7 @@ class ClassController extends Controller
             $Logmodel->operation_name ='Edit';
             $Logmodel->reference_id = $catid;
             $Logmodel->table_name = 'class_master';
-            $Logmodel->user_id = 1;
+            $Logmodel->user_id = $user_id;
             $Logmodel->save();
 
         }else{
@@ -292,7 +294,7 @@ class ClassController extends Controller
             $Logmodel->operation_name ='Insert';
             $Logmodel->reference_id = $classcategory->class_id;
             $Logmodel->table_name = 'class_master';
-            $Logmodel->user_id = 1;
+            $Logmodel->user_id = $user_id;
             $Logmodel->save();
         }
 
@@ -308,7 +310,7 @@ class ClassController extends Controller
      //for deleting through api
      public function destroy($id)
      {
-
+        $user_id = Session::get('login_id');
          $customer = Classmastermodel::where('class_id', $id)->delete();
          if($customer >0){
             $Logmodel = new Logmodel;
@@ -317,7 +319,7 @@ class ClassController extends Controller
             $Logmodel->operation_name ='Delete';
             $Logmodel->reference_id = $id;
             $Logmodel->table_name = 'class_master';
-            $Logmodel->user_id =1;
+            $Logmodel->user_id =$user_id;
             $Logmodel->save();
              return Response::json(['msg'=>'Delete Class  Successfully',]);
          }else{

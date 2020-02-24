@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Redirect, Response;
 use App\Logmodel;
 use Validator;
-
+use Session;
 class ProfileManagerController extends Controller
 {
     public function index(Request $request)
@@ -66,12 +66,12 @@ class ProfileManagerController extends Controller
     public function store(Request $request)
     {
         $ID = $request->save_update;
-
+        $user_id = Session::get('login_id');
         $customer   =   Profiemastermodel::updateOrCreate(
             ['profile_id' => $ID],
             [
                 'profile_type'        =>  $request->profiletype,
-                'user_id'        => 1,
+                'user_id'        => $user_id,
             ]
 
         );
@@ -117,7 +117,7 @@ class ProfileManagerController extends Controller
             $Logmodel->operation_name ='Edit';
             $Logmodel->reference_id = $ID;
             $Logmodel->table_name = 'profile_master';
-           // $Logmodel->table_name = 'package_master';
+            $Logmodel->user_id = $user_id;
             $Logmodel->save();
 
         }else{
@@ -127,7 +127,7 @@ class ProfileManagerController extends Controller
             $Logmodel->operation_name ='Insert';
             $Logmodel->reference_id = $customer->profile_id;
             $Logmodel->table_name = 'profile_master';
-           // $Logmodel->table_name = 'package_master';
+            $Logmodel->user_id = $user_id;
             $Logmodel->save();
         }
         return Response::json($ref_id);
@@ -153,9 +153,22 @@ class ProfileManagerController extends Controller
       return Response::json($customer);
     }
     public function deleteprofile($id){
+
+        $user_id = Session::get('login_id');
         DB::table('profile_details')->where('profileid', $id)->delete();
 
         $customer =  DB::table('profile_master')->where('profile_id', $id)->delete();
+
+        $Logmodel = new Logmodel;
+
+        $Logmodel->module_name ='Profile Master Module' ;
+        $Logmodel->operation_name ='Delete';
+        $Logmodel->reference_id = $id;
+        $Logmodel->table_name = 'profile_master';
+        $Logmodel->user_id = $user_id;
+        $Logmodel->save();
+
+
         return Response::json($customer);
 
     }

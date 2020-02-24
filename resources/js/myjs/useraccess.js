@@ -496,6 +496,13 @@ $(document).ready(function() {
 
     //form-clear
     function form_clear() {
+        $("#submit_btn").attr("disabled", false);
+        getallmenu();
+        $('#save_update').val('');
+
+
+
+        $("#user_type_hidden").val('');
         $("#name").val('');
         $("#email").val('');
         $("#phone").val('');
@@ -508,10 +515,13 @@ $(document).ready(function() {
         $("#photo").attr("required", true);
         $("#password").attr("required", true);
         $("#cpassword").attr("required", true);
-        getallmenu();
+
         $('#btnsave').text("Save");
 
     }
+    $(document).on('click', '.closehideshow', function() {
+        form_clear();
+    });
 
     //for check same instuctor
 

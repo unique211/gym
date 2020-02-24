@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Redirect, Response;
 use Validator;
 use App\Logmodel;
-
+use Session;
 class MobileNotificationController extends Controller
 {
     public function index(Request $request)
@@ -30,6 +30,7 @@ class MobileNotificationController extends Controller
     }
     public function store(Request $request)
     {
+        $user_id = Session::get('login_id');
         $id = $request->save_update;
         $table_id="";
         date_default_timezone_set('Asia/Kolkata');
@@ -42,7 +43,7 @@ class MobileNotificationController extends Controller
                 'count' => $request->count,
                 'created_at' => $date,
                 'updated_at' => $date,
-                'user_id' => 1,
+                'user_id' => $user_id,
             );
             $result =  DB::table('notification_master')
                 ->InsertGetId($data);
@@ -57,7 +58,7 @@ class MobileNotificationController extends Controller
                 $Logmodel->operation_name = 'Insert';
                 $Logmodel->reference_id = $table_id;
                 $Logmodel->table_name = 'notification_master';
-                $Logmodel->user_id = 1;
+                $Logmodel->user_id = $user_id;
                 $Logmodel->save();
 
 
@@ -68,7 +69,7 @@ class MobileNotificationController extends Controller
                 'member_list' => $request->member_list,
                 'count' => $request->count,
                 'updated_at' => $date,
-                'user_id' => 1,
+                'user_id' => $user_id,
             );
             $result = DB::table('notification_master')
                 ->where('id', $id)
@@ -81,7 +82,7 @@ class MobileNotificationController extends Controller
             $Logmodel->operation_name = 'Edit';
             $Logmodel->reference_id = $table_id;
             $Logmodel->table_name = 'notification_master';
-            $Logmodel->user_id = 1;
+            $Logmodel->user_id = $user_id;
             $Logmodel->save();
 
 

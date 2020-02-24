@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Redirect, Response;
 use App\Logmodel;
 use Validator;
+use Session;
 
 class MemberController extends Controller
 {
@@ -37,7 +38,7 @@ class MemberController extends Controller
     {
 
 
-
+        $user_id = Session::get('login_id');
         $ID = $request->save_update;
         $input = $request->all();
 
@@ -67,7 +68,7 @@ class MemberController extends Controller
                     'dateofexpire'        =>  $request->doe,
                     'balancepoint'        =>  $request->bal_point,
                     'image_url'       =>   $request->uploadimg_hidden,
-                    'user_id'        => 1,
+                    'user_id'        => $user_id,
                 ]
 
             );
@@ -109,7 +110,7 @@ class MemberController extends Controller
                 $Logmodel->operation_name = 'Edit';
                 $Logmodel->reference_id = $ID;
                 $Logmodel->table_name = 'member_master';
-                $Logmodel->user_id = 1;
+                $Logmodel->user_id = $user_id;
                 $Logmodel->save();
             } else {
                 $Logmodel = new Logmodel;
@@ -118,7 +119,7 @@ class MemberController extends Controller
                 $Logmodel->operation_name = 'Insert';
                 $Logmodel->reference_id = $ref_id;
                 $Logmodel->table_name = 'member_master';
-                $Logmodel->user_id = 1;
+                $Logmodel->user_id = $user_id;
                 $Logmodel->save();
             }
             return Response::json($ref_id);
@@ -216,13 +217,14 @@ class MemberController extends Controller
     }
     public function deletememberinfo($id)
     {
+        $user_id = Session::get('login_id');
         $Logmodel = new Logmodel;
 
         $Logmodel->module_name = 'Members Module';
         $Logmodel->operation_name = 'Delete';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'member_master';
-        $Logmodel->user_id = 1;
+        $Logmodel->user_id = $user_id;
         $Logmodel->save();
         DB::table('link_relation_ship')->where('member_id', $id)->delete();
         $result =  DB::table('member_master')->where('member_id', $id)->delete();
@@ -240,20 +242,27 @@ class MemberController extends Controller
         $count = count($data);
         return Response::json($count);
     }
-    public function getpointusage(Request $request)
+    public function pointusage($id)
     {
+
+
         $result = array();
+
         $data1 =  DB::table('link_relation_ship')
-            ->where('member_id', $request->id)
+            ->where('member_id', $id)
             ->get();
+
+        $data2 = "";
 
 
 
         foreach ($data1 as $val1) {
             $link_id = $val1->linkrelid;
+            // $result[] = array('link'=>$link_id);
+
 
             $data2 = DB::table('booking_table')
-                ->select('booking_table.*', 'class_sechedule_master.classsechedule_name', 'class_sechedule_master.instructor','class_master.class_name as classname', 'instuctor_master.instructor_name')
+                ->select('booking_table.*', 'class_sechedule_master.classsechedule_name', 'class_sechedule_master.instructor', 'class_master.class_name as classname', 'instuctor_master.instructor_name')
                 ->join('class_sechedule_master', 'class_sechedule_master.classsechedule_id', '=', 'booking_table.class_schedule_id')
                 ->join('class_master', 'class_master.class_id', '=', 'class_sechedule_master.classsechedule_name')
                 ->join('instuctor_master', 'instuctor_master.instructorid', '=', 'class_sechedule_master.instructor')
@@ -262,18 +271,29 @@ class MemberController extends Controller
                 ->where('booking_table.rating_points', -1)
                 ->get();
 
-                foreach($data2 as $val2){
-                    $result[] = array(
-                        'id'=>$val1->booking_id,
-                        'user_id'=>$val1->userid,
-                        'date_time'=>$val2->date_time,
-                        'class_name'=>$val2->classname,
-                        'point_use'=>$val2->points,
-                        'Instructor'=>$val2->instructor_name,
-                    );
-                }
-              //  dd($link_id);
+
+
+            foreach ($data2 as $val2) {
+
+
+
+
+
+                $result[] = array(
+                    'id' => $val2->booking_id,
+                    'user_id' => $val1->userid,
+                    'date_time' => $val2->date_time,
+                    'class_name' => $val2->classname,
+                    'point_use' => $val2->points,
+                    'Instructor' => $val2->instructor_name,
+                );
+            }
+
+
+
+
         }
+         //dd($result);
         return Response::json($result);
     }
 }

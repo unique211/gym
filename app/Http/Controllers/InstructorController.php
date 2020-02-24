@@ -63,7 +63,7 @@ class InstructorController extends Controller
     public function store(Request $request)
     {
         $ID = $request->save_update;
-
+        $user_id = Session::get('login_id');
         if ($ID > 0) {
             $data = DB::table('instuctor_master')->where('instructor_name', $request->name)->where('instructorid', '!=', $ID)->get();
             $count = count($data);
@@ -83,7 +83,7 @@ class InstructorController extends Controller
                             'instructor_telno'        =>  $request->tel_no,
                             'instructor_img'        =>  $request->imghidden,
                             'status'        => 1,
-                            'user_id'        => 1,
+                            'user_id'        => $user_id,
                         ]
 
                     );
@@ -159,7 +159,8 @@ class InstructorController extends Controller
                         $Logmodel->operation_name = 'Edit';
                         $Logmodel->reference_id = $ID;
                         $Logmodel->table_name = 'instuctor_master';
-                        // $Logmodel->table_name = 'package_master';
+                        $Logmodel->user_id = $user_id;
+
                         $Logmodel->save();
                     } else {
                         $Logmodel = new Logmodel;
@@ -168,7 +169,8 @@ class InstructorController extends Controller
                         $Logmodel->operation_name = 'Insert';
                         $Logmodel->reference_id = $ref_id;
                         $Logmodel->table_name = 'instuctor_master';
-                        // $Logmodel->table_name = 'package_master';
+                        $Logmodel->user_id = $user_id;
+
                         $Logmodel->save();
                     }
                     return Response::json($ref_id);
@@ -193,7 +195,7 @@ class InstructorController extends Controller
                             'instructor_telno'        =>  $request->tel_no,
                             'instructor_img'        =>  $request->imghidden,
                             'status'        => 1,
-                            'user_id'        => 1,
+                            'user_id'        => $user_id,
                         ]
 
                     );
@@ -270,7 +272,8 @@ class InstructorController extends Controller
                         $Logmodel->operation_name = 'Edit';
                         $Logmodel->reference_id = $ID;
                         $Logmodel->table_name = 'profile_master';
-                        // $Logmodel->table_name = 'package_master';
+                        $Logmodel->user_id = $user_id;
+
                         $Logmodel->save();
                     } else {
                         $Logmodel = new Logmodel;
@@ -279,7 +282,8 @@ class InstructorController extends Controller
                         $Logmodel->operation_name = 'Insert';
                         $Logmodel->reference_id = $ref_id;
                         $Logmodel->table_name = 'profile_master';
-                        // $Logmodel->table_name = 'package_master';
+                        $Logmodel->user_id = $user_id;
+
                         $Logmodel->save();
                     }
                     return Response::json($ref_id);
@@ -360,6 +364,7 @@ class InstructorController extends Controller
     }
     public function deleteallinfoin($id)
     {
+        $user_id = Session::get('login_id');
         // DB::update('update login_master set status = ? where ref_id = ? And  role =? ',[0,$id,"Instructor"]);
         DB::table('instructor_right')->where('instucuteright_id', $id)->delete();
         $Logmodel = new Logmodel;
@@ -368,7 +373,8 @@ class InstructorController extends Controller
         $Logmodel->operation_name = 'Delete';
         $Logmodel->reference_id = $id;
         $Logmodel->table_name = 'instuctor_master';
-        // $Logmodel->table_name = 'package_master';
+        $Logmodel->user_id = $user_id;
+
         $Logmodel->save();
 
         DB::table('login_master')->where('ref_id', $id)->where('role', 'Instructor')->delete();

@@ -240,7 +240,7 @@ return [
     'Member_id'=>'会员ID',
     'Member_Id'=>'会员ID',
     'Member_Name'=>'成员名字',
-    'Instructor_Rating'=>'评分',
+    'Instructor_Rating'=>'教师评分',
 
 
 
@@ -255,5 +255,7 @@ return [
     'Total_Members'=>'成员总数',
     'English_Text'=>'英文文字',
     'Chinese_Text'=>'中文文字',
-    'Attandance'=>'出勤率',
+
+    'Number_of_Members'=>'会员人数',
+    'Upcoming_Booking_Details'=>'即将到来的预订详细信息',
 ];

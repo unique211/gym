@@ -27,7 +27,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><b>Upcoming Booking Details</b></h4>
+                                <h4><b>@lang('site_lables.Upcoming_Booking_Details')</b></h4>
 
                                 {{-- <button type="button" class="btn btn-primary btn-xs pull-right btnhideshow"><i
                                                                 class="fa fa-plus"></i> @lang('site_lables.Add_New')</button> --}}
@@ -42,7 +42,7 @@
                                                 <th><font style="font-weight:bold">@lang('site_lables.Date_&_Time')</font></th>
                                                 <th><font style="font-weight:bold">@lang('site_lables.Class')</font></th>
                                                 <th><font style="font-weight:bold">@lang('site_lables.Instructor')</font></th>
-                                                <th><font style="font-weight:bold">Number of Members</font></th>
+                                                <th><font style="font-weight:bold">@lang('site_lables.Number_of_Members')</font></th>
   </tr>
                                         </thead>
                                         <tbody id="table_tbody">

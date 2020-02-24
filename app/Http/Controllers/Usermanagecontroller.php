@@ -23,7 +23,6 @@ class Usermanagecontroller extends Controller
 
         $userid = $request->mobile_no;
         $password = $request->mac_address;
-        $firebase_token = $request->firebase_token;
         $result = array();
 
 
@@ -40,16 +39,9 @@ class Usermanagecontroller extends Controller
             ->get();
 
         $cnt = count($data);
-
         if ($cnt > 0) {
             foreach ($data as $val) {
                 $pass = $val->password;
-
-
-                DB::table('link_relation_ship')
-                ->where($where)
-                ->update(['firebase_token' => $firebase_token]);
-
                 if ($pass == "") {
                     DB::table('link_relation_ship')
                         ->where('userid', $userid)
@@ -60,9 +52,7 @@ class Usermanagecontroller extends Controller
                         'blance' => $val->balancepoint,
                         'link_id' => $val->linkrelid,
                         'member_id' => $val->member_id,
-
                     );
-
                     return response()->json(['data' => $result, 'status' => 1]);
                 } else {
                     $where = array('link_relation_ship.userid' => $userid, 'link_relation_ship.password' => $password);
@@ -81,7 +71,7 @@ class Usermanagecontroller extends Controller
                                 'name' => $val2->name,
                                 'balance' => $val2->balancepoint,
                                 'link_id' => $val2->linkrelid,
-                                'member_id' => $val2->member_id
+                                'member_id' => $val2->member_id,
                             );
                         }
 
@@ -154,7 +144,9 @@ class Usermanagecontroller extends Controller
     public function update_member_api(Request $request)
     {
 
-        $extension = $request->file('file')->getClientOriginalExtension();
+
+        if ($request->has('file')) {
+            $extension = $request->file('file')->getClientOriginalExtension();
         $dir = 'gallaryimg/member/';
         $filename = uniqid() . '_' . time() . '.' . $extension;
 
@@ -172,42 +164,28 @@ class Usermanagecontroller extends Controller
             'image' =>  $image_name,
         );
         DB::table('link_relation_ship')
-        ->where('userid', $userid)
-        ->update($data);
+            ->where('userid', $userid)
+            ->update($data);
 
         return response()->json(['status' => 1]);
+        } else{
+            $userid = $request->mobile_no;
 
-        // $where = array('link_relation_ship.userid' => $userid);
-        // $data = DB::table('link_relation_ship')
-        //     ->select('link_relation_ship.*', 'member_master.*', 'package_master.package_name')
-        //     ->join('member_master', 'member_master.member_id', '=', 'link_relation_ship.member_id')
-        //     ->join('package_master', 'package_master.packege_id', '=', 'member_master.currentpackage')
-        //     ->where($where)
-        //     ->get();
+            $data = array(
+                'name' => $request->name,
+                'address' => $request->address,
+                'email_id' => $request->email_id,
+                'dob' => $request->dob,
 
-        // $cnt = count($data);
-        // if ($cnt > 0) {
-        //     foreach ($data as $val) {
-        //         $member_id = $val->member_id;
+            );
+            DB::table('link_relation_ship')
+                ->where('userid', $userid)
+                ->update($data);
+                return response()->json(['status' => 1]);
+        }
 
-        //         $data = array(
-        //             'membername' => $request->name,
-        //             'balancepoint' => $request->balance_point,
-        //             'address' => $request->address,
-        //             'email' => $request->email_id,
-        //             'dob' => $request->dob,
-        //             'image_url' =>  $image_name,
-        //         );
 
-        //         DB::table('link_relation_ship')
-        //             ->where('member_id', $member_id)
-        //             ->update($data);
-        //     }
 
-         //   return response()->json(['status' => 1]);
-        // } else {
-        //     return response()->json(['status' => 0]);
-        // }
     }
 
 
@@ -283,17 +261,43 @@ class Usermanagecontroller extends Controller
 
         $link_id = $request->link_id;
 
-        $data = array(
-            'receive_mobile_notification' => $request->receive_mobile_notification,
-            'prompt_me' => $request->prompt_me,
-            'language' => $request->language,
 
-        );
-        DB::table('user_settings')
-        ->where('link_id', $link_id)
-        ->update($data);
+        $data1 = DB::table('user_settings')
+            ->select('user_settings.*')
+            ->where('link_id', $link_id)
+            ->get();
 
-        return response()->json(['status' => 1]);
+        date_default_timezone_set('Asia/Kolkata');
+        $date = date("Y-m-d H:i:s");
+
+        $cnt = count($data1);
+        if ($cnt > 0) {
+            $data = array(
+                'receive_mobile_notification' => $request->receive_mobile_notification,
+                'prompt_me' => $request->prompt_me,
+                'language' => $request->language,
+                'update_date' => $date,
+            );
+            DB::table('user_settings')
+                ->where('link_id', $link_id)
+                ->update($data);
+
+            return response()->json(['status' => 1, '' => 'Data Updated']);
+        } else {
+            $data = array(
+                'receive_mobile_notification' => $request->receive_mobile_notification,
+                'prompt_me' => $request->prompt_me,
+                'language' => $request->language,
+                'add_date' => $date,
+                'update_date' => $date,
+                'link_id' => $link_id,
+            );
+            $insert_data =  DB::table('user_settings')
+            ->Insert($data);
+            return response()->json(['status' => 1, '' => 'Data Inserted']);
+        }
+
+
 
 
 
